@@ -1,0 +1,26 @@
+{
+  "name": "ATC Course Guide",
+  "short_name": "ATC Guide",
+  "description": "Explore courses and subjects at Arusha Technical College before enrolling",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a3d2e",
+  "theme_color": "#0a3d2e",
+  "orientation": "portrait-primary",
+  "lang": "sw",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education"]
+}

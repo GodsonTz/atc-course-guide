@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a3d2e">
+<meta name="description" content="Tazama kozi na masomo ya Arusha Technical College kabla ya kujiunga">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ATC Explorer">
+<link rel="manifest" href="manifest.json">
+<title>ATC Course Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #0a3d2e;
+  --green-mid: #1D9E75;
+  --green-light: #E1F5EE;
+  --green-accent: #5DCAA5;
+  --amber: #f59e0b;
+  --surface: #f8faf9;
+  --card: #ffffff;
+  --text: #0d1f1a;
+  --text-muted: #5a7a70;
+  --border: rgba(10,61,46,0.1);
+  --border-strong: rgba(10,61,46,0.2);
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--surface);
+  color: var(--text);
+  min-height: 100vh;
+  overscroll-behavior: none;
+}
+
+/* HEADER */
+.app-header {
+  background: var(--green);
+  padding: env(safe-area-inset-top, 0) 0 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-inner {
+  padding: 1rem 1.25rem 0.75rem;
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+.app-icon {
+  width: 42px; height: 42px;
+  background: var(--green-accent);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--green);
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+.header-titles { flex: 1; }
+.app-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+.app-subtitle { font-size: 12px; color: var(--green-accent); margin-top: 1px; }
+
+.install-hint {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  border: 0.5px solid rgba(255,255,255,0.15);
+}
+.install-hint.show { display: flex; }
+.install-hint svg { width: 14px; height: 14px; fill: var(--green-accent); }
+
+/* SEARCH */
+.search-wrap {
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: 0.5px solid rgba(255,255,255,0.12);
+}
+.search-wrap svg { width: 16px; height: 16px; fill: var(--green-accent); flex-shrink: 0; }
+.search-wrap input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  padding: 11px 0;
+}
+.search-wrap input::placeholder { color: rgba(255,255,255,0.4); }
+
+/* FILTERS */
+.filters-scroll {
+  display: flex;
+  gap: 8px;
+  padding: 0.75rem 1.25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  background: var(--green);
+}
+.filters-scroll::-webkit-scrollbar { display: none; }
+.filter-chip {
+  padding: 6px 16px;
+  border-radius: 99px;
+  border: 0.5px solid rgba(255,255,255,0.2);
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  white-space: nowrap;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  background: transparent;
+  transition: all 0.15s;
+}
+.filter-chip.active {
+  background: var(--green-accent);
+  border-color: var(--green-accent);
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* STATS BAR */
+.stats-bar {
+  padding: 0.75rem 1.25rem;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-bottom: 0.5px solid var(--border);
+}
+.stats-bar span { font-weight: 500; color: var(--green-mid); }
+
+/* COURSE LIST */
+.course-list {
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 6rem;
+}
+
+/* CARD */
+.course-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 0.5px solid var(--border);
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.course-card.open {
+  border-color: var(--green-mid);
+  box-shadow: 0 0 0 3px rgba(29,158,117,0.08);
+}
+
+.card-summary {
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.dept-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.card-text { flex: 1; min-width: 0; }
+.dept-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+.course-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.course-meta {
+  display: flex;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.meta-pill {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.chevron-wrap {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+}
+.chevron {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--green-light);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.25s, background 0.2s;
+}
+.open .chevron { transform: rotate(180deg); background: var(--green-mid); }
+.chevron svg { width: 10px; height: 10px; }
+.chevron svg path { stroke: var(--green-mid); }
+.open .chevron svg path { stroke: #fff; }
+
+/* SUBJECTS PANEL */
+.subjects-panel {
+  display: none;
+  border-top: 0.5px solid var(--border);
+}
+.open .subjects-panel { display: block; }
+
+.semester-block { padding: 1rem 1.25rem; border-bottom: 0.5px solid var(--border); }
+.semester-block:last-child { border-bottom: none; }
+.semester-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.semester-label::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+  background: var(--border);
+}
+
+.subject-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 0.5px solid var(--border);
+}
+.subject-row:last-child { border-bottom: none; }
+.subject-num {
+  font-size: 10px;
+  color: var(--text-muted);
+  width: 18px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.subject-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green-accent);
+  flex-shrink: 0;
+}
+.subject-info { flex: 1; }
+.subject-name { font-size: 13px; color: var(--text); line-height: 1.3; }
+.subject-code { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+
+/* ENTRY REQUIREMENTS */
+.entry-section {
+  margin: 0 1.25rem 1rem;
+  background: var(--green-light);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+}
+.entry-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  margin-bottom: 5px;
+}
+.entry-text { font-size: 12px; color: var(--text); line-height: 1.6; }
+
+/* EMPTY STATE */
+.empty-state {
+  display: none;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-muted);
+}
+.empty-state .icon { font-size: 36px; margin-bottom: 1rem; }
+.empty-state p { font-size: 14px; }
+
+/* BOTTOM NAV */
+.bottom-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--card);
+  border-top: 0.5px solid var(--border);
+  padding: 12px 1.25rem;
+  padding-bottom: env(safe-area-inset-bottom, 12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+}
+.bottom-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.bottom-label strong { color: var(--green-mid); }
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+}
+.share-btn svg { width: 14px; height: 14px; fill: #fff; }
+
+/* DEPT COLORS */
+.dept-ICT { background: #E6F1FB; color: #185FA5; }
+.dept-ICT .dept-icon { background: #E6F1FB; }
+.dept-Civil { background: var(--green-light); color: var(--green-mid); }
+.dept-Civil .dept-icon { background: var(--green-light); }
+.dept-Electrical { background: #FAEEDA; color: #854F0B; }
+.dept-Electrical .dept-icon { background: #FAEEDA; }
+.dept-Mechanical { background: #FBEAF0; color: #993556; }
+.dept-Mechanical .dept-icon { background: #FBEAF0; }
+.dept-Transport { background: #EEEDFE; color: #534AB7; }
+.dept-Transport .dept-icon { background: #EEEDFE; }
+
+@media (max-width: 480px) {
+  .app-title { font-size: 16px; }
+  .course-name { font-size: 14px; }
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="app-icon">ATC</div>
+      <div class="header-titles">
+        <div class="app-title">ATC Explorer</div>
+        <div class="app-subtitle">Arusha Technical College</div>
+      </div>
+      <button class="install-hint" id="installBtn" onclick="installApp()">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        Install
+      </button>
+    </div>
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.5 6.5 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      <input type="text" id="searchInput" placeholder="Tafuta kozi..." oninput="filterCourses()" autocomplete="off" />
+    </div>
+  </div>
+  <div class="filters-scroll" id="filterRow"></div>
+</header>
+
+<div class="stats-bar" id="statsBar"></div>
+
+<main class="course-list" id="courseList"></main>
+<div class="empty-state" id="emptyState">
+  <div class="icon">🔍</div>
+  <p>Hakuna kozi zinazolingana.<br>Jaribu kutafuta tena.</p>
+</div>
+
+<div class="bottom-bar">
+  <div class="bottom-label">Prototype · <strong>Innovation Week 2025</strong></div>
+  <button class="share-btn" onclick="shareApp()">
+    <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+    Shiriki
+  </button>
+</div>
+
+<script>
+const COURSES = [
+  {
+    id: 1, dept: "ICT", icon: "💻", name: "Diploma in Computer Science",
+    level: "Ordinary Diploma", duration: "Miaka 3",
+    entry: "Passes 4 za D: Physics/Eng. Science, Mathematics, Chemistry, English. Au Certificate katika IT/CS (miaka 2 tu).",
+    semesters: [
+      { label: "Mwaka 1 · Semester 1", subjects: [
+        { code:"CS101", name:"Introduction to Programming (C/Python)" },
+        { code:"CS102", name:"Computer Hardware & Maintenance" },
+        { code:"MTH101", name:"Engineering Mathematics I" },
+        { code:"GS101", name:"Communication Skills" },
+        { code:"GS102", name:"Entrepreneurship & Business Studies" }
+      ]},
+      { label: "Mwaka 1 · Semester 2", subjects: [
+        { code:"CS103", name:"Data Structures & Algorithms" },
+        { code:"CS104", name:"Operating Systems" },
+        { code:"MTH102", name:"Engineering Mathematics II" },
+        { code:"CS105", name:"Database Systems I" },
+        { code:"GS103", name:"HIV/AIDS & Life Skills" }
+      ]},
+      { label: "Mwaka 2 · Semester 1", subjects: [
+        { code:"CS201", name:"Object-Oriented Programming (Java)" },
+        { code:"CS202", name:"Computer Networks I" },
+        { code:"CS203", name:"Web Technologies (HTML/CSS/JS)" },
+        { code:"CS204", name:"Database Systems II (MySQL)" },
+        { code:"MTH201", name:"Statistics & Probability" }
+      ]},
+      { label: "Mwaka 2 · Semester 2", subjects: [
+        { code:"CS205", name:"Software Engineering" },
+        { code:"CS206", name:"Computer Networks II" },
+        { code:"CS207", name:"System Analysis & Design" },
+        { code:"CS208", name:"Mobile Application Development" },
+        { code:"GS201", name:"Technical Report Writing" }
+      ]},
+      { label: "Mwaka 3 · Field Training & Project", subjects: [
+        { code:"CS301", name:"Industrial Attachment (Practical Training)" },
+        { code:"CS302", name:"Final Year Project" },
+        { code:"CS303", name:"Cybersecurity Fundamentals" },
+        { code:"CS304", name:"Cloud Computing Basics" }
+      ]}
+    ]
+  },
+  {
+    id: 2, dept: "ICT", icon: "🌐", name: "Diploma in Information Technology",
+    level: "Ordinary Diploma", duration: "Miaka 3",
+    entry: "Passes 4 za D katika masomo yoyote (isipokuwa Dini, Lishe, Ujenzi wa Nguo). IT/CS certificate inakubalika (miaka 2).",
+    semesters: [
+      { label: "Mwaka 1 · Semester 1", subjects: [
+        { code:"IT101", name:"IT Fundamentals & Computer Basics" },
+        { code:"IT102", name:"Introduction to Programming" },
+        { code:"MTH101", name:"Mathematics for IT" },
+        { code:"GS101", name:"Communication Skills" },
+        { code:"IT103", name:"Digital Electronics Basics" }
+      ]},
+      { label: "Mwaka 1 · Semester 2", subjects: [
+        { code:"IT104", name:"Networking Fundamentals (CCNA prep)" },
+        { code:"IT105", name:"Database Administration" },
+        { code:"IT106", name:"Web Design & Development" },
+        { code:"GS102", name:"Entrepreneurship" },
+        { code:"IT107", name:"Operating Systems Administration" }
+      ]},
+      { label: "Mwaka 2 · Semester 1", subjects: [
+        { code:"IT201", name:"Network Administration (LAN/WAN)" },
+        { code:"IT202", name:"System Administration (Linux/Windows)" },
+        { code:"IT203", name:"ICT Project Management" },
+        { code:"IT204", name:"Programming (PHP/Python)" },
+        { code:"IT205", name:"Information Security" }
+      ]},
+      { label: "Mwaka 2 · Semester 2", subjects: [
+        { code:"IT206", name:"Cloud Services & Virtualization" },
+        { code:"IT207", name:"Mobile App Development" },
+        { code:"IT208", name:"E-Commerce Systems" },
+        { code:"IT209", name:"Technical Support & Help Desk" },
+        { code:"GS201", name:"Technical Report Writing" }
+      ]},
+      { label: "Mwaka 3 · Field Training & Project", subjects: [
+        { code:"IT301", name:"Industrial Attachment" },
+        { code:"IT302", name:"Final Year Project" },
+        { code:"IT303", name:"Emerging Technologies (IoT/AI basics)" }
+      ]}
+    ]
+  },
+  {
+    id: 3, dept: "Civil", icon: "🏗️", name: "Diploma in Civil Engineering",
+    level: "Ordinary Diploma", duration: "Miaka 3",
+    entry: "Passes 4 za D: Physics/Eng. Science, Mathematics, Chemistry au Geography, English.",
+    semesters: [
+      { label: "Mwaka 1 · Semester 1", subjects: [
+        { code:"CE101", name:"Engineering Drawing & CAD" },
+        { code:"CE102", name:"Engineering Mathematics I" },
+        { code:"CE103", name:"Building Materials & Construction" },
+        { code:"CE104", name:"Surveying I" },
+        { code:"GS101", name:"Communication Skills" }
+      ]},
+      { label: "Mwaka 1 · Semester 2", subjects: [
+        { code:"CE105", name:"Structural Mechanics" },
+        { code:"CE106", name:"Soil Mechanics I" },
+        { code:"CE107", name:"Hydraulics & Fluid Mechanics" },
+        { code:"CE108", name:"Surveying II" },
+        { code:"MTH102", name:"Engineering Mathematics II" }
+      ]},
+      { label: "Mwaka 2 · Semester 1", subjects: [
+        { code:"CE201", name:"Reinforced Concrete Design" },
+        { code:"CE202", name:"Road & Highway Engineering" },
+        { code:"CE203", name:"Environmental Engineering" },
+        { code:"CE204", name:"Soil Mechanics II" },
+        { code:"CE205", name:"Construction Management" }
+      ]},
+      { label: "Mwaka 2 · Semester 2", subjects: [
+        { code:"CE206", name:"Water Supply & Sanitation" },
+        { code:"CE207", name:"Structural Analysis" },
+        { code:"CE208", name:"Engineering Geology" },
+        { code:"GS201", name:"Entrepreneurship & Business" },
+        { code:"CE209", name:"Quantity Surveying" }
+      ]},
+      { label: "Mwaka 3 · Field Training & Project", subjects: [
+        { code:"CE301", name:"Industrial Attachment (Site Work)" },
+        { code:"CE302", name:"Final Year Project/Design" },
+        { code:"CE303", name:"Bridge & Culvert Engineering" }
+      ]}
+    ]
+  },
+  {
+    id: 4, dept: "Electrical", icon: "⚡", name: "Diploma in Electrical Engineering",
+    level: "Ordinary Diploma", duration: "Miaka 3",
+    entry: "Passes 4 za D: Physics/Eng. Science, Mathematics, Chemistry, English.",
+    semesters: [
+      { label: "Mwaka 1 · Semester 1", subjects: [
+        { code:"EE101", name:"Basic Electrical Engineering" },
+        { code:"EE102", name:"Engineering Drawing" },
+        { code:"MTH101", name:"Engineering Mathematics I" },
+        { code:"EE103", name:"Workshop Practice" },
+        { code:"GS101", name:"Communication Skills" }
+      ]},
+      { label: "Mwaka 1 · Semester 2", subjects: [
+        { code:"EE104", name:"AC/DC Circuit Analysis" },
+        { code:"EE105", name:"Electronic Devices & Circuits" },
+        { code:"EE106", name:"Electrical Measurements" },
+        { code:"MTH102", name:"Engineering Mathematics II" },
+        { code:"GS102", name:"Entrepreneurship" }
+      ]},
+      { label: "Mwaka 2 · Semester 1", subjects: [
+        { code:"EE201", name:"Electrical Machines I (Motors & Generators)" },
+        { code:"EE202", name:"Power Systems & Distribution" },
+        { code:"EE203", name:"Digital Electronics" },
+        { code:"EE204", name:"Instrumentation & Control" },
+        { code:"EE205", name:"Electrical Installation" }
+      ]},
+      { label: "Mwaka 2 · Semester 2", subjects: [
+        { code:"EE206", name:"Electrical Machines II" },
+        { code:"EE207", name:"PLC & Industrial Automation" },
+        { code:"EE208", name:"Renewable Energy Systems" },
+        { code:"EE209", name:"Power Electronics" },
+        { code:"GS201", name:"Technical Report Writing" }
+      ]},
+      { label: "Mwaka 3 · Field Training & Project", subjects: [
+        { code:"EE301", name:"Industrial Attachment" },
+        { code:"EE302", name:"Final Year Project" },
+        { code:"EE303", name:"High Voltage Engineering" }
+      ]}
+    ]
+  },
+  {
+    id: 5, dept: "Mechanical", icon: "⚙️", name: "Diploma in Mechanical Engineering",
+    level: "Ordinary Diploma", duration: "Miaka 3",
+    entry: "Passes 4 za D: Physics/Eng. Science, Mathematics, Chemistry, English.",
+    semesters: [
+      { label: "Mwaka 1 · Semester 1", subjects: [
+        { code:"ME101", name:"Engineering Drawing & CAD" },
+        { code:"ME102", name:"Workshop Technology" },
+        { code:"MTH101", name:"Engineering Mathematics I" },
+        { code:"ME103", name:"Engineering Materials & Metallurgy" },
+        { code:"GS101", name:"Communication Skills" }
+      ]},
+      { label: "Mwaka 1 · Semester 2", subjects: [
+        { code:"ME104", name:"Thermodynamics I" },
+        { code:"ME105", name:"Mechanics of Materials" },
+        { code:"ME106", name:"Manufacturing Processes" },
+        { code:"MTH102", name:"Engineering Mathematics II" },
+        { code:"ME107", name:"Fluid Mechanics" }
+      ]},
+      { label: "Mwaka 2 · Semester 1", subjects: [
+        { code:"ME201", name:"Machine Design I" },
+        { code:"ME202", name:"Thermodynamics II (Heat Engines)" },
+        { code:"ME203", name:"CNC Machining & Metrology" },
+        { code:"ME204", name:"Refrigeration & Air Conditioning" },
+        { code:"ME205", name:"Engineering Management" }
+      ]},
+      { label: "Mwaka 2 · Semester 2", subjects: [
+        { code:"ME206", name:"Machine Design II" },
+        { code:"ME207", name:"Welding Technology" },
+        { code:"ME208", name:"Automotive Engineering" },
+        { code:"GS201", name:"Entrepreneurship" },
+        { code:"ME209", name:"Industrial Safety" }
+      ]},
+      { label: "Mwaka 3 · Field Training & Project", subjects: [
+        { code:"ME301", name:"Industrial Attachment" },
+        { code:"ME302", name:"Final Year Project" },
+        { code:"ME303", name:"Robotics & Mechatronics Basics" }
+      ]}
+    ]
+  },
+  {
+    id: 6, dept: "Transport", icon: "🛣️", name: "Diploma in Transportation Engineering",
+    level: "Ordinary Diploma", duration: "Miaka 3",
+    entry: "Passes 4 za D: Physics/Eng. Science, Mathematics, Chemistry au Geography, English.",
+    semesters: [
+      { label: "Mwaka 1 · Semester 1", subjects: [
+        { code:"TE101", name:"Engineering Drawing" },
+        { code:"TE102", name:"Engineering Mathematics I" },
+        { code:"TE103", name:"Road Materials & Pavement" },
+        { code:"TE104", name:"Surveying I" },
+        { code:"GS101", name:"Communication Skills" }
+      ]},
+      { label: "Mwaka 1 · Semester 2", subjects: [
+        { code:"TE105", name:"Traffic Engineering & Safety" },
+        { code:"TE106", name:"Highway Geometry & Design" },
+        { code:"TE107", name:"Soil Mechanics" },
+        { code:"TE108", name:"Surveying II" },
+        { code:"MTH102", name:"Engineering Mathematics II" }
+      ]},
+      { label: "Mwaka 2 · Semester 1", subjects: [
+        { code:"TE201", name:"Pavement Design & Construction" },
+        { code:"TE202", name:"Bridge Engineering" },
+        { code:"TE203", name:"Transport Economics & Planning" },
+        { code:"TE204", name:"Environmental Impact Assessment" },
+        { code:"TE205", name:"Contract & Construction Management" }
+      ]},
+      { label: "Mwaka 2 · Semester 2", subjects: [
+        { code:"TE206", name:"Drainage Engineering" },
+        { code:"TE207", name:"Road Maintenance & Rehabilitation" },
+        { code:"TE208", name:"GIS & Remote Sensing for Roads" },
+        { code:"GS201", name:"Entrepreneurship" },
+        { code:"TE209", name:"Quantity Surveying for Roads" }
+      ]},
+      { label: "Mwaka 3 · Field Training & Project", subjects: [
+        { code:"TE301", name:"Industrial Attachment" },
+        { code:"TE302", name:"Final Year Project" },
+        { code:"TE303", name:"Urban Transport Planning" }
+      ]}
+    ]
+  }
+];
+
+const DEPTS = ["Zote", "ICT", "Civil", "Electrical", "Mechanical", "Transport"];
+let activeFilter = "Zote";
+let openCards = new Set();
+let deferredPrompt = null;
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('installBtn').classList.add('show');
+});
+
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+      document.getElementById('installBtn').classList.remove('show');
+    });
+  }
+}
+
+function shareApp() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'ATC Course Explorer',
+      text: 'Tazama kozi na masomo ya Arusha Technical College!',
+      url: window.location.href
+    });
+  } else {
+    navigator.clipboard.writeText(window.location.href);
+    alert('Link imenakiliwa!');
+  }
+}
+
+function renderFilters() {
+  document.getElementById('filterRow').innerHTML = DEPTS.map(d =>
+    `<button class="filter-chip${d===activeFilter?' active':''}" onclick="setFilter('${d}')">${d}</button>`
+  ).join('');
+}
+
+function setFilter(d) { activeFilter = d; renderFilters(); renderCourses(); }
+
+function getFiltered() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  return COURSES.filter(c => {
+    const matchDept = activeFilter === 'Zote' || c.dept === activeFilter;
+    const matchQ = !q || c.name.toLowerCase().includes(q) || c.dept.toLowerCase().includes(q);
+    return matchDept && matchQ;
+  });
+}
+
+function filterCourses() { renderCourses(); }
+
+function toggleCard(id) {
+  openCards.has(id) ? openCards.delete(id) : openCards.add(id);
+  renderCourses();
+}
+
+function renderCourses() {
+  const filtered = getFiltered();
+  const list = document.getElementById('courseList');
+  const empty = document.getElementById('emptyState');
+  const stats = document.getElementById('statsBar');
+
+  stats.innerHTML = `Inaonyesha kozi <span>${filtered.length}</span> kati ya ${COURSES.length}`;
+
+  if (!filtered.length) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  list.innerHTML = filtered.map(c => {
+    const isOpen = openCards.has(c.id);
+    const semHTML = c.semesters.map(s => `
+      <div class="semester-block">
+        <div class="semester-label">${s.label}</div>
+        ${s.subjects.map((sub, i) => `
+          <div class="subject-row">
+            <div class="subject-num">${i+1}</div>
+            <div class="subject-dot"></div>
+            <div class="subject-info">
+              <div class="subject-name">${sub.name}</div>
+              <div class="subject-code">${sub.code}</div>
+            </div>
+          </div>`).join('')}
+      </div>`).join('');
+
+    return `
+    <div class="course-card${isOpen?' open':''}" id="card-${c.id}">
+      <div class="card-summary" onclick="toggleCard(${c.id})">
+        <div class="dept-icon dept-${c.dept}">${c.icon}</div>
+        <div class="card-text">
+          <span class="dept-badge dept-${c.dept}">${c.dept}</span>
+          <div class="course-name">${c.name}</div>
+          <div class="course-meta">
+            <span class="meta-pill">📋 ${c.level}</span>
+            <span class="meta-pill">⏱ ${c.duration}</span>
+          </div>
+        </div>
+        <div class="chevron-wrap">
+          <div class="chevron">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="subjects-panel">
+        ${semHTML}
+        <div class="entry-section">
+          <div class="entry-title">📋 Masharti ya kujiunga</div>
+          <div class="entry-text">${c.entry}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+renderFilters();
+renderCourses();
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+</script>
+</body>
+</html>
