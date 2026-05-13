@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="sw">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0a3d2e">
-<meta name="description" content="Tazama kozi na masomo ya Arusha Technical College kabla ya kujiunga">
+<meta name="description" content="Explore courses and subjects at Arusha Technical College before enrolling">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="ATC Explorer">
+<meta name="apple-mobile-web-app-title" content="ATC Guide">
 <link rel="manifest" href="manifest.json">
-<title>ATC Course Explorer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>ATC Course Guide</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -18,356 +17,116 @@
   --green-mid: #1D9E75;
   --green-light: #E1F5EE;
   --green-accent: #5DCAA5;
-  --amber: #f59e0b;
   --surface: #f8faf9;
   --card: #ffffff;
   --text: #0d1f1a;
   --text-muted: #5a7a70;
   --border: rgba(10,61,46,0.1);
-  --border-strong: rgba(10,61,46,0.2);
   --radius: 14px;
   --radius-sm: 8px;
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--surface);
-  color: var(--text);
-  min-height: 100vh;
-  overscroll-behavior: none;
-}
+body { font-family: 'DM Sans', sans-serif; background: var(--surface); color: var(--text); min-height: 100vh; }
 
 /* HEADER */
-.app-header {
-  background: var(--green);
-  padding: env(safe-area-inset-top, 0) 0 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.header-inner {
-  padding: 1rem 1.25rem 0.75rem;
-}
-.header-top {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 1rem;
-}
-.app-icon {
-  width: 42px; height: 42px;
-  background: var(--green-accent);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--green);
-  letter-spacing: -0.5px;
-  flex-shrink: 0;
-}
+.app-header { background: var(--green); position: sticky; top: 0; z-index: 100; }
+.header-inner { padding: 1rem 1.25rem 0.75rem; }
+.header-top { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+.app-icon { width: 40px; height: 40px; background: var(--green-accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12px; color: var(--green); flex-shrink: 0; }
 .header-titles { flex: 1; }
-.app-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: -0.3px;
-}
-.app-subtitle { font-size: 12px; color: var(--green-accent); margin-top: 1px; }
-
-.install-hint {
-  display: none;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 6px;
-  padding: 5px 10px;
-  font-size: 11px;
-  color: rgba(255,255,255,0.7);
-  cursor: pointer;
-  border: 0.5px solid rgba(255,255,255,0.15);
-}
-.install-hint.show { display: flex; }
-.install-hint svg { width: 14px; height: 14px; fill: var(--green-accent); }
-
-/* SEARCH */
-.search-wrap {
-  background: rgba(255,255,255,0.08);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 12px;
-  border: 0.5px solid rgba(255,255,255,0.12);
-}
+.app-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; color: #fff; }
+.app-subtitle { font-size: 11px; color: var(--green-accent); margin-top: 1px; }
+.lang-btn { display: flex; align-items: center; background: rgba(255,255,255,0.1); border: 0.5px solid rgba(255,255,255,0.2); border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+.lang-opt { padding: 5px 10px; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); cursor: pointer; font-family: 'DM Sans', sans-serif; border: none; background: transparent; }
+.lang-opt.active { background: var(--green-accent); color: var(--green); }
+.search-wrap { background: rgba(255,255,255,0.08); border-radius: 10px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border: 0.5px solid rgba(255,255,255,0.12); }
 .search-wrap svg { width: 16px; height: 16px; fill: var(--green-accent); flex-shrink: 0; }
-.search-wrap input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #fff;
-  font-size: 14px;
-  font-family: 'DM Sans', sans-serif;
-  padding: 11px 0;
-}
+.search-wrap input { flex: 1; background: transparent; border: none; outline: none; color: #fff; font-size: 14px; font-family: 'DM Sans', sans-serif; padding: 11px 0; }
 .search-wrap input::placeholder { color: rgba(255,255,255,0.4); }
-
-/* FILTERS */
-.filters-scroll {
-  display: flex;
-  gap: 8px;
-  padding: 0.75rem 1.25rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-  background: var(--green);
-}
+.filters-scroll { display: flex; gap: 8px; padding: 0.75rem 1.25rem; overflow-x: auto; scrollbar-width: none; background: var(--green); }
 .filters-scroll::-webkit-scrollbar { display: none; }
-.filter-chip {
-  padding: 6px 16px;
-  border-radius: 99px;
-  border: 0.5px solid rgba(255,255,255,0.2);
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.6);
-  white-space: nowrap;
-  cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  background: transparent;
-  transition: all 0.15s;
-}
-.filter-chip.active {
-  background: var(--green-accent);
-  border-color: var(--green-accent);
-  color: var(--green);
-  font-weight: 600;
-}
+.filter-chip { padding: 6px 14px; border-radius: 99px; border: 0.5px solid rgba(255,255,255,0.2); font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.6); white-space: nowrap; cursor: pointer; font-family: 'DM Sans', sans-serif; background: transparent; }
+.filter-chip.active { background: var(--green-accent); border-color: var(--green-accent); color: var(--green); font-weight: 600; }
 
-/* STATS BAR */
-.stats-bar {
-  padding: 0.75rem 1.25rem;
-  font-size: 12px;
-  color: var(--text-muted);
-  border-bottom: 0.5px solid var(--border);
-}
-.stats-bar span { font-weight: 500; color: var(--green-mid); }
+/* STATS */
+.stats-bar { padding: 0.75rem 1.25rem; font-size: 12px; color: var(--text-muted); border-bottom: 0.5px solid var(--border); }
+.stats-bar span { font-weight: 600; color: var(--green-mid); }
 
-/* COURSE LIST */
-.course-list {
-  padding: 1rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-bottom: 6rem;
-}
+/* LIST */
+.course-list { padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: 12px; padding-bottom: 5rem; }
 
 /* CARD */
-.course-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  border: 0.5px solid var(--border);
-  overflow: hidden;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.course-card.open {
-  border-color: var(--green-mid);
-  box-shadow: 0 0 0 3px rgba(29,158,117,0.08);
-}
-
-.card-summary {
-  padding: 1rem 1.25rem;
-  cursor: pointer;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-.dept-icon {
-  width: 40px; height: 40px;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
+.course-card { background: var(--card); border-radius: var(--radius); border: 0.5px solid var(--border); overflow: hidden; transition: border-color 0.2s; }
+.course-card.open { border-color: var(--green-mid); box-shadow: 0 0 0 3px rgba(29,158,117,0.08); }
+.card-summary { padding: 1rem 1.25rem; cursor: pointer; display: flex; align-items: flex-start; gap: 12px; }
+.dept-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; margin-top: 2px; }
 .card-text { flex: 1; min-width: 0; }
-.dept-badge {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-bottom: 4px;
-}
-.course-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 4px;
-  line-height: 1.3;
-}
-.course-meta {
-  display: flex;
-  gap: 10px;
-  font-size: 11px;
-  color: var(--text-muted);
-}
-.meta-pill {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-.chevron-wrap {
-  display: flex;
-  align-items: center;
-  padding-top: 10px;
-}
-.chevron {
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  background: var(--green-light);
-  display: flex; align-items: center; justify-content: center;
-  transition: transform 0.25s, background 0.2s;
-}
+.dept-badge { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; margin-bottom: 5px; }
+.course-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; line-height: 1.3; }
+.course-meta { display: flex; gap: 10px; font-size: 11px; color: var(--text-muted); }
+.chevron-wrap { padding-top: 10px; }
+.chevron { width: 20px; height: 20px; border-radius: 50%; background: var(--green-light); display: flex; align-items: center; justify-content: center; transition: transform 0.25s, background 0.2s; }
 .open .chevron { transform: rotate(180deg); background: var(--green-mid); }
 .chevron svg { width: 10px; height: 10px; }
 .chevron svg path { stroke: var(--green-mid); }
 .open .chevron svg path { stroke: #fff; }
 
-/* SUBJECTS PANEL */
-.subjects-panel {
-  display: none;
-  border-top: 0.5px solid var(--border);
-}
-.open .subjects-panel { display: block; }
+/* TABS */
+.card-tabs { display: none; border-top: 0.5px solid var(--border); }
+.open .card-tabs { display: flex; }
+.tab-btn { flex: 1; padding: 10px; font-size: 12px; font-weight: 500; color: var(--text-muted); border: none; background: transparent; cursor: pointer; font-family: 'DM Sans', sans-serif; border-bottom: 2px solid transparent; }
+.tab-btn.active { color: var(--green-mid); border-bottom-color: var(--green-mid); }
 
+/* PANELS */
+.card-panel { display: none; }
+.card-panel.active { display: block; }
+
+/* MODULES */
 .semester-block { padding: 1rem 1.25rem; border-bottom: 0.5px solid var(--border); }
 .semester-block:last-child { border-bottom: none; }
-.semester-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--green-mid);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.semester-label::after {
-  content: '';
-  flex: 1;
-  height: 0.5px;
-  background: var(--border);
-}
-
-.subject-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 7px 0;
-  border-bottom: 0.5px solid var(--border);
-}
+.semester-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green-mid); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.semester-label::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+.subject-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 0.5px solid var(--border); }
 .subject-row:last-child { border-bottom: none; }
-.subject-num {
-  font-size: 10px;
-  color: var(--text-muted);
-  width: 18px;
-  text-align: right;
-  flex-shrink: 0;
-}
-.subject-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--green-accent);
-  flex-shrink: 0;
-}
-.subject-info { flex: 1; }
-.subject-name { font-size: 13px; color: var(--text); line-height: 1.3; }
-.subject-code { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+.subject-num { font-size: 10px; color: var(--text-muted); width: 16px; text-align: right; flex-shrink: 0; }
+.subject-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-accent); flex-shrink: 0; }
+.subject-name { font-size: 13px; color: var(--text); flex: 1; line-height: 1.3; }
+.subject-code { font-size: 10px; color: var(--text-muted); white-space: nowrap; }
 
-/* ENTRY REQUIREMENTS */
-.entry-section {
-  margin: 0 1.25rem 1rem;
-  background: var(--green-light);
-  border-radius: var(--radius-sm);
-  padding: 12px 14px;
-}
-.entry-title {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--green-mid);
-  margin-bottom: 5px;
-}
+/* ENTRY */
+.entry-section { margin: 0 1.25rem 1rem; background: var(--green-light); border-radius: var(--radius-sm); padding: 12px 14px; }
+.entry-title { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green-mid); margin-bottom: 5px; }
 .entry-text { font-size: 12px; color: var(--text); line-height: 1.6; }
 
-/* EMPTY STATE */
-.empty-state {
-  display: none;
-  text-align: center;
-  padding: 4rem 2rem;
-  color: var(--text-muted);
-}
-.empty-state .icon { font-size: 36px; margin-bottom: 1rem; }
-.empty-state p { font-size: 14px; }
-
-/* BOTTOM NAV */
-.bottom-bar {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  background: var(--card);
-  border-top: 0.5px solid var(--border);
-  padding: 12px 1.25rem;
-  padding-bottom: env(safe-area-inset-bottom, 12px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 100;
-}
-.bottom-label {
-  font-size: 11px;
-  color: var(--text-muted);
-}
-.bottom-label strong { color: var(--green-mid); }
-.share-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--green);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 16px;
-  font-size: 12px;
-  font-weight: 500;
-  font-family: 'DM Sans', sans-serif;
-  cursor: pointer;
-}
-.share-btn svg { width: 14px; height: 14px; fill: #fff; }
+/* CAREERS */
+.careers-panel { padding: 1rem 1.25rem; }
+.career-section { margin-bottom: 1rem; }
+.career-section:last-child { margin-bottom: 0; }
+.career-title { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--green-mid); margin-bottom: 10px; }
+.career-title .icon { font-size: 14px; }
+.career-item { display: flex; align-items: flex-start; gap: 8px; padding: 7px 10px; border-radius: var(--radius-sm); background: var(--surface); margin-bottom: 6px; }
+.career-item:last-child { margin-bottom: 0; }
+.career-emoji { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.career-info { flex: 1; }
+.career-role { font-size: 13px; font-weight: 500; color: var(--text); }
+.career-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
+.salary-badge { display: inline-block; font-size: 10px; font-weight: 600; color: var(--green-mid); background: var(--green-light); padding: 2px 8px; border-radius: 99px; margin-top: 4px; }
 
 /* DEPT COLORS */
-.dept-ICT { background: #E6F1FB; color: #185FA5; }
-.dept-ICT .dept-icon { background: #E6F1FB; }
+.dept-Automotive { background: #FFF3E0; color: #E65100; }
 .dept-Civil { background: var(--green-light); color: var(--green-mid); }
-.dept-Civil .dept-icon { background: var(--green-light); }
-.dept-Electrical { background: #FAEEDA; color: #854F0B; }
-.dept-Electrical .dept-icon { background: #FAEEDA; }
-.dept-Mechanical { background: #FBEAF0; color: #993556; }
-.dept-Mechanical .dept-icon { background: #FBEAF0; }
-.dept-Transport { background: #EEEDFE; color: #534AB7; }
-.dept-Transport .dept-icon { background: #EEEDFE; }
+.dept-Transport { background: #EDE7F6; color: #512DA8; }
+.dept-Electrical { background: #FFF8E1; color: #F57F17; }
+.dept-Mechanical { background: #FCE4EC; color: #880E4F; }
+.dept-ICT { background: #E3F2FD; color: #0D47A1; }
+.dept-Science { background: #F3E5F5; color: #6A1B9A; }
 
-@media (max-width: 480px) {
-  .app-title { font-size: 16px; }
-  .course-name { font-size: 14px; }
-}
+/* BOTTOM */
+.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 0.5px solid var(--border); padding: 10px 1.25rem; padding-bottom: env(safe-area-inset-bottom, 10px); display: flex; align-items: center; justify-content: space-between; z-index: 100; }
+.bottom-label { font-size: 11px; color: var(--text-muted); }
+.bottom-label strong { color: var(--green-mid); }
+.empty-state { text-align: center; padding: 4rem 2rem; color: var(--text-muted); display: none; }
+.empty-state .icon { font-size: 36px; margin-bottom: 1rem; }
 </style>
 </head>
 <body>
@@ -377,330 +136,764 @@ body {
     <div class="header-top">
       <div class="app-icon">ATC</div>
       <div class="header-titles">
-        <div class="app-title">ATC Explorer</div>
+        <div class="app-title" id="appTitle">ATC Course Guide</div>
         <div class="app-subtitle">Arusha Technical College</div>
       </div>
-      <button class="install-hint" id="installBtn" onclick="installApp()">
-        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-        Install
-      </button>
+      <div class="lang-btn">
+        <button class="lang-opt active" id="btnEN" onclick="setLang('en')">EN</button>
+        <button class="lang-opt" id="btnSW" onclick="setLang('sw')">SW</button>
+      </div>
     </div>
     <div class="search-wrap">
       <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.5 6.5 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-      <input type="text" id="searchInput" placeholder="Tafuta kozi..." oninput="filterCourses()" autocomplete="off" />
+      <input type="text" id="searchInput" placeholder="Search courses..." oninput="filterCourses()" autocomplete="off"/>
     </div>
   </div>
   <div class="filters-scroll" id="filterRow"></div>
 </header>
 
 <div class="stats-bar" id="statsBar"></div>
-
 <main class="course-list" id="courseList"></main>
-<div class="empty-state" id="emptyState">
-  <div class="icon">🔍</div>
-  <p>Hakuna kozi zinazolingana.<br>Jaribu kutafuta tena.</p>
-</div>
+<div class="empty-state" id="emptyState"><div class="icon">🔍</div><p id="emptyText">No courses found.</p></div>
 
 <div class="bottom-bar">
   <div class="bottom-label">Prototype · <strong>Innovation Week 2025</strong></div>
-  <button class="share-btn" onclick="shareApp()">
-    <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
-    Shiriki
-  </button>
+  <div class="bottom-label" style="font-size:10px; color:var(--green-mid);">ATC · Arusha</div>
 </div>
 
 <script>
+let currentLang = 'en';
+
+const T = {
+  en: {
+    search: 'Search courses...',
+    appTitle: 'ATC Course Guide',
+    showing: 'Showing',
+    of: 'of',
+    courses: 'courses',
+    modules: 'Modules',
+    careers: 'Careers',
+    entry: 'Entry Requirements',
+    employed: 'Employment Opportunities',
+    selfEmployed: 'Self-Employment',
+    noResults: 'No courses found.',
+    level: 'Ord. Diploma',
+    duration: '3 Years',
+    all: 'All'
+  },
+  sw: {
+    search: 'Tafuta kozi...',
+    appTitle: 'Mwongozo wa Kozi za ATC',
+    showing: 'Inaonyesha',
+    of: 'kati ya',
+    courses: 'kozi',
+    modules: 'Masomo',
+    careers: 'Kazi',
+    entry: 'Masharti ya Kujiunga',
+    employed: 'Fursa za Kuajiriwa',
+    selfEmployed: 'Kujiajiri',
+    noResults: 'Hakuna kozi zinazolingana.',
+    level: 'Stashahada ya Kawaida',
+    duration: 'Miaka 3',
+    all: 'Zote'
+  }
+};
+
+const DEPTS = {
+  en: ['All', 'Automotive', 'Civil', 'Transport', 'Electrical', 'Mechanical', 'ICT', 'Science'],
+  sw: ['Zote', 'Otomotivi', 'Ujenzi', 'Usafiri', 'Umeme', 'Mitambo', 'TEHAMA', 'Sayansi']
+};
+
 const COURSES = [
+  // ===== ICT DEPARTMENT =====
   {
-    id: 1, dept: "ICT", icon: "💻", name: "Diploma in Computer Science",
-    level: "Ordinary Diploma", duration: "Miaka 3",
-    entry: "Passes 4 za D: Physics/Eng. Science, Mathematics, Chemistry, English. Au Certificate katika IT/CS (miaka 2 tu).",
+    id: 1, dept: 'ICT', icon: '💻',
+    name: { en: 'Ordinary Diploma in Computer Science', sw: 'Stashahada ya Sayansi ya Kompyuta' },
+    entry: {
+      en: 'CSEE with at least 4 passes in non-religious subjects including Basic Maths and English.',
+      sw: 'CSEE na angalau alama 4 katika masomo yasiyo ya dini ikiwemo Hisabati na Kiingereza.'
+    },
     semesters: [
-      { label: "Mwaka 1 · Semester 1", subjects: [
-        { code:"CS101", name:"Introduction to Programming (C/Python)" },
-        { code:"CS102", name:"Computer Hardware & Maintenance" },
-        { code:"MTH101", name:"Engineering Mathematics I" },
-        { code:"GS101", name:"Communication Skills" },
-        { code:"GS102", name:"Entrepreneurship & Business Studies" }
+      { label: { en: 'NTA Level 4 — Semester I', sw: 'Ngazi ya 4 — Muhula I' }, subjects: [
+        { code: 'GST 04103', name: 'English Language Basics' },
+        { code: 'GST 04106', name: 'Elementary Mathematics' },
+        { code: 'ITT 04101', name: 'Computer Fundamentals and Applications' },
+        { code: 'ITT 04102', name: 'Microcomputer Applications' },
+        { code: 'ITT 04103', name: 'Basics of Computer Networks' },
+        { code: 'ITT 04104', name: 'Basics of Electronics' }
       ]},
-      { label: "Mwaka 1 · Semester 2", subjects: [
-        { code:"CS103", name:"Data Structures & Algorithms" },
-        { code:"CS104", name:"Operating Systems" },
-        { code:"MTH102", name:"Engineering Mathematics II" },
-        { code:"CS105", name:"Database Systems I" },
-        { code:"GS103", name:"HIV/AIDS & Life Skills" }
+      { label: { en: 'NTA Level 4 — Semester II', sw: 'Ngazi ya 4 — Muhula II' }, subjects: [
+        { code: 'ITT 04201', name: 'Computer Maintenance and Troubleshooting' },
+        { code: 'ITT 04202', name: 'Web Design' },
+        { code: 'ITT 04203', name: 'Gender and HIV' },
+        { code: 'CST 04201', name: 'Programming Using C' },
+        { code: 'CST 04202', name: 'Basics of Multimedia' },
+        { code: 'GST 04204', name: 'Matrices, Statistics and Complex Numbers' }
       ]},
-      { label: "Mwaka 2 · Semester 1", subjects: [
-        { code:"CS201", name:"Object-Oriented Programming (Java)" },
-        { code:"CS202", name:"Computer Networks I" },
-        { code:"CS203", name:"Web Technologies (HTML/CSS/JS)" },
-        { code:"CS204", name:"Database Systems II (MySQL)" },
-        { code:"MTH201", name:"Statistics & Probability" }
+      { label: { en: 'NTA Level 5 — Semester I', sw: 'Ngazi ya 5 — Muhula I' }, subjects: [
+        { code: 'CST 05101', name: 'Computer Architecture' },
+        { code: 'ITT 05105', name: 'Multimedia Technology' },
+        { code: 'GST 05105', name: 'Basics of Differentiation and Integration' },
+        { code: 'GST 05108', name: 'Business Communication Skills' },
+        { code: '', name: 'Computer Network Design and Administration' },
+        { code: '', name: 'Object Oriented Programming Using C++' },
+        { code: '', name: 'Database Management and Implementation' }
       ]},
-      { label: "Mwaka 2 · Semester 2", subjects: [
-        { code:"CS205", name:"Software Engineering" },
-        { code:"CS206", name:"Computer Networks II" },
-        { code:"CS207", name:"System Analysis & Design" },
-        { code:"CS208", name:"Mobile Application Development" },
-        { code:"GS201", name:"Technical Report Writing" }
+      { label: { en: 'NTA Level 5 — Semester II', sw: 'Ngazi ya 5 — Muhula II' }, subjects: [
+        { code: 'CST 05205', name: 'Operating Systems' },
+        { code: 'CST 05206', name: 'Programming for Mobile Devices' },
+        { code: 'GST 05203', name: 'Basics of Entrepreneurship' },
+        { code: '', name: 'Web Programming' },
+        { code: '', name: 'Fundamentals of Linux Administration' },
+        { code: '', name: 'Object Oriented Programming Using JAVA' },
+        { code: '', name: 'Industrial Practical Training (IPT)' }
       ]},
-      { label: "Mwaka 3 · Field Training & Project", subjects: [
-        { code:"CS301", name:"Industrial Attachment (Practical Training)" },
-        { code:"CS302", name:"Final Year Project" },
-        { code:"CS303", name:"Cybersecurity Fundamentals" },
-        { code:"CS304", name:"Cloud Computing Basics" }
+      { label: { en: 'NTA Level 6 — Semester I', sw: 'Ngazi ya 6 — Muhula I' }, subjects: [
+        { code: 'GSD 06106', name: 'Discrete Mathematics' },
+        { code: 'CSD 06101', name: 'Software Design and Development' },
+        { code: 'CSD 06102', name: 'Cyber Security' },
+        { code: 'CSD 06103', name: 'Python Programming' },
+        { code: 'CSD 06104', name: 'Information System Project Management' },
+        { code: 'FYP I', name: 'Final Year Project I' }
+      ]},
+      { label: { en: 'NTA Level 6 — Semester II', sw: 'Ngazi ya 6 — Muhula II' }, subjects: [
+        { code: 'GSD 06203', name: 'Supervisory Communication Skills' },
+        { code: 'CSD 06201', name: 'Advanced Network Management' },
+        { code: 'CSD 06202', name: 'Java Programming' },
+        { code: 'CSD 06203', name: 'Fundamental of Data Structures and Algorithms' },
+        { code: 'CSD 06204', name: 'Microprocessor Technology' },
+        { code: 'ITT 06201', name: 'Principles of Management' },
+        { code: 'FYP II', name: 'Final Year Project II' }
       ]}
-    ]
+    ],
+    careers: {
+      employed: [
+        { emoji: '💻', role: { en: 'Software Developer', sw: 'Mtengenezaji wa Programu' }, desc: { en: 'Build apps and systems for companies and startups', sw: 'Tengeneza programu na mifumo kwa makampuni' }, salary: 'TZS 1M–3M/month' },
+        { emoji: '🌐', role: { en: 'Web Developer', sw: 'Mtengenezaji wa Tovuti' }, desc: { en: 'Design and develop websites for businesses', sw: 'Buni na tengeneza tovuti kwa biashara' }, salary: 'TZS 800K–2.5M/month' },
+        { emoji: '🔒', role: { en: 'Cybersecurity Analyst', sw: 'Mchambuzi wa Usalama wa Mtandao' }, desc: { en: 'Protect company systems from hackers and threats', sw: 'Linda mifumo ya makampuni dhidi ya wavamizi' }, salary: 'TZS 1.5M–4M/month' },
+        { emoji: '🗄️', role: { en: 'Database Administrator', sw: 'Msimamizi wa Hifadhidata' }, desc: { en: 'Manage and maintain organization databases', sw: 'Simamia na tunza hifadhidata za shirika' }, salary: 'TZS 1M–2.5M/month' },
+        { emoji: '🖥️', role: { en: 'IT Support Specialist', sw: 'Mtaalamu wa Msaada wa IT' }, desc: { en: 'Provide technical support in companies and schools', sw: 'Toa msaada wa kiufundi katika makampuni na shule' }, salary: 'TZS 600K–1.5M/month' }
+      ],
+      self: [
+        { emoji: '🚀', role: { en: 'Tech Startup Founder', sw: 'Mwanzilishi wa Kampuni ya Teknolojia' }, desc: { en: 'Build your own software products and sell them', sw: 'Jenga bidhaa zako za programu na uziuze' } },
+        { emoji: '🎓', role: { en: 'Coding Trainer / Tutor', sw: 'Mwalimu wa Uandishi wa Programu' }, desc: { en: 'Teach coding to students and professionals', sw: 'Fundisha uandishi wa programu kwa wanafunzi' } },
+        { emoji: '🖥️', role: { en: 'Freelance Developer', sw: 'Msanidi Huru' }, desc: { en: 'Work remotely for clients worldwide via Upwork, Fiverr', sw: 'Fanya kazi kwa wateja duniani kupitia Upwork, Fiverr' } }
+      ]
+    }
   },
   {
-    id: 2, dept: "ICT", icon: "🌐", name: "Diploma in Information Technology",
-    level: "Ordinary Diploma", duration: "Miaka 3",
-    entry: "Passes 4 za D katika masomo yoyote (isipokuwa Dini, Lishe, Ujenzi wa Nguo). IT/CS certificate inakubalika (miaka 2).",
+    id: 2, dept: 'ICT', icon: '🌐',
+    name: { en: 'Ordinary Diploma in Information Technology', sw: 'Stashahada ya Teknolojia ya Habari' },
+    entry: {
+      en: 'CSEE with at least 4 passes in non-religious subjects including English.',
+      sw: 'CSEE na angalau alama 4 katika masomo yasiyo ya dini ikiwemo Kiingereza.'
+    },
     semesters: [
-      { label: "Mwaka 1 · Semester 1", subjects: [
-        { code:"IT101", name:"IT Fundamentals & Computer Basics" },
-        { code:"IT102", name:"Introduction to Programming" },
-        { code:"MTH101", name:"Mathematics for IT" },
-        { code:"GS101", name:"Communication Skills" },
-        { code:"IT103", name:"Digital Electronics Basics" }
+      { label: { en: 'NTA Level 4 — Semester I', sw: 'Ngazi ya 4 — Muhula I' }, subjects: [
+        { code: 'GST 04103', name: 'English Language Basics' },
+        { code: 'GST 04106', name: 'Elementary Mathematics' },
+        { code: 'ITT 04101', name: 'Computer Fundamentals and Applications' },
+        { code: 'ITT 04102', name: 'Microcomputer Applications' },
+        { code: 'ITT 04103', name: 'Basics of Computer Networks' },
+        { code: 'ITT 04104', name: 'Basics of Electronics' }
       ]},
-      { label: "Mwaka 1 · Semester 2", subjects: [
-        { code:"IT104", name:"Networking Fundamentals (CCNA prep)" },
-        { code:"IT105", name:"Database Administration" },
-        { code:"IT106", name:"Web Design & Development" },
-        { code:"GS102", name:"Entrepreneurship" },
-        { code:"IT107", name:"Operating Systems Administration" }
+      { label: { en: 'NTA Level 4 — Semester II', sw: 'Ngazi ya 4 — Muhula II' }, subjects: [
+        { code: 'ITT 04201', name: 'Computer Maintenance and Troubleshooting' },
+        { code: 'ITT 04202', name: 'Web Design' },
+        { code: 'ITT 04203', name: 'Gender and HIV' },
+        { code: 'ITT 04204', name: 'Programming Using C' },
+        { code: 'ITT 04205', name: 'Basics of Multimedia' },
+        { code: 'ITT 04205', name: 'Industrial Practical Training (IPT)' }
       ]},
-      { label: "Mwaka 2 · Semester 1", subjects: [
-        { code:"IT201", name:"Network Administration (LAN/WAN)" },
-        { code:"IT202", name:"System Administration (Linux/Windows)" },
-        { code:"IT203", name:"ICT Project Management" },
-        { code:"IT204", name:"Programming (PHP/Python)" },
-        { code:"IT205", name:"Information Security" }
+      { label: { en: 'NTA Level 5 — Semester I', sw: 'Ngazi ya 5 — Muhula I' }, subjects: [
+        { code: 'GST 05108', name: 'Business Communication Skills' },
+        { code: 'ITT 05101', name: 'Computer Network Design and Administration' },
+        { code: 'CST 05101', name: 'Computer Architecture' },
+        { code: 'ITT 05103', name: 'Multimedia Technology' },
+        { code: 'ITT 05104', name: 'Database Management and Implementation' },
+        { code: 'ITT 05105', name: 'Object Oriented Programming Using C++' }
       ]},
-      { label: "Mwaka 2 · Semester 2", subjects: [
-        { code:"IT206", name:"Cloud Services & Virtualization" },
-        { code:"IT207", name:"Mobile App Development" },
-        { code:"IT208", name:"E-Commerce Systems" },
-        { code:"IT209", name:"Technical Support & Help Desk" },
-        { code:"GS201", name:"Technical Report Writing" }
+      { label: { en: 'NTA Level 5 — Semester II', sw: 'Ngazi ya 5 — Muhula II' }, subjects: [
+        { code: 'ITT 05201', name: 'Web Programming' },
+        { code: 'ITT 05202', name: 'Fundamentals of Linux Administration' },
+        { code: 'ITT 05203', name: 'Object Oriented Programming Using JAVA' },
+        { code: 'ITT 05204', name: 'Computer Maintenance and Repair' },
+        { code: 'ITT 05205', name: 'Operating Systems' },
+        { code: 'CST 05206', name: 'Programming for Mobile Devices' },
+        { code: 'GST 05203', name: 'Basics of Entrepreneurship' },
+        { code: 'ITT 05206', name: 'Industrial Practical Training (IPT)' }
       ]},
-      { label: "Mwaka 3 · Field Training & Project", subjects: [
-        { code:"IT301", name:"Industrial Attachment" },
-        { code:"IT302", name:"Final Year Project" },
-        { code:"IT303", name:"Emerging Technologies (IoT/AI basics)" }
+      { label: { en: 'NTA Level 6 — Semester I', sw: 'Ngazi ya 6 — Muhula I' }, subjects: [
+        { code: 'ITD 06101', name: 'System Analysis and Design' },
+        { code: 'ITD 06102', name: 'Python Programming' },
+        { code: 'ITD 06103', name: 'Cyber Security' },
+        { code: 'ITD 06104', name: 'System Administration' },
+        { code: 'ITD 06105', name: 'Information System Project Management' },
+        { code: 'FYP 01', name: 'Final Year Project I' }
+      ]},
+      { label: { en: 'NTA Level 6 — Semester II', sw: 'Ngazi ya 6 — Muhula II' }, subjects: [
+        { code: 'GSD 06203', name: 'Supervisory Communication Skills' },
+        { code: 'ITD 06201', name: 'Principles of Management' },
+        { code: 'ITD 06202', name: 'Wireless Networking' },
+        { code: 'ITD 06203', name: 'Advanced Network Management' },
+        { code: 'ITD 06204', name: 'Final Year Project II' }
       ]}
-    ]
+    ],
+    careers: {
+      employed: [
+        { emoji: '🌐', role: { en: 'Network Administrator', sw: 'Msimamizi wa Mtandao' }, desc: { en: 'Manage and maintain computer networks in organizations', sw: 'Simamia mitandao ya kompyuta katika mashirika' }, salary: 'TZS 900K–2.5M/month' },
+        { emoji: '🖥️', role: { en: 'System Administrator', sw: 'Msimamizi wa Mifumo' }, desc: { en: 'Manage servers and IT infrastructure', sw: 'Simamia seva na miundombinu ya IT' }, salary: 'TZS 1M–3M/month' },
+        { emoji: '📊', role: { en: 'IT Manager', sw: 'Meneja wa IT' }, desc: { en: 'Lead IT departments in government and private sectors', sw: 'Ongoza idara za IT serikalini na sekta binafsi' }, salary: 'TZS 1.5M–4M/month' },
+        { emoji: '🔧', role: { en: 'Technical Support Engineer', sw: 'Mhandisi wa Msaada wa Kiufundi' }, desc: { en: 'Solve IT problems for users and companies', sw: 'Suluhisha matatizo ya IT kwa watumiaji na makampuni' }, salary: 'TZS 600K–1.5M/month' }
+      ],
+      self: [
+        { emoji: '📶', role: { en: 'ISP/WiFi Business Owner', sw: 'Mmiliki wa Biashara ya Intaneti' }, desc: { en: 'Provide internet services to homes and businesses', sw: 'Toa huduma za intaneti kwa nyumba na biashara' } },
+        { emoji: '🔧', role: { en: 'IT Consultant', sw: 'Mshauri wa IT' }, desc: { en: 'Advise businesses on their IT needs and systems', sw: 'Shauri biashara kuhusu mahitaji na mifumo yao ya IT' } }
+      ]
+    }
   },
   {
-    id: 3, dept: "Civil", icon: "🏗️", name: "Diploma in Civil Engineering",
-    level: "Ordinary Diploma", duration: "Miaka 3",
-    entry: "Passes 4 za D: Physics/Eng. Science, Mathematics, Chemistry au Geography, English.",
+    id: 3, dept: 'ICT', icon: '🔒',
+    name: { en: 'Ordinary Diploma in Cyber Security & Digital Forensic', sw: 'Stashahada ya Usalama wa Mtandao na Uchunguzi wa Kidijitali' },
+    entry: {
+      en: 'CSEE with at least 4 passes in non-religious subjects including Basic Maths and English.',
+      sw: 'CSEE na angalau alama 4 katika masomo yasiyo ya dini ikiwemo Hisabati na Kiingereza.'
+    },
     semesters: [
-      { label: "Mwaka 1 · Semester 1", subjects: [
-        { code:"CE101", name:"Engineering Drawing & CAD" },
-        { code:"CE102", name:"Engineering Mathematics I" },
-        { code:"CE103", name:"Building Materials & Construction" },
-        { code:"CE104", name:"Surveying I" },
-        { code:"GS101", name:"Communication Skills" }
+      { label: { en: 'NTA Level 4 — Semester I', sw: 'Ngazi ya 4 — Muhula I' }, subjects: [
+        { code: 'GST 04111', name: 'Algebra and Trigonometry' },
+        { code: 'GST 04213', name: 'Business Communication Skills' },
+        { code: 'CDT 04111', name: 'Electronics Application in Computing' },
+        { code: 'CDT 04112', name: 'Forensic Investigation' },
+        { code: 'ITT 04111', name: 'Computer Application Operations' },
+        { code: 'CST 04112', name: 'Computer Networks' },
+        { code: 'CST 04212', name: 'Multimedia Analysis' }
       ]},
-      { label: "Mwaka 1 · Semester 2", subjects: [
-        { code:"CE105", name:"Structural Mechanics" },
-        { code:"CE106", name:"Soil Mechanics I" },
-        { code:"CE107", name:"Hydraulics & Fluid Mechanics" },
-        { code:"CE108", name:"Surveying II" },
-        { code:"MTH102", name:"Engineering Mathematics II" }
+      { label: { en: 'NTA Level 4 — Semester II', sw: 'Ngazi ya 4 — Muhula II' }, subjects: [
+        { code: 'CDT 04213', name: 'Python Programming' },
+        { code: 'ITT 04212', name: 'Web Development' },
+        { code: 'GST 04211', name: 'Linear Algebra, Complex Numbers and Statistics' },
+        { code: 'GST 04203', name: 'Industrial Practical Training (IPT)' }
       ]},
-      { label: "Mwaka 2 · Semester 1", subjects: [
-        { code:"CE201", name:"Reinforced Concrete Design" },
-        { code:"CE202", name:"Road & Highway Engineering" },
-        { code:"CE203", name:"Environmental Engineering" },
-        { code:"CE204", name:"Soil Mechanics II" },
-        { code:"CE205", name:"Construction Management" }
+      { label: { en: 'NTA Level 5 — Semester I', sw: 'Ngazi ya 5 — Muhula I' }, subjects: [
+        { code: 'GST 05111', name: 'Differentiation and Integration' },
+        { code: 'CDT 05111', name: 'Database Systems' },
+        { code: 'CDT 05112', name: 'Web Application Development' },
+        { code: 'CDT 05113', name: 'Data Communication' },
+        { code: 'CDT 05114', name: 'Ethical Hacking' },
+        { code: 'CDT 05115', name: 'Operating Systems' },
+        { code: 'CDT 05116', name: 'Linux for Cyber Security' }
       ]},
-      { label: "Mwaka 2 · Semester 2", subjects: [
-        { code:"CE206", name:"Water Supply & Sanitation" },
-        { code:"CE207", name:"Structural Analysis" },
-        { code:"CE208", name:"Engineering Geology" },
-        { code:"GS201", name:"Entrepreneurship & Business" },
-        { code:"CE209", name:"Quantity Surveying" }
+      { label: { en: 'NTA Level 5 — Semester II', sw: 'Ngazi ya 5 — Muhula II' }, subjects: [
+        { code: 'CDT 05211', name: 'Internet of Things' },
+        { code: 'CDT 05212', name: 'Cloud Computing' },
+        { code: 'CDT 05213', name: 'Web Application Security' },
+        { code: 'CDT 05214', name: 'Digital Forensic' },
+        { code: 'CDT 05215', name: 'Information System Audit' },
+        { code: 'CDT 05216', name: 'Biometric Security' },
+        { code: 'ITT 05207', name: 'Industrial Practical Training (IPT)' }
       ]},
-      { label: "Mwaka 3 · Field Training & Project", subjects: [
-        { code:"CE301", name:"Industrial Attachment (Site Work)" },
-        { code:"CE302", name:"Final Year Project/Design" },
-        { code:"CE303", name:"Bridge & Culvert Engineering" }
+      { label: { en: 'NTA Level 6 — Semester I', sw: 'Ngazi ya 6 — Muhula I' }, subjects: [
+        { code: 'CDD 06111', name: 'Code Exploit Using Python' },
+        { code: 'CDD 06112', name: 'Fraud Forensic Auditing' },
+        { code: 'CDD 06113', name: 'Blockchain Technology' },
+        { code: 'CDD 06114', name: 'Artificial Intelligence in Security' },
+        { code: 'CDD 06115', name: 'Cloud Computing and IoT Security' },
+        { code: 'CDD 06116', name: 'Cyber Security Incident Management' },
+        { code: 'CDD 06117', name: 'Project Design' }
+      ]},
+      { label: { en: 'NTA Level 6 — Semester II', sw: 'Ngazi ya 6 — Muhula II' }, subjects: [
+        { code: 'CDD 06211', name: 'Encryption Technology' },
+        { code: 'CDD 06212', name: 'Information Quality Assurance' },
+        { code: 'CDD 06213', name: 'Database Security' },
+        { code: 'CDD 06214', name: 'Mobile and Wireless Security' },
+        { code: 'CDD 06215', name: 'Mobile Device Forensic' },
+        { code: 'CDD 06216', name: 'Information Security Management' },
+        { code: 'CDD 06217', name: 'Project Implementation' }
       ]}
-    ]
+    ],
+    careers: {
+      employed: [
+        { emoji: '🛡️', role: { en: 'Cybersecurity Analyst', sw: 'Mchambuzi wa Usalama wa Mtandao' }, desc: { en: 'Monitor and protect organizational networks from attacks', sw: 'Fuatilia na linda mitandao ya mashirika dhidi ya mashambulio' }, salary: 'TZS 1.5M–4M/month' },
+        { emoji: '🔍', role: { en: 'Digital Forensic Investigator', sw: 'Mpelelezi wa Kidijitali' }, desc: { en: 'Investigate cybercrimes for police and courts', sw: 'Chunguza uhalifu wa mtandao kwa polisi na mahakama' }, salary: 'TZS 1M–3M/month' },
+        { emoji: '☁️', role: { en: 'Cloud Security Engineer', sw: 'Mhandisi wa Usalama wa Wingu' }, desc: { en: 'Secure cloud infrastructure and services', sw: 'Linda miundombinu ya wingu na huduma zake' }, salary: 'TZS 2M–5M/month' },
+        { emoji: '🏦', role: { en: 'Banking IT Security Officer', sw: 'Afisa wa Usalama wa IT wa Benki' }, desc: { en: 'Protect financial systems from fraud and breaches', sw: 'Linda mifumo ya fedha dhidi ya ulaghai' }, salary: 'TZS 1.5M–3.5M/month' }
+      ],
+      self: [
+        { emoji: '🔐', role: { en: 'Cybersecurity Consultant', sw: 'Mshauri wa Usalama wa Mtandao' }, desc: { en: 'Help businesses secure their systems independently', sw: 'Saidia biashara kulinda mifumo yao kwa uhuru' } },
+        { emoji: '🎓', role: { en: 'Security Trainer', sw: 'Mkufunzi wa Usalama wa Mtandao' }, desc: { en: 'Train organizations on cybersecurity best practices', sw: 'Fundisha mashirika mazoea bora ya usalama wa mtandao' } }
+      ]
+    }
   },
   {
-    id: 4, dept: "Electrical", icon: "⚡", name: "Diploma in Electrical Engineering",
-    level: "Ordinary Diploma", duration: "Miaka 3",
-    entry: "Passes 4 za D: Physics/Eng. Science, Mathematics, Chemistry, English.",
+    id: 4, dept: 'ICT', icon: '🎬',
+    name: { en: 'Ordinary Diploma in Multimedia & Animation Technology', sw: 'Stashahada ya Teknolojia ya Midia na Uhuishaji' },
+    entry: {
+      en: 'CSEE with at least 4 passes in non-religious subjects including English.',
+      sw: 'CSEE na angalau alama 4 katika masomo yasiyo ya dini ikiwemo Kiingereza.'
+    },
     semesters: [
-      { label: "Mwaka 1 · Semester 1", subjects: [
-        { code:"EE101", name:"Basic Electrical Engineering" },
-        { code:"EE102", name:"Engineering Drawing" },
-        { code:"MTH101", name:"Engineering Mathematics I" },
-        { code:"EE103", name:"Workshop Practice" },
-        { code:"GS101", name:"Communication Skills" }
+      { label: { en: 'NTA Level 4 — Semester I', sw: 'Ngazi ya 4 — Muhula I' }, subjects: [
+        { code: 'GST 04113', name: 'Mathematics for Multimedia' },
+        { code: 'GST 04213', name: 'Business Communication Skills' },
+        { code: 'MAT 04111', name: 'Computer Application Operations' },
+        { code: 'MAT 04112', name: 'Digital Art and Design' },
+        { code: 'MAT 04113', name: 'Digital Photography' },
+        { code: 'MAT 04114', name: 'Occupational Safety and Health Practices' },
+        { code: 'MAT 04115', name: 'Introduction to Programming' },
+        { code: 'MAT 04116', name: 'Computer Networks' }
       ]},
-      { label: "Mwaka 1 · Semester 2", subjects: [
-        { code:"EE104", name:"AC/DC Circuit Analysis" },
-        { code:"EE105", name:"Electronic Devices & Circuits" },
-        { code:"EE106", name:"Electrical Measurements" },
-        { code:"MTH102", name:"Engineering Mathematics II" },
-        { code:"GS102", name:"Entrepreneurship" }
+      { label: { en: 'NTA Level 4 — Semester II', sw: 'Ngazi ya 4 — Muhula II' }, subjects: [
+        { code: 'MAT 04211', name: 'Graphics Design' },
+        { code: 'MAT 04213', name: 'Java Programming' },
+        { code: 'MAT 04214', name: 'Sound Design and Production' },
+        { code: 'MAT 04215', name: 'Industrial Practical Training (IPT)' }
       ]},
-      { label: "Mwaka 2 · Semester 1", subjects: [
-        { code:"EE201", name:"Electrical Machines I (Motors & Generators)" },
-        { code:"EE202", name:"Power Systems & Distribution" },
-        { code:"EE203", name:"Digital Electronics" },
-        { code:"EE204", name:"Instrumentation & Control" },
-        { code:"EE205", name:"Electrical Installation" }
+      { label: { en: 'NTA Level 5 — Semester I', sw: 'Ngazi ya 5 — Muhula I' }, subjects: [
+        { code: 'MAT 05111', name: 'Video Production' },
+        { code: 'MAT 05112', name: 'Preproduction Operations' },
+        { code: 'MAT 05113', name: 'Database Management and Implementation' },
+        { code: 'MAT 05114', name: 'Web Design' },
+        { code: 'MAT 05115', name: 'Legal and Ethical Issues in Multimedia' },
+        { code: 'MAT 05116', name: 'UI/UX Design' },
+        { code: 'MAT 05117', name: 'Multimedia Project Management' }
       ]},
-      { label: "Mwaka 2 · Semester 2", subjects: [
-        { code:"EE206", name:"Electrical Machines II" },
-        { code:"EE207", name:"PLC & Industrial Automation" },
-        { code:"EE208", name:"Renewable Energy Systems" },
-        { code:"EE209", name:"Power Electronics" },
-        { code:"GS201", name:"Technical Report Writing" }
-      ]},
-      { label: "Mwaka 3 · Field Training & Project", subjects: [
-        { code:"EE301", name:"Industrial Attachment" },
-        { code:"EE302", name:"Final Year Project" },
-        { code:"EE303", name:"High Voltage Engineering" }
+      { label: { en: 'NTA Level 5 — Semester II', sw: 'Ngazi ya 5 — Muhula II' }, subjects: [
+        { code: 'MAT 05211', name: '2D Animation' },
+        { code: 'MAT 05212', name: 'Web Programming' },
+        { code: 'MAT 05213', name: 'Motion Graphics and Visual Effects (VFX)' },
+        { code: 'MAT 05214', name: 'Programming for Mobile Devices' },
+        { code: 'MAT 05215', name: 'Operating Systems' },
+        { code: 'MAT 05216', name: 'Industrial Practical Training (IPT)' }
       ]}
-    ]
+    ],
+    careers: {
+      employed: [
+        { emoji: '🎨', role: { en: 'Graphic Designer', sw: 'Mbuni wa Picha' }, desc: { en: 'Create visual content for brands and media companies', sw: 'Tengeneza maudhui ya kuona kwa biashara na kampuni za habari' }, salary: 'TZS 600K–2M/month' },
+        { emoji: '🎬', role: { en: 'Video Editor / Producer', sw: 'Mhariri / Mtengenezaji wa Video' }, desc: { en: 'Edit and produce videos for TV, YouTube, corporates', sw: 'Hariri na tengeneza video kwa TV, YouTube, mashirika' }, salary: 'TZS 700K–2M/month' },
+        { emoji: '📱', role: { en: 'UI/UX Designer', sw: 'Mbuni wa Kiolesura cha Mtumiaji' }, desc: { en: 'Design user interfaces for apps and websites', sw: 'Buni miingiliano ya mtumiaji kwa programu na tovuti' }, salary: 'TZS 1M–3M/month' },
+        { emoji: '🎭', role: { en: 'Motion Graphics Artist', sw: 'Msanii wa Picha Zinazosogea' }, desc: { en: 'Create animated content for ads, films, TV', sw: 'Tengeneza maudhui ya uhuishaji kwa matangazo, filamu, TV' }, salary: 'TZS 800K–2.5M/month' }
+      ],
+      self: [
+        { emoji: '🎨', role: { en: 'Freelance Designer / Animator', sw: 'Mbuni / Mhuishaji Huru' }, desc: { en: 'Work for clients on Fiverr, Upwork, and locally', sw: 'Fanya kazi kwa wateja kwenye Fiverr, Upwork, na ndani ya nchi' } },
+        { emoji: '📺', role: { en: 'Content Creator / YouTuber', sw: 'Mtengenezaji wa Maudhui / YouTuber' }, desc: { en: 'Build a YouTube or social media channel and monetize it', sw: 'Jenga channel ya YouTube au mitandao ya kijamii na uipate pesa' } },
+        { emoji: '🏢', role: { en: 'Creative Agency Owner', sw: 'Mmiliki wa Wakala wa Ubunifu' }, desc: { en: 'Run your own multimedia production studio', sw: 'Endesha studio yako ya uzalishaji wa midia' } }
+      ]
+    }
   },
+  // ===== CIVIL ENGINEERING =====
   {
-    id: 5, dept: "Mechanical", icon: "⚙️", name: "Diploma in Mechanical Engineering",
-    level: "Ordinary Diploma", duration: "Miaka 3",
-    entry: "Passes 4 za D: Physics/Eng. Science, Mathematics, Chemistry, English.",
+    id: 5, dept: 'Civil', icon: '🏗️',
+    name: { en: 'Ordinary Diploma in Civil Engineering', sw: 'Stashahada ya Uhandisi wa Ujenzi' },
+    entry: {
+      en: 'CSEE with min. 4 D-grade passes in Physics/Engineering Science, Maths, Chemistry, English.',
+      sw: 'CSEE na angalau alama 4 za D katika Fizikia/Sayansi ya Uhandisi, Hisabati, Kemia, Kiingereza.'
+    },
     semesters: [
-      { label: "Mwaka 1 · Semester 1", subjects: [
-        { code:"ME101", name:"Engineering Drawing & CAD" },
-        { code:"ME102", name:"Workshop Technology" },
-        { code:"MTH101", name:"Engineering Mathematics I" },
-        { code:"ME103", name:"Engineering Materials & Metallurgy" },
-        { code:"GS101", name:"Communication Skills" }
+      { label: { en: 'NTA Level 4 — Semester I', sw: 'Ngazi ya 4 — Muhula I' }, subjects: [
+        { code: 'GST 04111', name: 'Algebra and Trigonometry' },
+        { code: 'ITT 04117', name: 'Basic Computer Application' },
+        { code: 'CET 04111', name: 'Building Construction and Maintenance' },
+        { code: 'CET 04112', name: 'Soil Mechanics' },
+        { code: 'CET 04113', name: 'Basic Engineering Drawing' },
+        { code: 'CET 04114', name: 'Construction Technology (Masonry, Carpentry)' },
+        { code: 'CET 04115', name: 'Aluminum and Finishing Work' }
       ]},
-      { label: "Mwaka 1 · Semester 2", subjects: [
-        { code:"ME104", name:"Thermodynamics I" },
-        { code:"ME105", name:"Mechanics of Materials" },
-        { code:"ME106", name:"Manufacturing Processes" },
-        { code:"MTH102", name:"Engineering Mathematics II" },
-        { code:"ME107", name:"Fluid Mechanics" }
+      { label: { en: 'NTA Level 4 — Semester II', sw: 'Ngazi ya 4 — Muhula II' }, subjects: [
+        { code: 'GST 04211', name: 'Linear Algebra, Statistics and Complex Number' },
+        { code: 'GST 04213', name: 'Business Communication Skills' },
+        { code: 'GST 04214', name: 'Entrepreneurship for Technician' },
+        { code: 'CET 04211', name: 'Basic Structural Mechanics' },
+        { code: 'CET 04212', name: 'Installation and Maintenance of Services' },
+        { code: 'CET 04213', name: 'Basic Engineering Material' },
+        { code: 'CET 04214', name: 'Basic Engineering Surveying' },
+        { code: 'CET 04215', name: 'Industrial Practical Training' }
       ]},
-      { label: "Mwaka 2 · Semester 1", subjects: [
-        { code:"ME201", name:"Machine Design I" },
-        { code:"ME202", name:"Thermodynamics II (Heat Engines)" },
-        { code:"ME203", name:"CNC Machining & Metrology" },
-        { code:"ME204", name:"Refrigeration & Air Conditioning" },
-        { code:"ME205", name:"Engineering Management" }
+      { label: { en: 'NTA Level 5 — Semester I', sw: 'Ngazi ya 5 — Muhula I' }, subjects: [
+        { code: 'GST 05111', name: 'Differentiation and Integration' },
+        { code: 'GST 05112', name: 'Principles of Thermodynamics, Waves and Polymer' },
+        { code: 'CET 05111', name: 'Engineering Surveying' },
+        { code: 'CET 05112', name: 'Engineering Drawing' },
+        { code: 'CET 05113', name: 'Civil Engineering Materials' },
+        { code: 'CET 05114', name: 'Road Design' },
+        { code: 'CET 05115', name: 'Water Supply and Sanitation' }
       ]},
-      { label: "Mwaka 2 · Semester 2", subjects: [
-        { code:"ME206", name:"Machine Design II" },
-        { code:"ME207", name:"Welding Technology" },
-        { code:"ME208", name:"Automotive Engineering" },
-        { code:"GS201", name:"Entrepreneurship" },
-        { code:"ME209", name:"Industrial Safety" }
+      { label: { en: 'NTA Level 5 — Semester II', sw: 'Ngazi ya 5 — Muhula II' }, subjects: [
+        { code: 'GST 05211', name: 'Differential Equations and Coordinate Geometry' },
+        { code: 'GST 05212', name: 'Introduction to Networking' },
+        { code: 'CET 05211', name: 'Structural Mechanics' },
+        { code: 'CET 05212', name: 'Quantity Surveying' },
+        { code: 'CET 05213', name: 'Workshop and Construction Practice' },
+        { code: 'CET 05214', name: 'Construction Management' },
+        { code: 'CET 05215', name: 'Road Construction and Maintenance' },
+        { code: 'CET 05216', name: 'Building Plumbing and Finishing Materials' }
       ]},
-      { label: "Mwaka 3 · Field Training & Project", subjects: [
-        { code:"ME301", name:"Industrial Attachment" },
-        { code:"ME302", name:"Final Year Project" },
-        { code:"ME303", name:"Robotics & Mechatronics Basics" }
+      { label: { en: 'NTA Level 6 — Semester I', sw: 'Ngazi ya 6 — Muhula I' }, subjects: [
+        { code: 'CED 06114', name: 'Building Construction' },
+        { code: 'CED 06115', name: 'Reinforced Cement Concrete Design' },
+        { code: 'CED 06116', name: 'Soil Mechanics and Foundations' },
+        { code: 'CED 06117', name: 'Structural Timber Design' },
+        { code: 'CED 06118', name: 'Architectural Design and Drawing' },
+        { code: 'CED 06119', name: 'Project I (Research Methodology)' },
+        { code: 'CED 06120', name: 'Civil Engineering Design Software' }
+      ]},
+      { label: { en: 'NTA Level 6 — Semester II', sw: 'Ngazi ya 6 — Muhula II' }, subjects: [
+        { code: 'CED 06211', name: 'Hydraulics and Fluid Mechanics' },
+        { code: 'CED 06212', name: 'Construction Management and Procurement Practice' },
+        { code: 'CED 06213', name: 'Public Health Engineering' },
+        { code: 'CED 06214', name: 'Structural Steel Design' },
+        { code: 'CED 06215', name: 'Building Materials and Maintenance' },
+        { code: 'CED 06216', name: 'Project II (Implementation and Report Writing)' },
+        { code: 'CED 06217', name: 'Social and Environmental Management' }
       ]}
-    ]
+    ],
+    careers: {
+      employed: [
+        { emoji: '🏗️', role: { en: 'Site Engineer', sw: 'Mhandisi wa Ujenzi' }, desc: { en: 'Supervise construction of buildings, roads and bridges', sw: 'Simamia ujenzi wa majengo, barabara na madaraja' }, salary: 'TZS 1M–3.5M/month' },
+        { emoji: '📐', role: { en: 'Quantity Surveyor', sw: 'Mpima Gharama za Ujenzi' }, desc: { en: 'Estimate and manage construction project costs', sw: 'Kadiria na simamia gharama za miradi ya ujenzi' }, salary: 'TZS 1M–2.5M/month' },
+        { emoji: '🌊', role: { en: 'Water & Sanitation Engineer', sw: 'Mhandisi wa Maji na Usafi' }, desc: { en: 'Design water supply and sewage systems', sw: 'Buni mifumo ya usambazaji wa maji na maji taka' }, salary: 'TZS 1M–3M/month' },
+        { emoji: '🏛️', role: { en: 'Structural Engineer', sw: 'Mhandisi wa Miundo' }, desc: { en: 'Design safe structures for buildings and infrastructure', sw: 'Buni miundo salama kwa majengo na miundombinu' }, salary: 'TZS 1.2M–4M/month' }
+      ],
+      self: [
+        { emoji: '🏢', role: { en: 'Construction Contractor', sw: 'Mkandarasi wa Ujenzi' }, desc: { en: 'Run your own construction company and take contracts', sw: 'Endesha kampuni yako ya ujenzi na pata mikataba' } },
+        { emoji: '📋', role: { en: 'Independent Quantity Surveyor', sw: 'Mpima Gharama Huru' }, desc: { en: 'Offer cost estimation services to developers', sw: 'Toa huduma za kukadiriwa gharama kwa wajenzi' } }
+      ]
+    }
   },
+  // ===== ELECTRICAL =====
   {
-    id: 6, dept: "Transport", icon: "🛣️", name: "Diploma in Transportation Engineering",
-    level: "Ordinary Diploma", duration: "Miaka 3",
-    entry: "Passes 4 za D: Physics/Eng. Science, Mathematics, Chemistry au Geography, English.",
+    id: 6, dept: 'Electrical', icon: '⚡',
+    name: { en: 'Ordinary Diploma in Electrical Engineering', sw: 'Stashahada ya Uhandisi wa Umeme' },
+    entry: {
+      en: 'CSEE with min. 4 D-grade passes in Physics/Engineering Science, Maths, Chemistry, English.',
+      sw: 'CSEE na angalau alama 4 za D katika Fizikia/Sayansi ya Uhandisi, Hisabati, Kemia, Kiingereza.'
+    },
     semesters: [
-      { label: "Mwaka 1 · Semester 1", subjects: [
-        { code:"TE101", name:"Engineering Drawing" },
-        { code:"TE102", name:"Engineering Mathematics I" },
-        { code:"TE103", name:"Road Materials & Pavement" },
-        { code:"TE104", name:"Surveying I" },
-        { code:"GS101", name:"Communication Skills" }
+      { label: { en: 'NTA Level 4 — Semester I', sw: 'Ngazi ya 4 — Muhula I' }, subjects: [
+        { code: 'GST 04101', name: 'Algebra and Trigonometry' },
+        { code: 'EET 04101', name: 'Basic Electricity' },
+        { code: 'ETT 04101', name: 'Analogue Electronics' },
+        { code: 'EET 04102', name: 'Domestic Installation and Mechanical Skills' },
+        { code: 'EET 04103', name: 'Printed Circuit Board and Draughting Techniques' },
+        { code: 'EET 04104', name: 'Electrical Measurements I' }
       ]},
-      { label: "Mwaka 1 · Semester 2", subjects: [
-        { code:"TE105", name:"Traffic Engineering & Safety" },
-        { code:"TE106", name:"Highway Geometry & Design" },
-        { code:"TE107", name:"Soil Mechanics" },
-        { code:"TE108", name:"Surveying II" },
-        { code:"MTH102", name:"Engineering Mathematics II" }
+      { label: { en: 'NTA Level 4 — Semester II', sw: 'Ngazi ya 4 — Muhula II' }, subjects: [
+        { code: 'GST 04201', name: 'Series and Boolean Algebra' },
+        { code: 'EET 04201', name: 'Electrical Material' },
+        { code: 'ETT 04201', name: 'Digital Combination Circuit' },
+        { code: 'EET 04202', name: 'Workshop Technology and Practice' },
+        { code: 'EET 04204', name: 'Electrical Measurements II' },
+        { code: 'ITP 04', name: 'Industrial Training' }
       ]},
-      { label: "Mwaka 2 · Semester 1", subjects: [
-        { code:"TE201", name:"Pavement Design & Construction" },
-        { code:"TE202", name:"Bridge Engineering" },
-        { code:"TE203", name:"Transport Economics & Planning" },
-        { code:"TE204", name:"Environmental Impact Assessment" },
-        { code:"TE205", name:"Contract & Construction Management" }
+      { label: { en: 'NTA Level 5 — Semester I', sw: 'Ngazi ya 5 — Muhula I' }, subjects: [
+        { code: 'GST 05101', name: 'Differentiation and Integration' },
+        { code: 'GST 05103', name: 'Introduction to Programming Using C' },
+        { code: 'EET 05101', name: 'DC Machines' },
+        { code: 'ETT 05101', name: 'Analogue Electronics Devices and Circuit' },
+        { code: 'EET 05102', name: 'Computer Aided Design Tools / Workshop Practice' },
+        { code: 'EET 05103', name: 'Electromagnetism' },
+        { code: 'EET 05104', name: 'Control Engineering' }
       ]},
-      { label: "Mwaka 2 · Semester 2", subjects: [
-        { code:"TE206", name:"Drainage Engineering" },
-        { code:"TE207", name:"Road Maintenance & Rehabilitation" },
-        { code:"TE208", name:"GIS & Remote Sensing for Roads" },
-        { code:"GS201", name:"Entrepreneurship" },
-        { code:"TE209", name:"Quantity Surveying for Roads" }
+      { label: { en: 'NTA Level 5 — Semester II', sw: 'Ngazi ya 5 — Muhula II' }, subjects: [
+        { code: 'EET 05201', name: 'AC Machine I' },
+        { code: 'ETT 05201', name: 'Digital Sequential Circuits' },
+        { code: 'ETT 05202', name: 'Power Electronics' },
+        { code: 'EET 05202', name: 'Industrial Installation and Transformer Rewinding' },
+        { code: 'EET 05203', name: 'Electrical Power Utilization' },
+        { code: 'EET 05204', name: 'Power Plants' },
+        { code: 'ITP 05', name: 'Industrial Training' }
       ]},
-      { label: "Mwaka 3 · Field Training & Project", subjects: [
-        { code:"TE301", name:"Industrial Attachment" },
-        { code:"TE302", name:"Final Year Project" },
-        { code:"TE303", name:"Urban Transport Planning" }
+      { label: { en: 'NTA Level 6 — Semester I', sw: 'Ngazi ya 6 — Muhula I' }, subjects: [
+        { code: 'GST 06101', name: 'Coordinate Geometry and Differential Equations' },
+        { code: 'ETT 06101', name: 'Analogue Electronics Design' },
+        { code: 'ETT 06102', name: 'Microcontrollers' },
+        { code: 'EET 06101', name: 'Induction Motors' },
+        { code: 'EED 06102', name: 'Automation' },
+        { code: 'EET 06103', name: 'Motor Rewinding' },
+        { code: 'EET 06104', name: 'Power Protection' },
+        { code: 'EET 06105', name: 'Project I' }
+      ]},
+      { label: { en: 'NTA Level 6 — Semester II', sw: 'Ngazi ya 6 — Muhula II' }, subjects: [
+        { code: 'GST 06201', name: 'Linear Programming, Statistics and Probability' },
+        { code: 'EET 06201', name: 'Synchronous and Special Machines' },
+        { code: 'EET 06202', name: 'Electric Drives' },
+        { code: 'EET 06203', name: 'Refrigeration and Air Conditioning' },
+        { code: 'EET 06204', name: 'Electrical Maintenance and Management' },
+        { code: 'EET 06205', name: 'Electrical Power Transmission & Distribution' },
+        { code: 'EET 06206', name: 'Renewable Energy' },
+        { code: 'EET 06207', name: 'Project II' }
       ]}
-    ]
+    ],
+    careers: {
+      employed: [
+        { emoji: '⚡', role: { en: 'Electrical Engineer', sw: 'Mhandisi wa Umeme' }, desc: { en: 'Design and maintain electrical systems in industries', sw: 'Buni na matengenezo ya mifumo ya umeme viwandani' }, salary: 'TZS 1M–3.5M/month' },
+        { emoji: '🏭', role: { en: 'Power Plant Technician', sw: 'Fundi wa Mtambo wa Umeme' }, desc: { en: 'Operate and maintain electricity generation plants', sw: 'Endesha na matengenezo ya mitambo ya kuzalisha umeme' }, salary: 'TZS 900K–2.5M/month' },
+        { emoji: '❄️', role: { en: 'HVAC/Refrigeration Technician', sw: 'Fundi wa Jokofu na Hewa' }, desc: { en: 'Install and service air conditioning and refrigeration systems', sw: 'Weka na hudumia mifumo ya jokofu na hewa baridi' }, salary: 'TZS 700K–2M/month' },
+        { emoji: '🔌', role: { en: 'Electrical Installation Officer', sw: 'Afisa wa Usakinishaji wa Umeme' }, desc: { en: 'Handle wiring and electrical installations in buildings', sw: 'Shughulikia usakinishaji wa waya na umeme majengoني' }, salary: 'TZS 600K–1.5M/month' }
+      ],
+      self: [
+        { emoji: '🔌', role: { en: 'Electrical Contractor', sw: 'Mkandarasi wa Umeme' }, desc: { en: 'Run your own electrical installation business', sw: 'Endesha biashara yako ya usakinishaji wa umeme' } },
+        { emoji: '❄️', role: { en: 'AC/Fridge Repair Business', sw: 'Biashara ya Kutengeneza Jokofu na AC' }, desc: { en: 'Repair and service cooling systems independently', sw: 'Tengeneza na hudumia mifumo ya baridi kwa uhuru' } }
+      ]
+    }
+  },
+  // ===== MECHANICAL =====
+  {
+    id: 7, dept: 'Mechanical', icon: '⚙️',
+    name: { en: 'Ordinary Diploma in Mechanical Engineering', sw: 'Stashahada ya Uhandisi wa Mitambo' },
+    entry: {
+      en: 'CSEE with min. 4 D-grade passes in Physics/Engineering Science, Maths, Chemistry, English.',
+      sw: 'CSEE na angalau alama 4 za D katika Fizikia/Sayansi ya Uhandisi, Hisabati, Kemia, Kiingereza.'
+    },
+    semesters: [
+      { label: { en: 'NTA Level 4 — Semester I', sw: 'Ngazi ya 4 — Muhula I' }, subjects: [
+        { code: 'GST 04111', name: 'Algebra and Trigonometry' },
+        { code: 'MET 04111', name: 'Basics of Engineering Drawing' },
+        { code: 'MET 04112', name: 'Basics of Engineering Materials' },
+        { code: 'MET 04113', name: 'Mechanical Engineering Science' },
+        { code: 'MET 04114', name: 'Basics of Automotive Technology' },
+        { code: 'MET 04115', name: 'General Workshop Practice' },
+        { code: 'MET 04116', name: 'Occupational Health, Safety and Work Relations' }
+      ]},
+      { label: { en: 'NTA Level 5 — Semester I', sw: 'Ngazi ya 5 — Muhula I' }, subjects: [
+        { code: 'GST 05111', name: 'Differentiation and Integration' },
+        { code: 'MET 05111', name: 'Details and Assembly Drawing' },
+        { code: 'MET 05112', name: 'Basics of Machine Elements and Design' },
+        { code: 'MET 05113', name: 'Strength of Materials' },
+        { code: 'MET 05114', name: 'Applied Thermodynamics' },
+        { code: 'MET 05115', name: 'Basic Welding Technology' }
+      ]},
+      { label: { en: 'NTA Level 5 — Semester II', sw: 'Ngazi ya 5 — Muhula II' }, subjects: [
+        { code: 'MET 05211', name: 'Fundamentals of Computer Aided Drafting' },
+        { code: 'MET 05212', name: 'Measurements and Control Technology' },
+        { code: 'MET 05213', name: 'Fluid Mechanics' },
+        { code: 'MET 05214', name: 'Foundry and Metal Forming' },
+        { code: 'MET 05215', name: 'Metal Surface Treatment and Painting' }
+      ]},
+      { label: { en: 'NTA Level 6 — Semester I', sw: 'Ngazi ya 6 — Muhula I' }, subjects: [
+        { code: 'MET 06111', name: '3D Modelling in SolidWorks' },
+        { code: 'MET 06112', name: 'PLC Controlled Pneumatic and Hydraulic Systems' },
+        { code: 'MET 06113', name: 'Welding Technology' },
+        { code: 'MET 06114', name: 'Power Production' },
+        { code: 'MET 06115', name: 'Fundamentals of Refrigeration Systems' },
+        { code: 'MET 06116', name: 'Environmental Management and Climate Change' },
+        { code: 'MET 06117', name: 'Mechanical Engineering Project I – Design' }
+      ]},
+      { label: { en: 'NTA Level 6 — Semester II', sw: 'Ngazi ya 6 — Muhula II' }, subjects: [
+        { code: 'MET 06211', name: 'CNC Programming and Application' },
+        { code: 'MET 06212', name: 'Fundamentals of Air-conditioning System' },
+        { code: 'MET 06213', name: 'Fundamentals of Pump and Compressor Systems' },
+        { code: 'MET 06214', name: 'Machine Installation, Commissioning and Maintenance' },
+        { code: 'MET 06215', name: 'Workshop Management' },
+        { code: 'MET 06216', name: 'Mechanical Engineering Project II – Production' }
+      ]}
+    ],
+    careers: {
+      employed: [
+        { emoji: '⚙️', role: { en: 'Mechanical Engineer', sw: 'Mhandisi wa Mitambo' }, desc: { en: 'Design and maintain machinery in factories and industries', sw: 'Buni na matengenezo ya mashine viwandani' }, salary: 'TZS 1M–3.5M/month' },
+        { emoji: '🔧', role: { en: 'Maintenance Technician', sw: 'Fundi wa Matengenezo' }, desc: { en: 'Service and repair industrial equipment', sw: 'Hudumia na kutengeneza vifaa vya viwanda' }, salary: 'TZS 700K–2M/month' },
+        { emoji: '🏭', role: { en: 'Production Engineer', sw: 'Mhandisi wa Uzalishaji' }, desc: { en: 'Oversee manufacturing processes in factories', sw: 'Simamia michakato ya utengenezaji viwandani' }, salary: 'TZS 1M–3M/month' },
+        { emoji: '❄️', role: { en: 'HVAC Engineer', sw: 'Mhandisi wa Hewa na Jokofu' }, desc: { en: 'Design and maintain air conditioning systems', sw: 'Buni na matengenezo ya mifumo ya hewa baridi' }, salary: 'TZS 900K–2.5M/month' }
+      ],
+      self: [
+        { emoji: '🔧', role: { en: 'Workshop / Garage Owner', sw: 'Mmiliki wa Karakana' }, desc: { en: 'Run your own machine repair and fabrication workshop', sw: 'Endesha karakana yako ya kutengeneza mashine' } },
+        { emoji: '🏭', role: { en: 'Small-Scale Manufacturer', sw: 'Mtengenezaji Mdogo' }, desc: { en: 'Manufacture metal products and spare parts locally', sw: 'Tengeneza bidhaa za chuma na vipuri ndani ya nchi' } }
+      ]
+    }
+  },
+  // ===== AUTOMOTIVE =====
+  {
+    id: 8, dept: 'Automotive', icon: '🚗',
+    name: { en: 'Ordinary Diploma in Automotive Engineering', sw: 'Stashahada ya Uhandisi wa Magari' },
+    entry: {
+      en: 'CSEE with min. 4 D-grade passes in Physics/Engineering Science, Maths, Chemistry, English.',
+      sw: 'CSEE na angalau alama 4 za D katika Fizikia/Sayansi ya Uhandisi, Hisabati, Kemia, Kiingereza.'
+    },
+    semesters: [
+      { label: { en: 'NTA Level 4 — Semester I', sw: 'Ngazi ya 4 — Muhula I' }, subjects: [
+        { code: 'GST 04101', name: 'Algebra and Trigonometry' },
+        { code: 'GST 04102', name: 'Mechanics and Nuclear Physics' },
+        { code: 'MET 04101', name: 'Basics of Engineering Drawing' },
+        { code: 'MET 04102', name: 'Mechanical Engineering Materials' },
+        { code: 'AET 04101', name: 'Basics of Automotive Technology' },
+        { code: 'MET 04105', name: 'Basics of Manufacturing Engineering' },
+        { code: 'AET 04102', name: 'Fundamentals of Electrical and Electronics Engineering' }
+      ]},
+      { label: { en: 'NTA Level 4 — Semester II', sw: 'Ngazi ya 4 — Muhula II' }, subjects: [
+        { code: 'GST 04201', name: 'Series and Boolean Algebra' },
+        { code: 'AET 04201', name: 'Automotive Systems Operation and Maintenance' },
+        { code: 'MET 04203', name: 'Machine Tools/Processes and Maintenance' },
+        { code: 'AET 04202', name: 'Industrial Practical Training' }
+      ]},
+      { label: { en: 'NTA Level 6 — Semester I', sw: 'Ngazi ya 6 — Muhula I' }, subjects: [
+        { code: 'GST 06101', name: 'Coordinate Geometry and Differential Equations' },
+        { code: 'MET 06101', name: 'Details and Assembly Drawing' },
+        { code: 'MET 06102', name: 'Machine Elements and Design' },
+        { code: 'MET 06104', name: 'Power Production' },
+        { code: 'AET 06101', name: 'Auto Electrical and Electronic Systems' },
+        { code: 'AET 06102', name: 'Project Design' }
+      ]},
+      { label: { en: 'NTA Level 6 — Semester II', sw: 'Ngazi ya 6 — Muhula II' }, subjects: [
+        { code: 'AET 06201', name: 'Auto Workshop Management' },
+        { code: 'AET 06202', name: 'Automotive Diagnostics' },
+        { code: 'AET 06203', name: 'Project Manufacturing' },
+        { code: 'AET 06204', name: 'Auto Electric Control Systems' },
+        { code: 'AET 06205', name: 'Industrial Practical Training' }
+      ]}
+    ],
+    careers: {
+      employed: [
+        { emoji: '🚗', role: { en: 'Automotive Technician', sw: 'Fundi wa Magari' }, desc: { en: 'Diagnose and repair vehicles in garages and dealerships', sw: 'Gundua na tengeneza magari katika karakana na maduka ya magari' }, salary: 'TZS 600K–2M/month' },
+        { emoji: '🔌', role: { en: 'Auto Electrician', sw: 'Fundi wa Umeme wa Gari' }, desc: { en: 'Service electrical systems in modern vehicles', sw: 'Hudumia mifumo ya umeme katika magari ya kisasa' }, salary: 'TZS 700K–2M/month' },
+        { emoji: '🏭', role: { en: 'Fleet Maintenance Engineer', sw: 'Mhandisi wa Matengenezo ya Msafara' }, desc: { en: 'Manage vehicle fleets for transport companies', sw: 'Simamia mafurushi ya magari kwa makampuni ya usafirishaji' }, salary: 'TZS 1M–3M/month' }
+      ],
+      self: [
+        { emoji: '🔧', role: { en: 'Garage / Workshop Owner', sw: 'Mmiliki wa Karakana ya Magari' }, desc: { en: 'Open your own auto repair and service center', sw: 'Fungua kituo chako cha kutengeneza na kuhudumia magari' } },
+        { emoji: '🚕', role: { en: 'Auto Spare Parts Dealer', sw: 'Muuzaji wa Vipuri vya Magari' }, desc: { en: 'Import and sell spare parts for vehicles', sw: 'Ingiza na uza vipuri vya magari' } }
+      ]
+    }
+  },
+  // ===== TRANSPORT =====
+  {
+    id: 9, dept: 'Transport', icon: '🛣️',
+    name: { en: 'Ordinary Diploma in Civil and Highway Engineering', sw: 'Stashahada ya Uhandisi wa Barabara na Ujenzi' },
+    entry: {
+      en: 'CSEE with min. 4 D-grade passes in Physics/Engineering Science, Maths, Chemistry, English.',
+      sw: 'CSEE na angalau alama 4 za D katika Fizikia/Sayansi ya Uhandisi, Hisabati, Kemia, Kiingereza.'
+    },
+    semesters: [
+      { label: { en: 'NTA Level 4 — Semester I', sw: 'Ngazi ya 4 — Muhula I' }, subjects: [
+        { code: 'GST 04111', name: 'Algebra and Trigonometry' },
+        { code: 'CHT 04111', name: 'Building Construction and Maintenance' },
+        { code: 'CHT 04112', name: 'Soil Mechanics' },
+        { code: 'CHT 04113', name: 'Basic Engineering Drawing' },
+        { code: 'CHT 04114', name: 'Construction Technology (Masonry, Carpentry, Painting)' },
+        { code: 'CHT 04115', name: 'Basic Labour Based Road Engineering' }
+      ]},
+      { label: { en: 'NTA Level 5 — Semester I', sw: 'Ngazi ya 5 — Muhula I' }, subjects: [
+        { code: 'CHT 05120', name: 'Engineering Surveying' },
+        { code: 'CHT 05121', name: 'Engineering Drawing' },
+        { code: 'CHT 05122', name: 'Civil Engineering Materials' },
+        { code: 'CHT 05123', name: 'Road Design' }
+      ]},
+      { label: { en: 'NTA Level 6 — Semester I', sw: 'Ngazi ya 6 — Muhula I' }, subjects: [
+        { code: 'CHD 06121', name: 'Route Design' },
+        { code: 'CHD 06127', name: 'Reinforced Concrete Design' },
+        { code: 'CHD 06122', name: 'Pavement Materials' },
+        { code: 'CHD 06123', name: 'Traffic and Transportation Engineering' },
+        { code: 'CHD 06124', name: 'Basic Bridge Construction and Maintenance' },
+        { code: 'CHD 06132', name: 'Soil Mechanics and Foundations' },
+        { code: 'CHD 06133', name: 'Structural Timber Design' },
+        { code: 'CHD 06145', name: 'Civil Engineering Design Software' }
+      ]},
+      { label: { en: 'NTA Level 6 — Semester II', sw: 'Ngazi ya 6 — Muhula II' }, subjects: [
+        { code: 'CHD 06222', name: 'Social and Environmental Management' },
+        { code: 'CHD 06223', name: 'Construction Management and Procurement Practice' },
+        { code: 'CHD 06236', name: 'Pavement Engineering' },
+        { code: 'CHD 06230', name: 'Structural Steel Design' },
+        { code: 'CHD 06235', name: 'Hydraulics' }
+      ]}
+    ],
+    careers: {
+      employed: [
+        { emoji: '🛣️', role: { en: 'Road Engineer', sw: 'Mhandisi wa Barabara' }, desc: { en: 'Design and supervise road construction projects', sw: 'Buni na simamia miradi ya ujenzi wa barabara' }, salary: 'TZS 1M–3.5M/month' },
+        { emoji: '🌉', role: { en: 'Bridge Engineer', sw: 'Mhandisi wa Madaraja' }, desc: { en: 'Design and inspect bridges and culverts', sw: 'Buni na kagua madaraja na bomba za mto' }, salary: 'TZS 1.2M–4M/month' },
+        { emoji: '📊', role: { en: 'Traffic Engineer', sw: 'Mhandisi wa Msongamano wa Barabara' }, desc: { en: 'Plan and manage traffic flow in urban areas', sw: 'Panga na simamia mtiririko wa magari mijini' }, salary: 'TZS 1M–3M/month' },
+        { emoji: '🏗️', role: { en: 'Site Supervisor — Roads', sw: 'Msimamizi wa Ujenzi wa Barabara' }, desc: { en: 'Supervise road construction sites for contractors', sw: 'Simamia maeneo ya ujenzi wa barabara kwa wakandarasi' }, salary: 'TZS 900K–2.5M/month' }
+      ],
+      self: [
+        { emoji: '🏢', role: { en: 'Road Construction Contractor', sw: 'Mkandarasi wa Ujenzi wa Barabara' }, desc: { en: 'Tender and manage road construction projects', sw: 'Omba zabuni na simamia miradi ya ujenzi wa barabara' } },
+        { emoji: '📐', role: { en: 'Surveying Consultant', sw: 'Mshauri wa Upimaji' }, desc: { en: 'Offer land and road surveying services independently', sw: 'Toa huduma za upimaji wa ardhi na barabara kwa uhuru' } }
+      ]
+    }
+  },
+  // ===== SCIENCE =====
+  {
+    id: 10, dept: 'Science', icon: '🔬',
+    name: { en: 'Ordinary Diploma in Laboratory Science & Technology', sw: 'Stashahada ya Sayansi na Teknolojia ya Maabara' },
+    entry: {
+      en: 'CSEE with min. 4 D-grade passes in Physics/Engineering Science, Maths, Chemistry, Biology, English.',
+      sw: 'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Biolojia, Kiingereza.'
+    },
+    semesters: [
+      { label: { en: 'NTA Level 4 — Semester I', sw: 'Ngazi ya 4 — Muhula I' }, subjects: [
+        { code: 'LST 04101', name: 'Basic Mechanics for Laboratory Technology' },
+        { code: 'LST 04102', name: 'Laboratory Safety, Procurement and Organization' },
+        { code: 'LST 04103', name: 'Laboratory Techniques and Preparation of Reagents' },
+        { code: 'LST 04104', name: 'Fundamentals of Cell Biology' },
+        { code: 'LST 04105', name: 'Specimen Collection and Preservation' },
+        { code: 'LST 04106', name: 'Basic Laboratory Instrumentation' }
+      ]},
+      { label: { en: 'NTA Level 5 — Semester I', sw: 'Ngazi ya 5 — Muhula I' }, subjects: [
+        { code: 'LST 05101', name: 'Basics of Pesticides and Phytochemistry' },
+        { code: 'LST 05102', name: 'Principles of Thermodynamics and Optical Devices' },
+        { code: 'LST 05103', name: 'Fundamentals of Analogue Electronics' },
+        { code: 'LST 05104', name: 'Quantitative Analysis' },
+        { code: 'LST 05105', name: 'Fundamentals of Physical Chemistry' },
+        { code: 'LST 05106', name: 'Basics of Plant and Animal Physiology' },
+        { code: 'LST 05107', name: 'Thermo Chemistry and Chemical Kinetics' }
+      ]},
+      { label: { en: 'NTA Level 6 — Semester I', sw: 'Ngazi ya 6 — Muhula I' }, subjects: [
+        { code: 'LST 06101', name: 'Current Electricity and Waves Theory' },
+        { code: 'LST 06102', name: 'Electronics Practicals' },
+        { code: 'LST 06103', name: 'Analytical Instrumentation' },
+        { code: 'LST 06104', name: 'Organic Chemistry' },
+        { code: 'LST 06105', name: 'Introduction to Immunology and Parasitology' },
+        { code: 'LST 06107', name: 'Research Techniques' }
+      ]},
+      { label: { en: 'NTA Level 6 — Semester II', sw: 'Ngazi ya 6 — Muhula II' }, subjects: [
+        { code: 'LST 06201', name: 'Radiation Protection and Safety' },
+        { code: 'LST 06202', name: 'Electrical and Waves Practicals' },
+        { code: 'LST 06203', name: 'Fundamentals of Industrial Chemistry' },
+        { code: 'LST 06204', name: 'Molecular Genetics' },
+        { code: 'LST 06205', name: 'Quality Control and Assurance' },
+        { code: 'LST 06206', name: 'Project' }
+      ]}
+    ],
+    careers: {
+      employed: [
+        { emoji: '🔬', role: { en: 'Laboratory Technician', sw: 'Fundi wa Maabara' }, desc: { en: 'Work in hospital, research, or industrial labs', sw: 'Fanya kazi katika maabara ya hospitali, utafiti, au viwanda' }, salary: 'TZS 700K–2M/month' },
+        { emoji: '💊', role: { en: 'Quality Control Analyst', sw: 'Mchambuzi wa Ubora' }, desc: { en: 'Test products in pharmaceutical and food industries', sw: 'Pima bidhaa katika viwanda vya dawa na chakula' }, salary: 'TZS 800K–2.5M/month' },
+        { emoji: '🧬', role: { en: 'Research Assistant', sw: 'Msaidizi wa Utafiti' }, desc: { en: 'Support scientific research in universities and institutes', sw: 'Saidia utafiti wa kisayansi katika vyuo na taasisi' }, salary: 'TZS 700K–1.8M/month' }
+      ],
+      self: [
+        { emoji: '🧪', role: { en: 'Private Lab Services', sw: 'Huduma za Maabara Binafsi' }, desc: { en: 'Offer water, food, and soil testing services', sw: 'Toa huduma za kupima maji, chakula, na udongo' } },
+        { emoji: '📚', role: { en: 'Science Tutor', sw: 'Mwalimu wa Sayansi' }, desc: { en: 'Teach science subjects to secondary school students', sw: 'Fundisha masomo ya sayansi kwa wanafunzi wa sekondari' } }
+      ]
+    }
   }
 ];
 
-const DEPTS = ["Zote", "ICT", "Civil", "Electrical", "Mechanical", "Transport"];
-let activeFilter = "Zote";
-let openCards = new Set();
-let deferredPrompt = null;
+const DEPT_KEYS = ['All', 'Automotive', 'Civil', 'Transport', 'Electrical', 'Mechanical', 'ICT', 'Science'];
+let activeFilter = 'All';
+let openCards = {};  // id -> active tab ('modules'|'careers')
 
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  document.getElementById('installBtn').classList.add('show');
-});
-
-function installApp() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => {
-      deferredPrompt = null;
-      document.getElementById('installBtn').classList.remove('show');
-    });
-  }
-}
-
-function shareApp() {
-  if (navigator.share) {
-    navigator.share({
-      title: 'ATC Course Explorer',
-      text: 'Tazama kozi na masomo ya Arusha Technical College!',
-      url: window.location.href
-    });
-  } else {
-    navigator.clipboard.writeText(window.location.href);
-    alert('Link imenakiliwa!');
-  }
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btnEN').classList.toggle('active', lang === 'en');
+  document.getElementById('btnSW').classList.toggle('active', lang === 'sw');
+  document.getElementById('appTitle').textContent = T[lang].appTitle;
+  document.getElementById('searchInput').placeholder = T[lang].search;
+  document.getElementById('emptyText').textContent = T[lang].noResults;
+  renderFilters();
+  renderCourses();
 }
 
 function renderFilters() {
-  document.getElementById('filterRow').innerHTML = DEPTS.map(d =>
-    `<button class="filter-chip${d===activeFilter?' active':''}" onclick="setFilter('${d}')">${d}</button>`
+  const depts = DEPTS[currentLang];
+  const keys = DEPT_KEYS;
+  document.getElementById('filterRow').innerHTML = keys.map((k, i) =>
+    `<button class="filter-chip${k === activeFilter ? ' active' : ''}" onclick="setFilter('${k}')">${depts[i]}</button>`
   ).join('');
 }
 
-function setFilter(d) { activeFilter = d; renderFilters(); renderCourses(); }
+function setFilter(k) { activeFilter = k; renderFilters(); renderCourses(); }
 
 function getFiltered() {
   const q = document.getElementById('searchInput').value.toLowerCase().trim();
   return COURSES.filter(c => {
-    const matchDept = activeFilter === 'Zote' || c.dept === activeFilter;
-    const matchQ = !q || c.name.toLowerCase().includes(q) || c.dept.toLowerCase().includes(q);
+    const matchDept = activeFilter === 'All' || c.dept === activeFilter;
+    const matchQ = !q || c.name.en.toLowerCase().includes(q) || c.name.sw.toLowerCase().includes(q) || c.dept.toLowerCase().includes(q);
     return matchDept && matchQ;
   });
 }
@@ -708,7 +901,14 @@ function getFiltered() {
 function filterCourses() { renderCourses(); }
 
 function toggleCard(id) {
-  openCards.has(id) ? openCards.delete(id) : openCards.add(id);
+  if (openCards[id]) { delete openCards[id]; }
+  else { openCards[id] = 'modules'; }
+  renderCourses();
+}
+
+function setTab(id, tab, e) {
+  e.stopPropagation();
+  openCards[id] = tab;
   renderCourses();
 }
 
@@ -716,44 +916,71 @@ function renderCourses() {
   const filtered = getFiltered();
   const list = document.getElementById('courseList');
   const empty = document.getElementById('emptyState');
-  const stats = document.getElementById('statsBar');
+  const lang = currentLang;
+  const t = T[lang];
 
-  stats.innerHTML = `Inaonyesha kozi <span>${filtered.length}</span> kati ya ${COURSES.length}`;
+  document.getElementById('statsBar').innerHTML =
+    `${t.showing} <span>${filtered.length}</span> ${t.of} ${COURSES.length} ${t.courses}`;
 
-  if (!filtered.length) {
-    list.innerHTML = '';
-    empty.style.display = 'block';
-    return;
-  }
+  if (!filtered.length) { list.innerHTML = ''; empty.style.display = 'block'; return; }
   empty.style.display = 'none';
 
   list.innerHTML = filtered.map(c => {
-    const isOpen = openCards.has(c.id);
+    const isOpen = !!openCards[c.id];
+    const activeTab = openCards[c.id] || 'modules';
+
+    // Modules panel
     const semHTML = c.semesters.map(s => `
       <div class="semester-block">
-        <div class="semester-label">${s.label}</div>
+        <div class="semester-label">${s.label[lang]}</div>
         ${s.subjects.map((sub, i) => `
           <div class="subject-row">
             <div class="subject-num">${i+1}</div>
             <div class="subject-dot"></div>
-            <div class="subject-info">
-              <div class="subject-name">${sub.name}</div>
-              <div class="subject-code">${sub.code}</div>
+            <div class="subject-name">${sub.name}</div>
+            ${sub.code ? `<div class="subject-code">${sub.code}</div>` : ''}
+          </div>`).join('')}
+      </div>`).join('') +
+      `<div class="entry-section">
+        <div class="entry-title">${t.entry}</div>
+        <div class="entry-text">${c.entry[lang]}</div>
+      </div>`;
+
+    // Careers panel
+    const careerHTML = `<div class="careers-panel">
+      <div class="career-section">
+        <div class="career-title"><span class="icon">💼</span>${t.employed}</div>
+        ${c.careers.employed.map(car => `
+          <div class="career-item">
+            <div class="career-emoji">${car.emoji}</div>
+            <div class="career-info">
+              <div class="career-role">${car.role[lang]}</div>
+              <div class="career-desc">${car.desc[lang]}</div>
+              <span class="salary-badge">${car.salary}</span>
             </div>
           </div>`).join('')}
-      </div>`).join('');
+      </div>
+      <div class="career-section">
+        <div class="career-title"><span class="icon">🚀</span>${t.selfEmployed}</div>
+        ${c.careers.self.map(car => `
+          <div class="career-item">
+            <div class="career-emoji">${car.emoji}</div>
+            <div class="career-info">
+              <div class="career-role">${car.role[lang]}</div>
+              <div class="career-desc">${car.desc[lang]}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
 
     return `
-    <div class="course-card${isOpen?' open':''}" id="card-${c.id}">
+    <div class="course-card${isOpen ? ' open' : ''}">
       <div class="card-summary" onclick="toggleCard(${c.id})">
         <div class="dept-icon dept-${c.dept}">${c.icon}</div>
         <div class="card-text">
           <span class="dept-badge dept-${c.dept}">${c.dept}</span>
-          <div class="course-name">${c.name}</div>
-          <div class="course-meta">
-            <span class="meta-pill">📋 ${c.level}</span>
-            <span class="meta-pill">⏱ ${c.duration}</span>
-          </div>
+          <div class="course-name">${c.name[lang]}</div>
+          <div class="course-meta"><span>📋 ${t.level}</span><span>⏱ ${t.duration}</span></div>
         </div>
         <div class="chevron-wrap">
           <div class="chevron">
@@ -761,13 +988,12 @@ function renderCourses() {
           </div>
         </div>
       </div>
-      <div class="subjects-panel">
-        ${semHTML}
-        <div class="entry-section">
-          <div class="entry-title">📋 Masharti ya kujiunga</div>
-          <div class="entry-text">${c.entry}</div>
-        </div>
+      <div class="card-tabs">
+        <button class="tab-btn${activeTab==='modules'?' active':''}" onclick="setTab(${c.id},'modules',event)">📚 ${t.modules}</button>
+        <button class="tab-btn${activeTab==='careers'?' active':''}" onclick="setTab(${c.id},'careers',event)">💼 ${t.careers}</button>
       </div>
+      <div class="card-panel${activeTab==='modules'?' active':''}">${semHTML}</div>
+      <div class="card-panel${activeTab==='careers'?' active':''}">${careerHTML}</div>
     </div>`;
   }).join('');
 }
