@@ -4,12 +4,60 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0a3d2e">
-<meta name="description" content="Explore courses and subjects at Arusha Technical College before enrolling">
+
+<!-- SEO -->
+<title>ATC Course Guide — Programs & Modules at Arusha Technical College</title>
+<meta name="description" content="Browse all 29 Ordinary Diploma and Bachelor Degree programs at Arusha Technical College (ATC) — modules, entry requirements, and career paths in English & Kiswahili.">
+<meta name="keywords" content="ATC, Arusha Technical College, courses, programs, diploma, bachelor, engineering, Tanzania, enrollment, modules, NACTE">
+<meta name="author" content="HDG. Tech">
+<link rel="canonical" href="https://godsontz.github.io/atc-course-guide/">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="ATC Course Guide — Programs at Arusha Technical College">
+<meta property="og:description" content="Explore all courses, modules, entry requirements and career opportunities at Arusha Technical College. EN/SW. Works offline.">
+<meta property="og:url" content="https://godsontz.github.io/atc-course-guide/">
+<meta property="og:site_name" content="ATC Course Guide">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="sw_TZ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ATC Course Guide">
+<meta name="twitter:description" content="All ATC programs, modules & career paths — EN/SW. Works offline.">
+
+<!-- PWA -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ATC Guide">
 <link rel="manifest" href="manifest.json">
-<title>ATC Course Guide</title>
+
+<!-- Structured data: helps Google understand the site -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "Arusha Technical College",
+  "alternateName": "ATC",
+  "url": "https://www.atc.ac.tz",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Arusha",
+    "addressCountry": "TZ"
+  },
+  "sameAs": ["https://godsontz.github.io/atc-course-guide/"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ATC Course Guide",
+  "url": "https://godsontz.github.io/atc-course-guide/",
+  "description": "Browse all programs and modules offered by Arusha Technical College.",
+  "inLanguage": ["en", "sw"],
+  "publisher": {"@type": "Organization", "name": "HDG. Tech"}
+}
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{--green:#0a3d2e;--green-mid:#1D9E75;--green-light:#E1F5EE;--green-accent:#5DCAA5;--surface:#f8faf9;--card:#ffffff;--text:#0d1f1a;--text-muted:#5a7a70;--border:rgba(10,61,46,0.1);--radius:14px;--radius-sm:8px}
@@ -85,7 +133,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--text
 .salary-badge{display:inline-block;font-size:10px;font-weight:600;color:var(--green-mid);background:var(--green-light);padding:2px 8px;border-radius:99px;margin-top:4px}
 .dept-Automotive{background:#FFF3E0;color:#E65100}
 .dept-Civil{background:var(--green-light);color:var(--green-mid)}
+.dept-Transport{background:#EDE7F6;color:#512DA8}
 .dept-Electrical{background:#FFF8E1;color:#F57F17}
+.dept-Mechanical{background:#FCE4EC;color:#880E4F}
+.dept-ICT{background:#E3F2FD;color:#0D47A1}
+.dept-Science{background:#F3E5F5;color:#6A1B9A}
 .bottom-bar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:0.5px solid var(--border);padding:10px 1.25rem;padding-bottom:env(safe-area-inset-bottom,10px);display:flex;align-items:center;justify-content:space-between;z-index:100}
 .bottom-label{font-size:11px;color:var(--text-muted)}
 .bottom-label strong{color:var(--green-mid)}
@@ -121,380 +173,120 @@ body{font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--text
   <div class="bottom-label">© 2026 <strong>HDG. Tech</strong></div>
   <div class="bottom-label" style="font-size:10px;color:var(--green-mid)">ATC Course Guide</div>
 </div>
+<script src="courses.js"></script>
 <script>
-let currentLang='en';
-let selectedDept='All';
-
-const T={
-  en:{search:'Search courses...',appTitle:'ATC Course Guide',showing:'Showing',of:'of',courses:'courses',modules:'Modules',careers:'Careers',entry:'Entry Requirements',employed:'Employment Opportunities',selfEmployed:'Self-Employment',noResults:'No courses found.',all:'All',ordinary:'Ord. Diploma',bachelor:'Bachelor Degree',comingSoon:'⏳ Some module data not yet available',comingSoonSub:'Contact ATC Registrar for full module list'},
-  sw:{search:'Tafuta kozi...',appTitle:'Mwongozo wa Kozi za ATC',showing:'Inaonyesha',of:'kati ya',courses:'kozi',modules:'Masomo',careers:'Kazi',entry:'Masharti ya Kujiunga',employed:'Fursa za Kuajiriwa',selfEmployed:'Kujiajiri',noResults:'Hakuna kozi zinazolingana.',all:'Zote',ordinary:'Stashahada ya Kawaida',bachelor:'Shahada ya Kwanza',comingSoon:'⏳ Baadhi ya data ya masomo haijapatikana bado',comingSoonSub:'Wasiliana na Msajili wa ATC kwa orodha kamili'}
-};
-
-const DEPTS={
-  en:['All','Automotive','Civil','Electrical'],
-  sw:['Zote','Otomotivi','Ujenzi','Umeme']
-};
-const DEPT_KEYS=['All','Automotive','Civil','Electrical'];
-
-const COURSES=[
-// ===== AUTOMOTIVE DEPARTMENT =====
-{id:1,dept:'Automotive',icon:'🚗',type:'ordinary',
- name:{en:'Ordinary Diploma in Automotive Engineering',sw:'Stashahada ya Uhandisi wa Magari'},
- duration:{en:'3 Years',sw:'Miaka 3'},
- entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
- semesters:[
-  {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
-   {code:'GST 04101',name:'Algebra and Trigonometry'},{code:'GST 04102',name:'Mechanics and Nuclear Physics'},{code:'GST 04103',name:'English Language Basics'},{code:'MET 04101',name:'Basics of Engineering Drawing'},{code:'MET 04102',name:'Mechanical Engineering Materials'},{code:'AET 04101',name:'Basics of Automotive Technology'},{code:'MET 04105',name:'Basics of Manufacturing Engineering'},{code:'AET 04102',name:'Fundamentals of Electrical and Electronics Engineering'}]},
-  {label:{en:'NTA Level 4 — Semester II',sw:'Ngazi ya 4 — Muhula II'},subjects:[
-   {code:'GST 04201',name:'Series and Boolean Algebra'},{code:'GST 04202',name:'Gender and HIV'},{code:'GST 04203',name:'Microcomputer Application'},{code:'MET 04201',name:'Pictorial, Orthographic and Auxiliary Projections'},{code:'MET 04202',name:'Mechanical Engineering Science'},{code:'AET 04201',name:'Automotive Systems Operation and Maintenance'},{code:'MET 04203',name:'Machine Tools/Processes and Maintenance'},{code:'AET 04202',name:'Industrial Practical Training'}]},
-  {label:{en:'NTA Level 5 — Semester I',sw:'Ngazi ya 5 — Muhula I'},subjects:[
-   {code:'GST 05101',name:'Differentiation and Integration'},{code:'GST 05102',name:'Thermal Energy, Waves and Organic Compounds'},{code:'GST 05103',name:'Introduction to Programming Using C Language'}]},
-  {label:{en:'NTA Level 5 — Semester II',sw:'Ngazi ya 5 — Muhula II'},subjects:[
-   {code:'GST 05201',name:'Matrices, Complex Numbers and Vectors'},{code:'GST 05202',name:'English Language Skills'},{code:'GST 05203',name:'Basics of Entrepreneurship'},{code:'GST 05204',name:'Introduction to Networking'},{code:'MET 05206',name:'Detail and Assembly Drawing'},{code:'AET 05206',name:'Basics of Automotive Diagnosis'},{code:'MET 05207',name:'Foundry and Metal Forming'},{code:'MET 05208',name:'Fluid Mechanics'},{code:'MET 05209',name:'Measurements, Instrumentation and Control Technology'},{code:'AET 05207',name:'Industrial Practical Training'}]},
-  {label:{en:'NTA Level 6 — Semester I',sw:'Ngazi ya 6 — Muhula I'},subjects:[
-   {code:'GST 06101',name:'Coordinate Geometry and Differential Equations'},{code:'GST 06102',name:'Correspondence, Interpersonal and Report Writing Skills'},{code:'MET 06101',name:'Details and Assembly Drawing'},{code:'MET 06102',name:'Machine Elements and Design'},{code:'MET 06103',name:'Environmental Engineering'},{code:'MET 06104',name:'Power Production'},{code:'AET 06101',name:'Auto Electrical and Electronic Systems'},{code:'AET 06102',name:'Project Design'}]},
-  {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
-   {code:'GST 06201',name:'Linear Programming, Statistics and Probability'},{code:'GST 06202',name:'Enterprise Management'},{code:'MET 06201',name:'Computer Aided Drafting'},{code:'AET 06201',name:'Auto Workshop Management'},{code:'AET 06202',name:'Automotive Diagnostics'},{code:'AET 06203',name:'Project Manufacturing'},{code:'AET 06204',name:'Auto Electric Control Systems'},{code:'AET 06205',name:'Industrial Practical Training'}]}],
- careers:{employed:[{emoji:'🚗',role:{en:'Automotive Technician',sw:'Fundi wa Magari'},desc:{en:'Diagnose and repair vehicles',sw:'Gundua na tengeneza magari'},salary:'TZS 600K–2M'}],self:[{emoji:'🔧',role:{en:'Garage Owner',sw:'Mmiliki wa Karakana'},desc:{en:'Open auto service center',sw:'Fungua kituo cha matengenezo'}}]}},
-
-{id:2,dept:'Automotive',icon:'🚜',type:'ordinary',
- name:{en:'Ordinary Diploma in Heavy Duty Equipment Engineering',sw:'Stashahada ya Uhandisi wa Vifaa Vizito'},
- duration:{en:'3 Years',sw:'Miaka 3'},
- entry:{en:'CSEE with min. 4 D-grade passes including Physics, Mathematics, Chemistry and English.',sw:'CSEE na alama nne za D ikiwemo Fizikia, Hisabati, Kemia na Kiingereza.'},
- semesters:[
-  {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
-   {code:'GST 04101',name:'Algebra and Trigonometry'},{code:'GST 04102',name:'Mechanics and Nuclear Physics'},{code:'GST 04103',name:'English Language Basics'},{code:'MET 04101',name:'Basics of Engineering Drawing'},{code:'MET 04102',name:'Mechanical Engineering Materials'},{code:'MET 04105',name:'Basics of Manufacturing Engineering'},{code:'HET 04101',name:'Fundamental of Engines and Traction'},{code:'GST 04202',name:'Gender and HIV'},{code:'GST 04203',name:'Microcomputer Application'}]},
-  {label:{en:'NTA Level 4 — Semester II',sw:'Ngazi ya 4 — Muhula II'},subjects:[
-   {code:'GST 04201',name:'Series and Boolean Algebra'},{code:'MET 04201',name:'Pictorial, Orthographic and Auxiliary Projections'},{code:'MET 04202',name:'Section, Development and Interpenetration'},{code:'MET 04203',name:'Strength of Materials'},{code:'MET 04204',name:'Welding and Metal Fabrication'},{code:'MET 04205',name:'Basics of Machine Elements and Design'},{code:'MET 04206',name:'Engineering Thermodynamics'},{code:'HET 04201',name:'Maintenance of Hydraulic and Pneumatic Systems'}]},
-  {label:{en:'NTA Level 5 — Semester I',sw:'Ngazi ya 5 — Muhula I'},subjects:[
-   {code:'—',name:'Data missing / Haipo (Contact Registrar)'}]},
-  {label:{en:'NTA Level 5 — Semester II',sw:'Ngazi ya 5 — Muhula II'},subjects:[
-   {code:'GST 05201',name:'Matrices, Complex Numbers and Vectors'},{code:'GST 05202',name:'Basics of Entrepreneurship'},{code:'GST 05203',name:'Introduction to Networking'},{code:'MET 05201',name:'Detail and Assembly Drawing'},{code:'HET 05201',name:'Maintain Power Transmission Systems'},{code:'MET 05202',name:'Foundry and Metal Forming'},{code:'MET 05203',name:'Fluid Mechanics'}]},
-  {label:{en:'NTA Level 6 — Semester I',sw:'Ngazi ya 6 — Muhula I'},subjects:[
-   {code:'GST 06101',name:'Coordinate Geometry and Differential Equations'},{code:'GST 06102',name:'Correspondence and Report Writing'},{code:'MET 06101',name:'Fundamental of CAD'},{code:'MET 06102',name:'Machine Elements and Design'},{code:'MET 06103',name:'Power Production'},{code:'HET 06101',name:'Basic Hydraulic and Pneumatic Design'},{code:'HET 06102',name:'Hydraulic and Pneumatic System Controls'},{code:'HET 06103',name:'Project Design'}]},
-  {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
-   {code:'GST 06201',name:'Linear Programming, Statistics and Probability'},{code:'GST 06202',name:'Enterprise Management'},{code:'MET 06211',name:'3D Modelling Using Solid Works Software'},{code:'HET 06201',name:'Heavy Equipment Workshop Management'},{code:'HET 06202',name:'Heavy Equipment Electrical Maintenance'},{code:'HET 06203',name:'Engine Management and Control System Diagnosis'},{code:'HET 06204',name:'Project Work'},{code:'HET 06205',name:'Industrial Practical Training'}]}],
- careers:{employed:[{emoji:'🚜',role:{en:'Heavy Duty Technician',sw:'Fundi Mtambo'},desc:{en:'Service heavy earthmovers',sw:'Tengeneza mitambo vizito'},salary:'TZS 1M-3M'}],self:[{emoji:'🏗️',role:{en:'Machinery Rental',sw:'Kukodisha Mitambo'},desc:{en:'Rent equipment',sw:'Kodisha mitambo'}}]}},
-
-{id:3,dept:'Automotive',icon:'⚡',type:'bachelor',
- name:{en:'Bachelor Degree in Automotive Electronics Engineering',sw:'Shahada ya Kwanza ya Uhandisi wa Elektroniki za Magari'},
- duration:{en:'3 Years',sw:'Miaka 3'},
- entry:{en:'Holders of Ordinary Diploma in Automotive or related engineering fields.',sw:'Wenye Stashahada ya Uhandisi wa Magari au fani zinazoshabihiana.'},
- semesters:[
-  {label:{en:'NTA Level 7 — Semester I',sw:'Ngazi ya 7 — Muhula I'},subjects:[
-   {code:'GSU 07112',name:'Ethics and Enterprises Management'},{code:'GSU 07113',name:'Technical Communication Skills'},{code:'GSU 07111',name:'Advanced Calculus'}]},
-  {label:{en:'NTA Level 7 — Semester II',sw:'Ngazi ya 7 — Muhula II'},subjects:[
-   {code:'GSU 07211',name:'Numerical Methods'},{code:'AEU 07212',name:'Computer Programming'},{code:'IPT 07213',name:'Industrial Practical Training 1'}]},
-  {label:{en:'NTA Level 7 — Semester III',sw:'Ngazi ya 7 — Muhula III'},subjects:[
-   {code:'GSU 07311',name:'Advanced Statistics'},{code:'AEU 07312',name:'Automotive Maintenance Management'}]},
-  {label:{en:'NTA Level 7 — Semester IV',sw:'Ngazi ya 7 — Muhula IV'},subjects:[
-   {code:'AEU 07411',name:'Computing Using Mathematical Fundamental'},{code:'AEU 07412',name:'Research Methodology'},{code:'AEU 07413',name:'Fluid Power and Control'},{code:'AEU 07414',name:'Control Systems Engineering'},{code:'AEU 07415',name:'Automotive Electronics Auxiliary Systems'},{code:'IPT 07416',name:'Industrial Practical Training 2'}]},
-  {label:{en:'NTA Level 8 — Semester I',sw:'Ngazi ya 8 — Muhula I'},subjects:[
-   {code:'AEU 08115',name:'Automotive Electromagnetic Interface and Compatibility'},{code:'AEU 08116',name:'Project Proposal'}]},
-  {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
-   {code:'AEU 08215',name:'Project Management and Procurement Fundamentals'},{code:'AEU 08211',name:'Engineering Ethics and Professional Conduct Fundamentals'}]}],
- careers:{employed:[{emoji:'💻',role:{en:'Automotive Systems Engineer',sw:'Mhandisi wa Mifumo ya Magari'},desc:{en:'Design auto electronics',sw:'Buni mifumo ya kielektroniki'},salary:'TZS 1.5M-4M'}],self:[{emoji:'🩺',role:{en:'Auto Diagnostics Center',sw:'Kituo cha Uchunguzi wa Magari'},desc:{en:'Advanced diagnostic garage',sw:'Fungua kituo cha kisasa cha kompyuta za magari'}}]}},
-
-// ===== CIVIL ENGINEERING DEPARTMENT =====
-{id:4,dept:'Civil',icon:'🏗️',type:'bachelor',
- name:{en:'Bachelor Degree in Civil Engineering',sw:'Shahada ya Kwanza ya Uhandisi wa Ujenzi'},
- duration:{en:'3 Years',sw:'Miaka 3'},
- entry:{en:'Diploma in Civil Engineering with GPA ≥ 3.0 or equivalent qualifications.',sw:'Stashahada ya Ujenzi yenye GPA kuanzia 3.0 au sifa zinazolingana.'},
- semesters:[
-  {label:{en:'NTA Level 7 — Semester I',sw:'Ngazi ya 7 — Muhula I'},subjects:[
-   {code:'GSU 07113',name:'Technical Communication Skills'},{code:'GSU 07114',name:'Entrepreneurship'}]},
-  {label:{en:'NTA Level 7 — Semester II',sw:'Ngazi ya 7 — Muhula II'},subjects:[
-   {code:'GSU 07211',name:'Numerical Methods'}]},
-  {label:{en:'NTA Level 7 — Semester III',sw:'Ngazi ya 7 — Muhula III'},subjects:[
-   {code:'GSU 07311',name:'Advanced Statistics'}]},
-  {label:{en:'NTA Level 7 — Semester IV',sw:'Ngazi ya 7 — Muhula IV'},subjects:[
-   {code:'—',name:'Data missing / Haipo'}]},
-  {label:{en:'NTA Level 8 — Semester I',sw:'Ngazi ya 8 — Muhula I'},subjects:[
-   {code:'—',name:'Data missing / Haipo'}]},
-  {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
-   {code:'05211',name:'Differential Equation and Coordinate Geometry'},{code:'05212',name:'Introduction to Networking'},{code:'05211',name:'Structural Mechanics'},{code:'05212',name:'Quantity Surveying'},{code:'05213',name:'Workshop and Construction Practice'},{code:'05214',name:'Construction Management'},{code:'05215',name:'Road Construction and Maintenance'},{code:'05216',name:'Basic Hi-Tech Farming'},{code:'05217',name:'Industrial Practical Training'}]}],
- careers:{employed:[{emoji:'🏢',role:{en:'Civil Engineer',sw:'Mhandisi Ujenzi'},desc:{en:'Supervise construction projects',sw:'Simamia miradi ya ujenzi'},salary:'TZS 1.5M–4M'}],self:[{emoji:'📐',role:{en:'Civil Consultant',sw:'Mshauri wa Ujenzi'},desc:{en:'Private firm structural design',sw:'Toa huduma za ushauri wa ujenzi'}}]}},
-
-{id:5,dept:'Civil',icon:'💧',type:'bachelor',
- name:{en:'Bachelor Degree in Civil and Irrigation Engineering',sw:'Shahada ya Kwanza ya Uhandisi wa Ujenzi na Umwagiliaji'},
- duration:{en:'3 Years',sw:'Miaka 3'},
- entry:{en:'Diploma in Civil or Irrigation Engineering with relevant scores.',sw:'Stashahada ya Ujenzi au Umwagiliaji mwenye kiwango kinachokubalika cha ufaulu.'},
- semesters:[
-  {label:{en:'NTA Level 7 — Semester I',sw:'Ngazi ya 7 — Muhula I'},subjects:[
-   {code:'GSU 07111',name:'Advanced Calculus'},{code:'GSU 07113',name:'Technical Communication Skills'},{code:'GSU 07114',name:'Entrepreneurship'},{code:'CIU 07111',name:'Engineering Survey'},{code:'CIU 07112',name:'Building Planning and Drawing'},{code:'CIU 07113',name:'Civil Engineering Material'},{code:'CIU 07114',name:'Construction Technology'},{code:'CIU 07115',name:'Basics of Soil Mechanics'},{code:'CIU 07116',name:'Soil Science'}]},
-  {label:{en:'NTA Level 7 — Semester II',sw:'Ngazi ya 7 — Muhula II'},subjects:[
-   {code:'GSU 07211',name:'Numerical Methods'},{code:'CIU 07211',name:'Concrete Technology'},{code:'CIU 07212',name:'Elementary Structural Analysis'},{code:'CIU 07213',name:'Fluid Mechanics'},{code:'CIU 07214',name:'Irrigation Principle and Practices'},{code:'CIU 07215',name:'Soil Mechanics'},{code:'CIU 07216',name:'Design of Diversions and Impounding Structures'},{code:'IPT 07-1',name:'Industrial Practical Training'}]},
-  {label:{en:'NTA Level 7 — Semester III',sw:'Ngazi ya 7 — Muhula III'},subjects:[
-   {code:'GSU 07311',name:'Advanced Statistics'},{code:'CIU 07311',name:'Geotechnical Engineering'},{code:'CIU 07312',name:'Structural Analysis'},{code:'CIU 07313',name:'Reinforced Concrete Design 1'},{code:'CIU 07314',name:'Open Channel Hydraulics'},{code:'CIU 07315',name:'Engineering Hydrology and Meteorology'},{code:'CIU 07316',name:'River and Reservoir Operation'},{code:'CIU 07317',name:'Design of Pressurized Irrigation Systems'}]},
-  {label:{en:'NTA Level 7 — Semester IV',sw:'Ngazi ya 7 — Muhula IV'},subjects:[
-   {code:'CIU 07411',name:'Quantity Surveying'},{code:'CIU 07412',name:'Reinforced Concrete Design 2'},{code:'CIU 07413',name:'GIS and Remote Sensing'},{code:'CIU 07414',name:'Construction Management'},{code:'CIU 07415',name:'Irrigation System Performance Evaluation'},{code:'IPT 07-2',name:'Industrial Practical Training'}]},
-  {label:{en:'NTA Level 8 — Semester I',sw:'Ngazi ya 8 — Muhula I'},subjects:[
-   {code:'—',name:'Social and Environmental Management'},{code:'—',name:'Design of Steel Structures'},{code:'—',name:'Groundwater Engineering'},{code:'—',name:'Engineering Economics and Project Appraisal'},{code:'—',name:'Project Planning and Methodology'},{code:'—',name:'Water Supply Engineering'},{code:'—',name:'Public Health Engineering'},{code:'—',name:'Geostatistics'}]},
-  {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
-   {code:'CIU 08211',name:'Irrigation Water Management'},{code:'CIU 08212',name:'Contract Management'},{code:'CIU 08213',name:'Structural Timber Design'},{code:'CIU 08214',name:'Wastewater Management'},{code:'CIU 08215',name:'Engineering Ethics'},{code:'CIU 08216',name:'Project Data Analysis and Realization'},{code:'CIU 08217',name:'Maintenance of Civil and Irrigation Infrastructure'},{code:'CIU 08218',name:'Bridge Design and Construction'}]}],
- careers:{employed:[{emoji:'💧',role:{en:'Irrigation Project Engineer',sw:'Mhandisi Miradi ya Umwagiliaji'},desc:{en:'Manage state and private farming schemes',sw:'Simamia miradi ya kilimo'},salary:'TZS 1.5M-4M'}],self:[{emoji:'🌱',role:{en:'Irrigation Contractor',sw:'Mkandarasi Umwagiliaji'},desc:{en:'Design agricultural setups',sw:'Weka mifumo ya kilimo cha kisasa'}}]}},
-
-{id:6,dept:'Civil',icon:'🛣️',type:'bachelor',
- name:{en:'Bachelor Degree in Civil and Highway Engineering',sw:'Shahada ya Kwanza ya Uhandisi wa Ujenzi na Barabara Kuu'},
- duration:{en:'3 Years',sw:'Miaka 3'},
- entry:{en:'Diploma in Civil Engineering, Highway Engineering or equivalent.',sw:'Stashahada ya Uhandisi wa Ujenzi au Barabara.'},
- semesters:[
-  {label:{en:'NTA Level 7 — Semester I',sw:'Ngazi ya 7 — Muhula I'},subjects:[
-   {code:'—',name:'Advanced Calculus'},{code:'—',name:'Technical Communication Skills'},{code:'—',name:'Entrepreneurship'},{code:'—',name:'Land Surveying'},{code:'—',name:'Building Planning and Drawing'},{code:'—',name:'Civil Engineering Materials'},{code:'—',name:'Building Construction'},{code:'—',name:'Strength of Materials'}]},
-  {label:{en:'NTA Level 7 — Semester II',sw:'Ngazi ya 7 — Muhula II'},subjects:[
-   {code:'—',name:'Numerical Methods'},{code:'—',name:'Land Survey'},{code:'—',name:'Soil Mechanics'},{code:'—',name:'Concrete Technology'},{code:'—',name:'Elementary Structural Analysis'},{code:'—',name:'Fluid Mechanics'},{code:'—',name:'Computer Aided Drawing Planning and Designing'},{code:'—',name:'Industrial Practical Training'}]},
-  {label:{en:'NTA Level 7 — Semester III',sw:'Ngazi ya 7 — Muhula III'},subjects:[
-   {code:'GSU 07311',name:'Advanced Statistics'},{code:'CHU 07311',name:'Highway Geometric Design'},{code:'CHU 07312',name:'Engineering Geology'},{code:'CHU 07313',name:'Measurement and Estimation of Civil Works'},{code:'CHU 07314',name:'Structural Analysis'},{code:'—',name:'Construction Management'},{code:'—',name:'Reinforced Concrete Design 1'},{code:'—',name:'Open Channel Hydraulics'},{code:'—',name:'Construction Technology'}]},
-  {label:{en:'NTA Level 7 — Semester IV',sw:'Ngazi ya 7 — Muhula IV'},subjects:[
-   {code:'—',name:'Water Supply Engineering'},{code:'—',name:'Traffic Engineering'},{code:'—',name:'Geotechnical Engineering'},{code:'—',name:'Quantity Survey'},{code:'—',name:'Reinforced Concrete Design 2'},{code:'—',name:'Engineering Hydrology'},{code:'—',name:'Geographical Information System (GIS) for Land Resources'},{code:'—',name:'Industrial Practical Training'}]},
-  {label:{en:'NTA Level 8 — Semester I',sw:'Ngazi ya 8 — Muhula I'},subjects:[
-   {code:'—',name:'Social and Environmental Management'},{code:'—',name:'Engineering Economics and Project Appraisal'},{code:'—',name:'Transportation Engineering'},{code:'—',name:'Structural Steel Design'},{code:'—',name:'Bridge Design and Construction'},{code:'—',name:'Foundation Engineering'},{code:'—',name:'Highway Engineering Materials'},{code:'—',name:'Project Outline and Methodology'}]},
-  {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
-   {code:'—',name:'Design Software Practices'},{code:'—',name:'Structural Timber Design'},{code:'—',name:'Pavement Design and Construction'},{code:'—',name:'Bridge and Pavement Maintenance'},{code:'—',name:'Engineering Ethics'},{code:'—',name:'Project Data Analysis and Report'},{code:'—',name:'Design of Water Supply System'},{code:'—',name:'Public Health Management'}]}],
- careers:{employed:[{emoji:'🛣️',role:{en:'Highway Engineer',sw:'Mhandisi wa Barabara'},desc:{en:'Work with TANROADS or TARURA',sw:'Fanya kazi TANROADS au TARURA'},salary:'TZS 1.6M-4.5M'}],self:[{emoji:'🚜',role:{en:'Roads Contractor',sw:'Mkandarasi wa Barabara'},desc:{en:'Execute road works contracts',sw:'Miliki kampuni ya kandarasi za barabara'}}]}},
-
-{id:7,dept:'Civil',icon:'🏛️',type:'ordinary',
- name:{en:'Ordinary Diploma in Architecture',sw:'Stashahada ya Usanifu wa Majengo'},
- duration:{en:'3 Years',sw:'Miaka 3'},
- entry:{en:'CSEE with 4 D-grades passes in relevant technical subjects.',sw:'CSEE na ufaulu wa alama D nne katika masomo husika.'},
- semesters:[
-  {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
-   {code:'GST 04111',name:'Algebra and Trigonometry'},{code:'ITT 04117',name:'Basic Computer Application'},{code:'CAT 04101',name:'Introduction to Architectural Draughting'},{code:'CAT 04102',name:'Building Maintenance'},{code:'CAT 04103',name:'Vernacular Building Materials'},{code:'CAT 04104',name:'Introduction to Building Services'},{code:'CAT 04105',name:'Construction Technology (Masonry, Carpentry)'}]},
-  {label:{en:'NTA Level 4 — Semester II',sw:'Ngazi ya 4 — Muhula II'},subjects:[
-   {code:'GST 04211',name:'Business Communication Skills'},{code:'CAT 04201',name:'Intermediate Architectural Draughting'},{code:'CAT 04202',name:'Building Construction'},{code:'CAT 04203',name:'Basics of Structural Design'},{code:'CAT 04204',name:'History of Architecture'},{code:'CAT 04205',name:'Basic Engineering Surveying'},{code:'CAT 04206',name:'Industrial Practical Training'},{code:'GST 04212',name:'Linear Algebra, Complex Number and Statistics'},{code:'GST 04213',name:'Entrepreneurship for Technicians'}]},
-  {label:{en:'NTA Level 5 — Semester I',sw:'Ngazi ya 5 — Muhula I'},subjects:[
-   {code:'CAT 05101',name:'Basic Architectural Design'},{code:'CAT 05102',name:'Modern Building Technology'},{code:'CAT 05103',name:'Engineering Surveying'},{code:'CAT 05104',name:'AutoCAD'},{code:'CAT 05105',name:'Modern Building Materials'},{code:'CAT 05106',name:'Specialized Building Services'},{code:'CAT 05107',name:'Construction Management'}]},
-  {label:{en:'NTA Level 5 — Semester II',sw:'Ngazi ya 5 — Muhula II'},subjects:[
-   {code:'CAT 05201',name:'Architectural Design'},{code:'CAT 05202',name:'Advanced Structural Design'},{code:'CAT 05203',name:'Building Plumbing and Finishing Materials'},{code:'CAT 05204',name:'Theory of Architecture'},{code:'CAT 05205',name:'Quantity Surveying'},{code:'CAT 05206',name:'Workshop and Construction Practice'},{code:'CAT 05207',name:'ARCHI CAD / SKETCHUP'},{code:'CAT 05209',name:'Industrial Practical Training II'},{code:'GST 05217',name:'Differential Equations and Coordinate Geometry'}]},
-  {label:{en:'NTA Level 6 — Semester I',sw:'Ngazi ya 6 — Muhula I'},subjects:[
-   {code:'CAT 06101',name:'Specialized Structural Design'},{code:'CAT 06102',name:'Specialized Building Technology'},{code:'CAT 06103',name:'Social and Environmental Management'},{code:'CAT 06104',name:'Project I (Research Methodology)'},{code:'CAT 06105',name:'Civil Engineering Design Software'},{code:'CAT 06106',name:'Measurement & Estimation'},{code:'CAT 06107',name:'Climatic Design'}]},
-  {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
-   {code:'CAT 06201',name:'Project Architectural Design'},{code:'CAT 06202',name:'Professional Practice'},{code:'CAT 06203',name:'Construction Management and Procurement Practice'},{code:'CAT 06204',name:'Urban & Housing Development'},{code:'CAT 06205',name:'Advanced Building Technology'},{code:'CAT 06206',name:'Architectural Conservation'},{code:'CAT 06207',name:'Building Information Modelling'}]}],
- careers:{employed:[{emoji:'📐',role:{en:'Architectural Draftsman',sw:'Mchoraji Ramani'},desc:{en:'Draw standard technical blueprints',sw:'Chora ramani za majengo'},salary:'TZS 800K-2M'}],self:[{emoji:'🏠',role:{en:'Design Consultant',sw:'Mshauri Usanifu'},desc:{en:'Freelance drafting office',sw:'Ofisi binafsi ya ramani'}}]}},
-
-// ===== ELECTRICAL ENGINEERING DEPARTMENT =====
-{id:8,dept:'Electrical',icon:'⚡',type:'ordinary',
- name:{en:'Ordinary Diploma in Electrical Engineering',sw:'Stashahada ya Uhandisi wa Umeme'},
- duration:{en:'3 Years',sw:'Miaka 3'},
- entry:{en:'CSEE with passes in Physics, Mathematics, Chemistry and English.',sw:'CSEE yenye ufaulu wa masomo ya Fizikia, Hisabati, Kemia na Kiingereza.'},
- semesters:[
-  {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
-   {code:'GST 04102',name:'Mechanics and Nuclear Physics'},{code:'GST 04103',name:'English Language Basics'},{code:'EET 04101',name:'Electrical Engineering Fundamentals'}]},
-  {label:{en:'NTA Level 4 — Semester II',sw:'Ngazi ya 4 — Muhula II'},subjects:[
-   {code:'GST 04202',name:'Gender and HIV'},{code:'GST 04203',name:'Microcomputer Application'},{code:'EET 04201',name:'Electrical Installation and Maintenance'}]},
-  {label:{en:'NTA Level 5 — Semester I',sw:'Ngazi ya 5 — Muhula I'},subjects:[
-   {code:'EET 05101',name:'Workshop Practice'},{code:'EET 05102',name:'Electrical Machines'}]},
-  {label:{en:'NTA Level 5 — Semester II',sw:'Ngazi ya 5 — Muhula II'},subjects:[
-   {code:'GST 05202',name:'English Language Skills'},{code:'05204',name:'Introduction to Networking'}]},
-  {label:{en:'NTA Level 6 — Semester I',sw:'Ngazi ya 6 — Muhula I'},subjects:[
-   {code:'EET 06101',name:'Correspondence, Interpersonal Skills and Report Writing'}]},
-  {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
-   {code:'GST 06204',name:'Enterprises Management'}]}],
- careers:{employed:[{emoji:'🔌',role:{en:'Electrical Technician',sw:'Fundi Umeme'},desc:{en:'Work with TANESCO or contractors',sw:'Fanya kazi TANESCO au na wakandarasi'},salary:'TZS 700K-2M'}],self:[{emoji:'💡',role:{en:'Electrical Contractor',sw:'Mkandarasi Umeme'},desc:{en:'Domestic wiring contracts',sw:'Kandarasi za kuweka umeme kwenye majengo'}}]}},
-
-{id:9,dept:'Electrical',icon:'📡',type:'ordinary',
- name:{en:'Ordinary Diploma in Electronics and Telecommunication Engineering',sw:'Stashahada ya Uhandisi wa Elektroniki na Mawasiliano'},
- duration:{en:'3 Years',sw:'Miaka 3'},
- entry:{en:'CSEE passes with 4 D grades including Physics, Mathematics, English.',sw:'CSEE yenye alama nne za D pamoja na Fizikia, Hisabati, na Kiingereza.'},
- semesters:[
-  {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
-   {code:'GST 04102',name:'Mechanical and Nuclear Physics'},{code:'GST 04103',name:'English Language Basics'}]},
-  {label:{en:'NTA Level 4 — Semester II',sw:'Ngazi ya 4 — Muhula II'},subjects:[
-   {code:'GST 04202',name:'Gender and HIV'},{code:'GST 04203',name:'Microcomputer Application'}]},
-  {label:{en:'NTA Level 5 — Semester I',sw:'Ngazi ya 5 — Muhula I'},subjects:[
-   {code:'GST 05102',name:'Thermal Energy Waves and Organic Compounds'},{code:'GST 05103',name:'Introduction to Programming Using C'}]},
-  {label:{en:'NTA Level 5 — Semester II',sw:'Ngazi ya 5 — Muhula II'},subjects:[
-   {code:'GST 05201',name:'Matrices Complex and Vectors'},{code:'GST 05202',name:'English Language Skills'},{code:'GST 05204',name:'Introduction to Networking'}]},
-  {label:{en:'NTA Level 6 — Semester I',sw:'Ngazi ya 6 — Muhula I'},subjects:[
-   {code:'GST 06101',name:'Coordinate Geometry and Differential Equations'},{code:'GST 06103',name:'Correspondence Interpersonal Skills and Report Writing'}]},
-  {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
-   {code:'GST 06201',name:'Linear Programming Statistics and Probability'},{code:'GST 06204',name:'Enterprise Management'}]}],
- careers:{employed:[{emoji:'📡',role:{en:'Telecom Technician',sw:'Fundi Mawasiliano'},desc:{en:'Service telecom masts and networks',sw:'Matengenezo ya minara ya simu na mitandao'},salary:'TZS 800K-2.5M'}],self:[{emoji:'📱',role:{en:'Electronics Repair Tech',sw:'Mrepara Elektroniki'},desc:{en:'Fix advanced smart hardware',sw:'Tengeneza vifaa vya kisasa vya kielektroniki'}}]}}
-];
+let activeFilter='All';
+let openCards={};
 
 function setLang(lang){
   currentLang=lang;
   document.getElementById('btnEN').classList.toggle('active',lang==='en');
   document.getElementById('btnSW').classList.toggle('active',lang==='sw');
+  document.getElementById('appTitle').textContent=T[lang].appTitle;
   document.getElementById('searchInput').placeholder=T[lang].search;
-  document.getElementById('appTitle').innerText=T[lang].appTitle;
-  document.getElementById('emptyText').innerText=T[lang].noResults;
-  renderFilters();
-  filterCourses();
+  document.getElementById('emptyText').textContent=T[lang].noResults;
+  renderFilters();renderCourses();
 }
-
 function renderFilters(){
-  const row=document.getElementById('filterRow');
-  const activeKey=selectedDept;
-  row.innerHTML='';
-  DEPT_KEYS.forEach((key,idx)=>{
-    if (DEPTS[currentLang][idx]) {
-      const chip=document.createElement('button');
-      chip.className=`filter-chip ${key===activeKey?'active':''}`;
-      chip.innerText=DEPTS[currentLang][idx];
-      chip.onclick=()=>{
-        selectedDept=key;
-        renderFilters();
-        filterCourses();
-      };
-      row.appendChild(chip);
-    }
+  const depts=DEPTS[currentLang];
+  document.getElementById('filterRow').innerHTML=DEPT_KEYS.map((k,i)=>
+    `<button class="filter-chip${k===activeFilter?' active':''}" onclick="setFilter('${k}')">${depts[i]}</button>`
+  ).join('');
+}
+function setFilter(k){activeFilter=k;renderFilters();renderCourses();}
+function getFiltered(){
+  const q=document.getElementById('searchInput').value.toLowerCase().trim();
+  return COURSES.filter(c=>{
+    const matchDept=activeFilter==='All'||c.dept===activeFilter;
+    const matchQ=!q||c.name.en.toLowerCase().includes(q)||c.name.sw.toLowerCase().includes(q)||c.dept.toLowerCase().includes(q);
+    return matchDept&&matchQ;
   });
 }
-
-function filterCourses(){
-  const query=document.getElementById('searchInput').value.toLowerCase().trim();
-  const list=document.getElementById('courseList');
-  list.innerHTML='';
-  
-  let visibleCount=0;
-  
-  COURSES.forEach(c=>{
-    const name=c.name[currentLang].toLowerCase();
-    const dept=c.dept;
-    
-    const matchesQuery=!query || name.includes(query);
-    const matchesDept=selectedDept==='All' || dept===selectedDept;
-    
-    if(matchesQuery && matchesDept){
-      visibleCount++;
-      list.appendChild(createCourseCard(c));
-    }
-  });
-  
-  document.getElementById('statsBar').innerHTML=`${T[currentLang].showing} <span>${visibleCount}</span> ${T[currentLang].of} <span>${COURSES.length}</span> ${T[currentLang].courses}`;
-  document.getElementById('emptyState').style.display=visibleCount===0?'block':'none';
-}
-
-function createCourseCard(c){
-  const card=document.createElement('div');
-  card.className='course-card';
-  card.id=`card-${c.id}`;
-  
-  const labelSummary=c.type==='ordinary'?T[currentLang].ordinary:T[currentLang].bachelor;
-  
-  let semestersHtml='';
-  c.semesters.forEach((sem)=>{
-    let subsHtml='';
-    sem.subjects.forEach((sub,subIdx)=>{
-      subsHtml+=`
-        <div class="subject-row">
-          <div class="subject-num">${subIdx+1}</div>
-          <div class="subject-dot"></div>
-          <div class="subject-name">${sub.name}</div>
-          <div class="subject-code">${sub.code}</div>
-        </div>
-      `;
-    });
-    semestersHtml+=`
-      <div class="semester-block">
-        <div class="semester-label">${sem.label[currentLang]}</div>
-        ${subsHtml}
-      </div>
-    `;
-  });
-
-  let employedHtml='';
-  c.careers.employed.forEach(emp=>{
-    employedHtml+=`
-      <div class="career-item">
-        <div class="career-emoji">${emp.emoji}</div>
-        <div class="career-info">
-          <div class="career-role">${emp.role[currentLang]}</div>
-          <div class="career-desc">${emp.desc[currentLang]}</div>
-          <div class="salary-badge">${emp.salary}</div>
-        </div>
-      </div>
-    `;
-  });
-
-  let selfHtml='';
-  c.careers.self.forEach(s=>{
-    selfHtml+=`
-      <div class="career-item">
-        <div class="career-emoji">${s.emoji}</div>
-        <div class="career-info">
-          <div class="career-role">${s.role[currentLang]}</div>
-          <div class="career-desc">${s.desc[currentLang]}</div>
-        </div>
-      </div>
-    `;
-  });
-
-  card.innerHTML=`
-    <div class="card-summary" onclick="toggleCard(${c.id})">
-      <div class="dept-icon dept-${c.dept}">${c.icon}</div>
-      <div class="card-text">
-        <span class="dept-badge dept-${c.dept}">${currentLang==='en'?c.dept:DEPTS.sw[DEPT_KEYS.indexOf(c.dept)]}</span>
-        <span class="level-badge">${labelSummary}</span>
-        <div class="course-name">${c.name[currentLang]}</div>
-        <div class="course-meta">
-          <span>🕒 ${c.duration[currentLang]}</span>
-          <span>📚 ${c.semesters.length} Semesters</span>
-        </div>
-      </div>
-      <div class="chevron-wrap">
-        <div class="chevron">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
-      </div>
-    </div>
-    <div class="card-tabs">
-      <button class="tab-btn active" id="tab-btn-mods-${c.id}" onclick="setTab(${c.id},'modules')">${T[currentLang].modules}</button>
-      <button class="tab-btn" id="tab-btn-car-${c.id}" onclick="setTab(${c.id},'careers')">${T[currentLang].careers}</button>
-    </div>
-    <div class="card-panel active" id="panel-mods-${c.id}">
-      <div class="entry-section">
-        <div class="entry-title">${T[currentLang].entry}</div>
-        <div class="entry-text">${c.entry[currentLang]}</div>
-      </div>
-      ${semestersHtml}
-    </div>
-    <div class="card-panel" id="panel-car-${c.id}">
-      <div class="careers-panel">
-        <div class="career-section">
-          <div class="career-title">💼 ${T[currentLang].employed}</div>
-          ${employedHtml}
-        </div>
-        <div class="career-section" style="margin-top:1.5rem">
-          <div class="career-title">🚀 ${T[currentLang].selfEmployed}</div>
-          ${selfHtml}
-        </div>
-      </div>
-    </div>
-  `;
-  return card;
-}
-
+function filterCourses(){renderCourses();}
 function toggleCard(id){
-  const card=document.getElementById(`card-${id}`);
-  const isOpen=card.classList.contains('open');
-  document.querySelectorAll('.course-card').forEach(c=>c.classList.remove('open'));
-  if(!isOpen) card.classList.add('open');
+  if(openCards[id]){delete openCards[id];}else{openCards[id]='modules';}
+  renderCourses();
 }
-
-function setTab(id,tabType){
-  event.stopPropagation();
-  const modBtn=document.getElementById(`tab-btn-mods-${id}`);
-  const carBtn=document.getElementById(`tab-btn-car-${id}`);
-  const modPanel=document.getElementById(`panel-mods-${id}`);
-  const carPanel=document.getElementById(`panel-car-${id}`);
-  
-  if(tabType==='modules'){
-    modBtn.classList.add('active');
-    carBtn.classList.remove('active');
-    modPanel.classList.add('active');
-    carPanel.classList.remove('active');
-  }else{
-    modBtn.classList.remove('active');
-    carBtn.classList.add('active');
-    modPanel.classList.remove('active');
-    carPanel.classList.add('active');
-  }
+function setTab(id,tab,e){e.stopPropagation();openCards[id]=tab;renderCourses();}
+function renderCourses(){
+  const filtered=getFiltered();
+  const list=document.getElementById('courseList');
+  const empty=document.getElementById('emptyState');
+  const lang=currentLang;
+  const t=T[lang];
+  const ordCount=filtered.filter(c=>c.type==='ordinary').length;
+  const bachCount=filtered.filter(c=>c.type==='bachelor').length;
+  document.getElementById('statsBar').innerHTML=
+    `${t.showing} <span>${filtered.length}</span> ${t.of} ${COURSES.length} ${t.courses} &nbsp;·&nbsp; ${ordCount} Diploma · ${bachCount} Degree`;
+  if(!filtered.length){list.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  list.innerHTML=filtered.map(c=>{
+    const isOpen=!!openCards[c.id];
+    const activeTab=openCards[c.id]||'modules';
+    const isBach=c.type==='bachelor';
+    const hasCS=!!c.comingSoon;
+    const modulesContent=hasCS
+      ?`<div class="coming-soon-box"><div style="font-size:20px">⏳</div><p>${t.comingSoon}<br><small>${t.comingSoonSub}</small></p></div>
+         <div class="entry-section"><div class="entry-title">${t.entry}</div><div class="entry-text">${c.entry[lang]}</div></div>`
+      :c.semesters.map(s=>`
+        <div class="semester-block">
+          <div class="semester-label">${s.label[lang]}</div>
+          ${s.subjects.map((sub,i)=>`
+            <div class="subject-row">
+              <div class="subject-num">${i+1}</div>
+              <div class="subject-dot"></div>
+              <div class="subject-name">${sub.name}</div>
+              ${sub.code&&sub.code!=='—'?`<div class="subject-code">${sub.code}</div>`:''}
+            </div>`).join('')}
+        </div>`).join('')+
+        `<div class="entry-section"><div class="entry-title">${t.entry}</div><div class="entry-text">${c.entry[lang]}</div></div>`;
+    const careerHTML=`<div class="careers-panel">
+      <div class="career-section">
+        <div class="career-title">💼 ${t.employed}</div>
+        ${c.careers.employed.map(car=>`
+          <div class="career-item">
+            <div class="career-emoji">${car.emoji}</div>
+            <div class="career-info">
+              <div class="career-role">${car.role[lang]}</div>
+              <div class="career-desc">${car.desc[lang]}</div>
+              ${car.salary?`<span class="salary-badge">${car.salary}</span>`:''}
+            </div>
+          </div>`).join('')}
+      </div>
+      <div class="career-section">
+        <div class="career-title">🚀 ${t.selfEmployed}</div>
+        ${c.careers.self.map(car=>`
+          <div class="career-item">
+            <div class="career-emoji">${car.emoji}</div>
+            <div class="career-info">
+              <div class="career-role">${car.role[lang]}</div>
+              <div class="career-desc">${car.desc[lang]}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+    return `
+    <div class="course-card${isOpen?' open':''}">
+      <div class="card-summary" onclick="toggleCard(${c.id})">
+        <div class="dept-icon dept-${c.dept}">${c.icon}</div>
+        <div class="card-text">
+          <span class="dept-badge dept-${c.dept}">${c.dept}</span>${isBach?`<span class="level-badge">Bachelor</span>`:''}${hasCS?`<span class="level-badge" style="background:#FFF3E0;color:#E65100">⏳ Partial</span>`:''}
+          <div class="course-name">${c.name[lang]}</div>
+          <div class="course-meta"><span>📋 ${isBach?t.bachelor:t.ordinary}</span><span>⏱ ${c.duration[lang]}</span></div>
+        </div>
+        <div class="chevron-wrap"><div class="chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      </div>
+      <div class="card-tabs">
+        <button class="tab-btn${activeTab==='modules'?' active':''}" onclick="setTab(${c.id},'modules',event)">📚 ${t.modules}</button>
+        <button class="tab-btn${activeTab==='careers'?' active':''}" onclick="setTab(${c.id},'careers',event)">💼 ${t.careers}</button>
+      </div>
+      <div class="card-panel${activeTab==='modules'?' active':''}">${modulesContent}</div>
+      <div class="card-panel${activeTab==='careers'?' active':''}">${careerHTML}</div>
+    </div>`;
+  }).join('');
 }
-
-// Initial setup
-setLang('en');
+renderFilters();renderCourses();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
 </script>
 </body>
 </html>
