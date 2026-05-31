@@ -3,155 +3,521 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a3d2e">
-
-<!-- SEO -->
+<meta name="theme-color" content="#071a12">
 <title>ATC Course Guide — Programs & Modules at Arusha Technical College</title>
-<meta name="description" content="Browse all 29 Ordinary Diploma and Bachelor Degree programs at Arusha Technical College (ATC) — modules, entry requirements, and career paths in English & Kiswahili.">
+<meta name="description" content="Browse all Ordinary Diploma and Bachelor Degree programs at Arusha Technical College (ATC) — modules, entry requirements, and career paths in English & Kiswahili.">
 <meta name="keywords" content="ATC, Arusha Technical College, courses, programs, diploma, bachelor, engineering, Tanzania, enrollment, modules, NACTE">
 <meta name="author" content="HDG. Tech">
-<link rel="canonical" href="https://godsontz.github.io/atc-course-guide/">
-
-<!-- Open Graph / Social -->
+<link rel="canonical" href="https://hdg-tech.github.io/atc-course-guide/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ATC Course Guide — Programs at Arusha Technical College">
-<meta property="og:description" content="Explore all courses, modules, entry requirements and career opportunities at Arusha Technical College. EN/SW. Works offline.">
-<meta property="og:url" content="https://godsontz.github.io/atc-course-guide/">
-<meta property="og:site_name" content="ATC Course Guide">
-<meta property="og:locale" content="en_US">
-<meta property="og:locale:alternate" content="sw_TZ">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ATC Course Guide">
-<meta name="twitter:description" content="All ATC programs, modules & career paths — EN/SW. Works offline.">
-
-<!-- PWA -->
+<meta property="og:description" content="Explore all courses, modules, entry requirements and career opportunities at Arusha Technical College.">
+<meta property="og:url" content="https://hdg-tech.github.io/atc-course-guide/">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ATC Guide">
 <link rel="manifest" href="manifest.json">
-
-<!-- Structured data: helps Google understand the site -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  "name": "Arusha Technical College",
-  "alternateName": "ATC",
-  "url": "https://www.atc.ac.tz",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Arusha",
-    "addressCountry": "TZ"
-  },
-  "sameAs": ["https://godsontz.github.io/atc-course-guide/"]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "ATC Course Guide",
-  "url": "https://godsontz.github.io/atc-course-guide/",
-  "description": "Browse all programs and modules offered by Arusha Technical College.",
-  "inLanguage": ["en", "sw"],
-  "publisher": {"@type": "Organization", "name": "HDG. Tech"}
-}
-</script>
-
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Arusha Technical College","alternateName":"ATC","url":"https://www.atc.ac.tz","address":{"@type":"PostalAddress","addressLocality":"Arusha","addressCountry":"TZ"},"sameAs":["https://hdg-tech.github.io/atc-course-guide/"]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Syne:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
-:root{--green:#0a3d2e;--green-mid:#1D9E75;--green-light:#E1F5EE;--green-accent:#5DCAA5;--surface:#f8faf9;--card:#ffffff;--text:#0d1f1a;--text-muted:#5a7a70;--border:rgba(10,61,46,0.1);--radius:14px;--radius-sm:8px}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--text);min-height:100vh}
-.app-header{background:var(--green);position:sticky;top:0;z-index:100}
-.header-inner{padding:1rem 1.25rem 0.75rem}
-.header-top{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
-.app-icon{width:40px;height:40px;background:var(--green-accent);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;color:var(--green);flex-shrink:0}
-.header-titles{flex:1}
-.app-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#fff}
-.app-subtitle{font-size:11px;color:var(--green-accent);margin-top:1px}
-.lang-btn{display:flex;align-items:center;background:rgba(255,255,255,0.1);border:0.5px solid rgba(255,255,255,0.2);border-radius:8px;overflow:hidden;flex-shrink:0}
-.lang-opt{padding:5px 10px;font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);cursor:pointer;font-family:'DM Sans',sans-serif;border:none;background:transparent}
-.lang-opt.active{background:var(--green-accent);color:var(--green)}
-.search-wrap{background:rgba(255,255,255,0.08);border-radius:10px;display:flex;align-items:center;gap:8px;padding:0 12px;border:0.5px solid rgba(255,255,255,0.12)}
-.search-wrap svg{width:16px;height:16px;fill:var(--green-accent);flex-shrink:0}
-.search-wrap input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:14px;font-family:'DM Sans',sans-serif;padding:11px 0}
-.search-wrap input::placeholder{color:rgba(255,255,255,0.4)}
-.filters-scroll{display:flex;gap:8px;padding:0.75rem 1.25rem;overflow-x:auto;scrollbar-width:none;background:var(--green)}
-.filters-scroll::-webkit-scrollbar{display:none}
-.filter-chip{padding:6px 14px;border-radius:99px;border:0.5px solid rgba(255,255,255,0.2);font-size:12px;font-weight:500;color:rgba(255,255,255,0.6);white-space:nowrap;cursor:pointer;font-family:'DM Sans',sans-serif;background:transparent}
-.filter-chip.active{background:var(--green-accent);border-color:var(--green-accent);color:var(--green);font-weight:600}
-.stats-bar{padding:0.75rem 1.25rem;font-size:12px;color:var(--text-muted);border-bottom:0.5px solid var(--border)}
-.stats-bar span{font-weight:600;color:var(--green-mid)}
-.course-list{padding:1rem 1.25rem;display:flex;flex-direction:column;gap:12px;padding-bottom:5rem}
-.course-card{background:var(--card);border-radius:var(--radius);border:0.5px solid var(--border);overflow:hidden;transition:border-color 0.2s}
-.course-card.open{border-color:var(--green-mid);box-shadow:0 0 0 3px rgba(29,158,117,0.08)}
-.card-summary{padding:1rem 1.25rem;cursor:pointer;display:flex;align-items:flex-start;gap:12px}
-.dept-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;margin-top:2px}
-.card-text{flex:1;min-width:0}
-.dept-badge{display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:5px}
-.level-badge{display:inline-block;font-size:9px;font-weight:600;padding:2px 7px;border-radius:4px;margin-left:4px;background:#f0f4f3;color:var(--text-muted)}
-.course-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.3}
-.course-meta{display:flex;gap:10px;font-size:11px;color:var(--text-muted)}
-.chevron-wrap{padding-top:10px}
-.chevron{width:20px;height:20px;border-radius:50%;background:var(--green-light);display:flex;align-items:center;justify-content:center;transition:transform 0.25s,background 0.2s}
-.open .chevron{transform:rotate(180deg);background:var(--green-mid)}
-.chevron svg{width:10px;height:10px}
-.chevron svg path{stroke:var(--green-mid)}
-.open .chevron svg path{stroke:#fff}
-.card-tabs{display:none;border-top:0.5px solid var(--border)}
-.open .card-tabs{display:flex}
-.tab-btn{flex:1;padding:10px;font-size:12px;font-weight:500;color:var(--text-muted);border:none;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;border-bottom:2px solid transparent}
-.tab-btn.active{color:var(--green-mid);border-bottom-color:var(--green-mid)}
-.card-panel{display:none}
-.card-panel.active{display:block}
-.semester-block{padding:1rem 1.25rem;border-bottom:0.5px solid var(--border)}
-.semester-block:last-child{border-bottom:none}
-.semester-label{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--green-mid);margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.semester-label::after{content:'';flex:1;height:0.5px;background:var(--border)}
-.subject-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:0.5px solid var(--border)}
-.subject-row:last-child{border-bottom:none}
-.subject-num{font-size:10px;color:var(--text-muted);width:16px;text-align:right;flex-shrink:0}
-.subject-dot{width:6px;height:6px;border-radius:50%;background:var(--green-accent);flex-shrink:0}
-.subject-name{font-size:13px;color:var(--text);flex:1;line-height:1.3}
-.subject-code{font-size:10px;color:var(--text-muted);white-space:nowrap}
-.coming-soon-box{margin:1rem 1.25rem;background:#FFF8E1;border:0.5px solid #F9A825;border-radius:var(--radius-sm);padding:14px;text-align:center}
-.coming-soon-box p{font-size:12px;color:#7B6000;line-height:1.5;margin-top:4px}
-.entry-section{margin:0 1.25rem 1rem;background:var(--green-light);border-radius:var(--radius-sm);padding:12px 14px}
-.entry-title{font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--green-mid);margin-bottom:5px}
-.entry-text{font-size:12px;color:var(--text);line-height:1.6}
-.careers-panel{padding:1rem 1.25rem}
-.career-section{margin-bottom:1rem}
-.career-section:last-child{margin-bottom:0}
-.career-title{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--green-mid);margin-bottom:10px}
-.career-item{display:flex;align-items:flex-start;gap:8px;padding:7px 10px;border-radius:var(--radius-sm);background:var(--surface);margin-bottom:6px}
-.career-item:last-child{margin-bottom:0}
-.career-emoji{font-size:14px;flex-shrink:0;margin-top:1px}
-.career-info{flex:1}
-.career-role{font-size:13px;font-weight:500;color:var(--text)}
-.career-desc{font-size:11px;color:var(--text-muted);margin-top:2px;line-height:1.4}
-.salary-badge{display:inline-block;font-size:10px;font-weight:600;color:var(--green-mid);background:var(--green-light);padding:2px 8px;border-radius:99px;margin-top:4px}
-.dept-Automotive{background:#FFF3E0;color:#E65100}
-.dept-Civil{background:var(--green-light);color:var(--green-mid)}
-.dept-Transport{background:#EDE7F6;color:#512DA8}
-.dept-Electrical{background:#FFF8E1;color:#F57F17}
-.dept-Mechanical{background:#FCE4EC;color:#880E4F}
-.dept-ICT{background:#E3F2FD;color:#0D47A1}
-.dept-Science{background:#F3E5F5;color:#6A1B9A}
-.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:0.5px solid var(--border);padding:10px 1.25rem;padding-bottom:env(safe-area-inset-bottom,10px);display:flex;align-items:center;justify-content:space-between;z-index:100}
-.bottom-label{font-size:11px;color:var(--text-muted)}
-.bottom-label strong{color:var(--green-mid)}
-.empty-state{text-align:center;padding:4rem 2rem;color:var(--text-muted);display:none}
-.empty-state .icon{font-size:36px;margin-bottom:1rem}
+:root {
+  --bg: #071a12;
+  --bg2: #0d2a1c;
+  --surface: #f5f7f5;
+  --card: #ffffff;
+  --green: #0a3d2e;
+  --green-mid: #1D9E75;
+  --green-light: #E1F5EE;
+  --green-accent: #2dce8e;
+  --green-glow: rgba(45,206,142,0.15);
+  --amber: #f5a623;
+  --text-dark: #0d1f1a;
+  --text-muted: #5a7a70;
+  --border: rgba(10,61,46,0.1);
+  --radius: 18px;
+  --radius-sm: 10px;
+  --radius-lg: 24px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text-dark);
+  min-height: 100vh;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── APP SHELL ── */
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+/* ── GLOBAL HEADER ── */
+.g-header {
+  background: var(--bg);
+  padding: env(safe-area-inset-top, 0) 0 0;
+  flex-shrink: 0;
+  z-index: 50;
+  position: relative;
+}
+.g-header-inner {
+  padding: 0.9rem 1.25rem 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.back-btn {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 0.5px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, background 0.2s;
+}
+.back-btn.visible { opacity: 1; pointer-events: all; }
+.back-btn:active { background: rgba(255,255,255,0.15); }
+.back-btn svg { width: 16px; height: 16px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; }
+
+.header-center { flex: 1; min-width: 0; }
+.app-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: #fff;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: all 0.3s;
+}
+.app-subtitle { font-size: 10px; color: var(--green-accent); margin-top: 1px; opacity: 0.8; }
+
+.lang-btn {
+  display: flex; align-items: center;
+  background: rgba(255,255,255,0.08);
+  border: 0.5px solid rgba(255,255,255,0.15);
+  border-radius: 8px; overflow: hidden; flex-shrink: 0;
+}
+.lang-opt {
+  padding: 5px 10px; font-size: 11px; font-weight: 600;
+  color: rgba(255,255,255,0.45); cursor: pointer;
+  font-family: 'DM Sans', sans-serif; border: none; background: transparent;
+  transition: all 0.2s;
+}
+.lang-opt.active { background: var(--green-accent); color: var(--bg); }
+
+/* breadcrumb */
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  padding: 0.5rem 1.25rem 0.75rem;
+  overflow: hidden;
+}
+.bc-item {
+  font-size: 11px; color: rgba(255,255,255,0.4);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  display: flex; align-items: center; gap: 4px;
+}
+.bc-item.active { color: var(--green-accent); font-weight: 500; }
+.bc-sep { color: rgba(255,255,255,0.2); font-size: 10px; flex-shrink: 0; }
+
+/* search bar */
+.search-wrap {
+  margin: 0 1.25rem 0.75rem;
+  background: rgba(255,255,255,0.07);
+  border-radius: 12px;
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 12px;
+  border: 0.5px solid rgba(255,255,255,0.1);
+  transition: border-color 0.2s;
+}
+.search-wrap:focus-within { border-color: var(--green-accent); }
+.search-wrap svg { width: 15px; height: 15px; fill: var(--green-accent); flex-shrink: 0; opacity: 0.7; }
+.search-wrap input {
+  flex: 1; background: transparent; border: none; outline: none;
+  color: #fff; font-size: 13px; font-family: 'DM Sans', sans-serif; padding: 10px 0;
+}
+.search-wrap input::placeholder { color: rgba(255,255,255,0.3); }
+
+/* ── SCREENS CONTAINER ── */
+.screens {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 5rem;
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  -webkit-overflow-scrolling: touch;
+}
+.screen.active { transform: translateX(0); }
+.screen.behind { transform: translateX(-30%); }
+
+/* ── SCREEN 1 — DEPARTMENTS ── */
+.dept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 1.25rem;
+}
+
+.dept-card {
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1rem 1rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.18s, box-shadow 0.18s;
+  -webkit-tap-highlight-color: transparent;
+}
+.dept-card:active { transform: scale(0.96); }
+
+.dept-card-bg {
+  position: absolute; inset: 0;
+  opacity: 0.12;
+  background: radial-gradient(circle at 80% 20%, white, transparent 60%);
+}
+.dept-card-pattern {
+  position: absolute; bottom: -10px; right: -10px;
+  font-size: 64px; opacity: 0.12;
+  line-height: 1;
+  pointer-events: none;
+}
+.dept-card-icon {
+  font-size: 32px; margin-bottom: 0.5rem;
+  position: relative; z-index: 1;
+}
+.dept-card-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px; font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  position: relative; z-index: 1;
+}
+.dept-card-count {
+  font-size: 10px; font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  margin-top: 4px;
+  position: relative; z-index: 1;
+}
+
+/* dept colors */
+.dept-Automotive { background: linear-gradient(135deg, #d4500a, #f07030); }
+.dept-Civil { background: linear-gradient(135deg, #0a7a3d, #1db870); }
+.dept-Transport { background: linear-gradient(135deg, #4a28b0, #7c52e8); }
+.dept-Electrical { background: linear-gradient(135deg, #c47a00, #f0ac20); }
+.dept-Mechanical { background: linear-gradient(135deg, #a01850, #e03880); }
+.dept-ICT { background: linear-gradient(135deg, #0850a8, #1880e8); }
+.dept-Science { background: linear-gradient(135deg, #6a1090, #a030d0); }
+
+/* wide card for last odd item */
+.dept-card.wide { grid-column: 1 / -1; min-height: 110px; flex-direction: row; align-items: center; gap: 1rem; }
+.dept-card.wide .dept-card-pattern { bottom: -5px; right: 20px; font-size: 80px; }
+
+/* ── SCREEN 2 — LEVEL SELECTION ── */
+.level-screen { padding: 1.25rem; }
+.level-intro {
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg2);
+  border-radius: var(--radius);
+  border: 0.5px solid rgba(255,255,255,0.06);
+}
+.level-dept-icon { font-size: 36px; margin-bottom: 0.5rem; }
+.level-dept-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px; font-weight: 700; color: #fff;
+  margin-bottom: 4px;
+}
+.level-dept-sub { font-size: 12px; color: rgba(255,255,255,0.5); }
+
+.level-cards { display: flex; flex-direction: column; gap: 12px; }
+.level-card {
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 1rem;
+  transition: transform 0.18s;
+  position: relative; overflow: hidden;
+}
+.level-card:active { transform: scale(0.97); }
+.level-card-ordinary { background: linear-gradient(135deg, #0a3d2e 0%, #0d5a40 100%); border: 0.5px solid rgba(45,206,142,0.2); }
+.level-card-bachelor { background: linear-gradient(135deg, #0d1f3a 0%, #1a3a6a 100%); border: 0.5px solid rgba(50,120,220,0.2); }
+.level-card-icon {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; flex-shrink: 0;
+}
+.level-card-ordinary .level-card-icon { background: rgba(45,206,142,0.15); }
+.level-card-bachelor .level-card-icon { background: rgba(50,120,220,0.15); }
+.level-card-text { flex: 1; }
+.level-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px; font-weight: 700; color: #fff;
+  margin-bottom: 4px;
+}
+.level-card-sub { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.4; }
+.level-card-count {
+  font-size: 22px; font-weight: 700;
+  font-family: 'Syne', sans-serif;
+  color: rgba(255,255,255,0.2);
+  flex-shrink: 0;
+}
+.level-card-arrow {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.level-card-arrow svg { width: 14px; height: 14px; fill: none; stroke: rgba(255,255,255,0.6); stroke-width: 2; stroke-linecap: round; }
+
+/* ── SCREEN 3 — COURSES ── */
+.courses-screen { padding: 1rem 1.25rem; }
+.courses-section-label {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0.5rem 0 0.75rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.courses-section-label::after {
+  content: ''; flex: 1; height: 0.5px; background: var(--border);
+}
+
+.course-card-item {
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 0.5px solid var(--border);
+  padding: 1rem 1.25rem;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 12px;
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.course-card-item:active { transform: scale(0.98); }
+.course-card-item:hover { border-color: var(--green-mid); box-shadow: 0 4px 16px rgba(29,158,117,0.08); }
+
+.course-card-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.course-card-text { flex: 1; min-width: 0; }
+.course-card-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px; font-weight: 600; color: var(--text-dark);
+  line-height: 1.3; margin-bottom: 4px;
+}
+.course-card-meta { font-size: 11px; color: var(--text-muted); display: flex; gap: 10px; }
+.course-card-arrow {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--green-light);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.course-card-arrow svg { width: 12px; height: 12px; fill: none; stroke: var(--green-mid); stroke-width: 2; stroke-linecap: round; }
+.partial-badge {
+  font-size: 9px; font-weight: 600;
+  background: #FFF3E0; color: #E65100;
+  padding: 2px 6px; border-radius: 4px;
+  display: inline-block; margin-left: 4px;
+}
+
+/* dept icon bg colors on course cards */
+.ci-Automotive { background: #FFF3E0; }
+.ci-Civil { background: var(--green-light); }
+.ci-Transport { background: #EDE7F6; }
+.ci-Electrical { background: #FFF8E1; }
+.ci-Mechanical { background: #FCE4EC; }
+.ci-ICT { background: #E3F2FD; }
+.ci-Science { background: #F3E5F5; }
+
+/* ── SCREEN 4 — COURSE DETAIL ── */
+.detail-hero {
+  padding: 1.25rem;
+  background: var(--bg);
+  margin-bottom: 0;
+}
+.detail-dept-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 99px;
+  margin-bottom: 8px;
+}
+.detail-course-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px; font-weight: 700; color: #fff;
+  line-height: 1.3; margin-bottom: 10px;
+}
+.detail-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.detail-pill {
+  font-size: 11px; color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.07);
+  border: 0.5px solid rgba(255,255,255,0.1);
+  border-radius: 99px; padding: 4px 10px;
+  display: flex; align-items: center; gap: 4px;
+}
+
+/* tabs */
+.detail-tabs {
+  display: flex;
+  background: var(--bg);
+  border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+  position: sticky;
+  top: 0; z-index: 10;
+}
+.detail-tab {
+  flex: 1; padding: 12px 8px;
+  font-size: 12px; font-weight: 500;
+  color: rgba(255,255,255,0.4);
+  border: none; background: transparent;
+  cursor: pointer; font-family: 'DM Sans', sans-serif;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+.detail-tab.active { color: var(--green-accent); border-bottom-color: var(--green-accent); }
+
+.detail-content { padding: 1rem 1.25rem; }
+
+/* modules */
+.semester-block {
+  margin-bottom: 1.25rem;
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 0.5px solid var(--border);
+  overflow: hidden;
+}
+.semester-header {
+  padding: 0.75rem 1rem;
+  background: var(--green-light);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--green-mid);
+}
+.subject-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 1rem;
+  border-bottom: 0.5px solid var(--border);
+}
+.subject-row:last-child { border-bottom: none; }
+.subject-num { font-size: 10px; color: var(--text-muted); width: 16px; text-align: right; flex-shrink: 0; }
+.subject-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green-accent); flex-shrink: 0; }
+.subject-name { font-size: 13px; color: var(--text-dark); flex: 1; line-height: 1.3; }
+.subject-code { font-size: 10px; color: var(--text-muted); white-space: nowrap; }
+
+/* entry requirements */
+.entry-box {
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 0.5px solid var(--border);
+  padding: 1.25rem;
+}
+.entry-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--green-mid); margin-bottom: 8px;
+}
+.entry-text { font-size: 13px; color: var(--text-dark); line-height: 1.7; }
+
+/* careers */
+.career-section { margin-bottom: 1.25rem; }
+.career-section-title {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.career-section-title::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+.career-item {
+  background: var(--card);
+  border-radius: var(--radius-sm);
+  border: 0.5px solid var(--border);
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.career-item:last-child { margin-bottom: 0; }
+.career-emoji { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.career-role { font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 3px; }
+.career-desc { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+.salary-badge {
+  display: inline-block; margin-top: 5px;
+  font-size: 10px; font-weight: 700;
+  background: var(--green-light); color: var(--green-mid);
+  padding: 2px 8px; border-radius: 99px;
+}
+
+/* coming soon */
+.coming-soon-box {
+  background: #FFF8E1; border: 0.5px solid #F9A825;
+  border-radius: var(--radius); padding: 1.5rem; text-align: center;
+  margin-bottom: 1rem;
+}
+.coming-soon-box p { font-size: 12px; color: #7B6000; line-height: 1.6; margin-top: 6px; }
+
+/* ── BOTTOM BAR ── */
+.bottom-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-top: 0.5px solid var(--border);
+  padding: 10px 1.25rem;
+  padding-bottom: env(safe-area-inset-bottom, 10px);
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 100;
+}
+.bottom-label { font-size: 11px; color: var(--text-muted); }
+.bottom-label strong { color: var(--green-mid); }
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  text-align: center; padding: 4rem 2rem;
+  color: var(--text-muted); display: none;
+}
+.empty-state .icon { font-size: 36px; margin-bottom: 1rem; }
+
+/* ── SCROLLBAR ── */
+.screen::-webkit-scrollbar { width: 3px; }
+.screen::-webkit-scrollbar-track { background: transparent; }
+.screen::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 99px; }
 </style>
 </head>
 <body>
-<header class="app-header">
-  <div class="header-inner">
-    <div class="header-top">
-      <div class="app-icon">ATC</div>
-      <div class="header-titles">
-        <div class="app-title" id="appTitle">ATC Course Guide</div>
+
+<div class="app">
+  <!-- GLOBAL HEADER -->
+  <header class="g-header">
+    <div class="g-header-inner">
+      <button class="back-btn" id="backBtn" onclick="goBack()">
+        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="header-center">
+        <div class="app-title" id="headerTitle">ATC Course Guide</div>
         <div class="app-subtitle">Arusha Technical College</div>
       </div>
       <div class="lang-btn">
@@ -159,134 +525,405 @@ body{font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--text
         <button class="lang-opt" id="btnSW" onclick="setLang('sw')">SW</button>
       </div>
     </div>
-    <div class="search-wrap">
-      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.5 6.5 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-      <input type="text" id="searchInput" placeholder="Search courses..." oninput="filterCourses()" autocomplete="off"/>
+    <div class="breadcrumb" id="breadcrumb">
+      <span class="bc-item active" id="bc0">🏠 Home</span>
     </div>
+    <div class="search-wrap" id="searchWrap" style="display:none">
+      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.5 6.5 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="currentColor"/></svg>
+      <input type="text" id="searchInput" placeholder="Search courses..." oninput="onSearch()" autocomplete="off"/>
+    </div>
+  </header>
+
+  <!-- SCREENS -->
+  <div class="screens">
+
+    <!-- SCREEN 1: DEPARTMENTS -->
+    <div class="screen active" id="screen1">
+      <div class="dept-grid" id="deptGrid"></div>
+    </div>
+
+    <!-- SCREEN 2: LEVEL SELECTION -->
+    <div class="screen" id="screen2">
+      <div class="level-screen" id="levelScreen"></div>
+    </div>
+
+    <!-- SCREEN 3: COURSES LIST -->
+    <div class="screen" id="screen3">
+      <div class="courses-screen" id="coursesScreen">
+        <div class="empty-state" id="emptyState">
+          <div class="icon">🔍</div>
+          <p id="emptyText">No courses found.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREEN 4: COURSE DETAIL -->
+    <div class="screen" id="screen4">
+      <div id="detailScreen"></div>
+    </div>
+
   </div>
-  <div class="filters-scroll" id="filterRow"></div>
-</header>
-<div class="stats-bar" id="statsBar"></div>
-<main class="course-list" id="courseList"></main>
-<div class="empty-state" id="emptyState"><div class="icon">🔍</div><p id="emptyText">No courses found.</p></div>
-<div class="bottom-bar">
-  <div class="bottom-label">© 2026 <strong>HDG. Tech</strong></div>
-  <div class="bottom-label" style="font-size:10px;color:var(--green-mid)">ATC Course Guide</div>
+
+  <!-- BOTTOM BAR -->
+  <div class="bottom-bar">
+    <div class="bottom-label">© 2026 <strong>HDG. Tech</strong></div>
+    <div class="bottom-label" style="font-size:10px;color:var(--green-mid)">ATC Course Guide</div>
+  </div>
 </div>
+
 <script src="courses.js"></script>
 <script>
-let activeFilter='All';
-let openCards={};
+// ── STATE ──
+let currentLang = 'en';
+let navStack = ['s1']; // s1, s2, s3, s4
+let selectedDept = null;
+let selectedLevel = null; // 'ordinary' | 'bachelor'
+let selectedCourse = null;
+let activeDetailTab = 'modules';
 
-function setLang(lang){
-  currentLang=lang;
-  document.getElementById('btnEN').classList.toggle('active',lang==='en');
-  document.getElementById('btnSW').classList.toggle('active',lang==='sw');
-  document.getElementById('appTitle').textContent=T[lang].appTitle;
-  document.getElementById('searchInput').placeholder=T[lang].search;
-  document.getElementById('emptyText').textContent=T[lang].noResults;
-  renderFilters();renderCourses();
+// ── TRANSLATIONS (T, DEPTS, DEPT_KEYS from courses.js) ──
+
+// ── DEPT META ──
+const DEPT_META = {
+  Automotive: { icon: '🚗', label: { en: 'Automotive Engineering', sw: 'Uhandisi wa Magari' } },
+  Civil:      { icon: '🏗️', label: { en: 'Civil Engineering', sw: 'Uhandisi wa Ujenzi' } },
+  Transport:  { icon: '🛣️', label: { en: 'Transportation Engineering', sw: 'Uhandisi wa Usafiri' } },
+  Electrical: { icon: '⚡', label: { en: 'Electrical Engineering', sw: 'Uhandisi wa Umeme' } },
+  Mechanical: { icon: '⚙️', label: { en: 'Mechanical Engineering', sw: 'Uhandisi wa Mitambo' } },
+  ICT:        { icon: '💻', label: { en: 'ICT', sw: 'TEHAMA' } },
+  Science:    { icon: '🔬', label: { en: 'Science & Technology', sw: 'Sayansi na Teknolojia' } }
+};
+
+// ── NAVIGATION ──
+function navigateTo(screenId, direction = 'forward') {
+  const screens = document.querySelectorAll('.screen');
+  const target = document.getElementById(screenId);
+  const active = document.querySelector('.screen.active');
+
+  if (direction === 'forward') {
+    target.style.transform = 'translateX(100%)';
+    target.classList.remove('behind');
+    // force reflow
+    target.getBoundingClientRect();
+    active.style.transition = 'transform 0.38s cubic-bezier(0.4,0,0.2,1)';
+    target.style.transition = 'transform 0.38s cubic-bezier(0.4,0,0.2,1)';
+    active.style.transform = 'translateX(-30%)';
+    target.style.transform = 'translateX(0)';
+    setTimeout(() => {
+      active.classList.remove('active');
+      active.classList.add('behind');
+      target.classList.add('active');
+      target.scrollTop = 0;
+    }, 380);
+  } else {
+    target.style.transform = 'translateX(-30%)';
+    target.classList.add('behind');
+    target.getBoundingClientRect();
+    active.style.transition = 'transform 0.38s cubic-bezier(0.4,0,0.2,1)';
+    target.style.transition = 'transform 0.38s cubic-bezier(0.4,0,0.2,1)';
+    active.style.transform = 'translateX(100%)';
+    target.style.transform = 'translateX(0)';
+    setTimeout(() => {
+      active.classList.remove('active');
+      active.classList.remove('behind');
+      active.style.transform = 'translateX(100%)';
+      target.classList.add('active');
+      target.classList.remove('behind');
+    }, 380);
+  }
 }
-function renderFilters(){
-  const depts=DEPTS[currentLang];
-  document.getElementById('filterRow').innerHTML=DEPT_KEYS.map((k,i)=>
-    `<button class="filter-chip${k===activeFilter?' active':''}" onclick="setFilter('${k}')">${depts[i]}</button>`
-  ).join('');
+
+function goBack() {
+  if (navStack.length <= 1) return;
+  navStack.pop();
+  const prev = navStack[navStack.length - 1];
+  const screenMap = { s1: 'screen1', s2: 'screen2', s3: 'screen3', s4: 'screen4' };
+  navigateTo(screenMap[prev], 'back');
+  updateHeader();
 }
-function setFilter(k){activeFilter=k;renderFilters();renderCourses();}
-function getFiltered(){
-  const q=document.getElementById('searchInput').value.toLowerCase().trim();
-  return COURSES.filter(c=>{
-    const matchDept=activeFilter==='All'||c.dept===activeFilter;
-    const matchQ=!q||c.name.en.toLowerCase().includes(q)||c.name.sw.toLowerCase().includes(q)||c.dept.toLowerCase().includes(q);
-    return matchDept&&matchQ;
+
+function updateHeader() {
+  const depth = navStack.length;
+  const lang = currentLang;
+  const t = T[lang];
+
+  // back button
+  document.getElementById('backBtn').classList.toggle('visible', depth > 1);
+
+  // search bar
+  document.getElementById('searchWrap').style.display = depth === 3 ? 'flex' : 'none';
+
+  // title
+  let title = t.appTitle;
+  if (depth === 2 && selectedDept) title = DEPT_META[selectedDept].label[lang];
+  if (depth === 3 && selectedDept) title = DEPT_META[selectedDept].label[lang];
+  if (depth === 4 && selectedCourse) title = selectedCourse.name[lang];
+  document.getElementById('headerTitle').textContent = title;
+
+  // breadcrumb
+  updateBreadcrumb();
+}
+
+function updateBreadcrumb() {
+  const lang = currentLang;
+  const depth = navStack.length;
+  let html = `<span class="bc-item ${depth===1?'active':''}" style="cursor:${depth>1?'pointer':'default'}" onclick="${depth>1?'jumpTo(1)':''}">🏠 Home</span>`;
+  if (depth >= 2 && selectedDept) {
+    html += `<span class="bc-sep">›</span><span class="bc-item ${depth===2?'active':''}" style="cursor:${depth>2?'pointer':'default'}" onclick="${depth>2?'jumpTo(2)':''}">${DEPT_META[selectedDept].icon} ${DEPT_META[selectedDept].label[lang]}</span>`;
+  }
+  if (depth >= 3 && selectedLevel) {
+    const lvlLabel = selectedLevel === 'ordinary' ? T[lang].ordinary : T[lang].bachelor;
+    html += `<span class="bc-sep">›</span><span class="bc-item ${depth===3?'active':''}" style="cursor:${depth>3?'pointer':'default'}" onclick="${depth>3?'jumpTo(3):':''}">${lvlLabel}</span>`;
+  }
+  if (depth === 4 && selectedCourse) {
+    html += `<span class="bc-sep">›</span><span class="bc-item active" style="max-width:120px">${selectedCourse.name[lang]}</span>`;
+  }
+  document.getElementById('breadcrumb').innerHTML = html;
+}
+
+function jumpTo(level) {
+  if (level === 1) { while(navStack.length > 1) goBack(); }
+  else if (level === 2) { while(navStack.length > 2) goBack(); }
+  else if (level === 3) { while(navStack.length > 3) goBack(); }
+}
+
+// ── SCREEN 1: DEPARTMENTS ──
+function renderDepts() {
+  const lang = currentLang;
+  const deptKeys = ['Automotive','Civil','Transport','Electrical','Mechanical','ICT','Science'];
+  const counts = {};
+  deptKeys.forEach(d => {
+    counts[d] = { ordinary: COURSES.filter(c => c.dept===d && c.type==='ordinary').length,
+                  bachelor: COURSES.filter(c => c.dept===d && c.type==='bachelor').length };
   });
+  const total = d => counts[d].ordinary + counts[d].bachelor;
+
+  let html = '';
+  deptKeys.forEach((d, i) => {
+    const meta = DEPT_META[d];
+    const isLast = i === deptKeys.length - 1;
+    const isOdd = deptKeys.length % 2 !== 0;
+    const wide = isLast && isOdd ? 'wide' : '';
+    html += `
+    <div class="dept-card dept-${d} ${wide}" onclick="selectDept('${d}')">
+      <div class="dept-card-bg"></div>
+      <div class="dept-card-pattern">${meta.icon}</div>
+      <div class="dept-card-icon">${meta.icon}</div>
+      <div>
+        <div class="dept-card-name">${meta.label[lang]}</div>
+        <div class="dept-card-count">${total(d)} ${T[lang].courses}</div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('deptGrid').innerHTML = html;
 }
-function filterCourses(){renderCourses();}
-function toggleCard(id){
-  if(openCards[id]){delete openCards[id];}else{openCards[id]='modules';}
-  renderCourses();
+
+function selectDept(dept) {
+  selectedDept = dept;
+  navStack.push('s2');
+  renderLevelScreen();
+  navigateTo('screen2', 'forward');
+  updateHeader();
 }
-function setTab(id,tab,e){e.stopPropagation();openCards[id]=tab;renderCourses();}
-function renderCourses(){
-  const filtered=getFiltered();
-  const list=document.getElementById('courseList');
-  const empty=document.getElementById('emptyState');
-  const lang=currentLang;
-  const t=T[lang];
-  const ordCount=filtered.filter(c=>c.type==='ordinary').length;
-  const bachCount=filtered.filter(c=>c.type==='bachelor').length;
-  document.getElementById('statsBar').innerHTML=
-    `${t.showing} <span>${filtered.length}</span> ${t.of} ${COURSES.length} ${t.courses} &nbsp;·&nbsp; ${ordCount} Diploma · ${bachCount} Degree`;
-  if(!filtered.length){list.innerHTML='';empty.style.display='block';return;}
-  empty.style.display='none';
-  list.innerHTML=filtered.map(c=>{
-    const isOpen=!!openCards[c.id];
-    const activeTab=openCards[c.id]||'modules';
-    const isBach=c.type==='bachelor';
-    const hasCS=!!c.comingSoon;
-    const modulesContent=hasCS
-      ?`<div class="coming-soon-box"><div style="font-size:20px">⏳</div><p>${t.comingSoon}<br><small>${t.comingSoonSub}</small></p></div>
-         <div class="entry-section"><div class="entry-title">${t.entry}</div><div class="entry-text">${c.entry[lang]}</div></div>`
-      :c.semesters.map(s=>`
+
+// ── SCREEN 2: LEVEL SELECTION ──
+function renderLevelScreen() {
+  const lang = currentLang;
+  const meta = DEPT_META[selectedDept];
+  const ordCount = COURSES.filter(c => c.dept===selectedDept && c.type==='ordinary').length;
+  const bachCount = COURSES.filter(c => c.dept===selectedDept && c.type==='bachelor').length;
+
+  document.getElementById('levelScreen').innerHTML = `
+    <div class="level-intro">
+      <div class="level-dept-icon">${meta.icon}</div>
+      <div class="level-dept-name">${meta.label[lang]}</div>
+      <div class="level-dept-sub">${T[lang].showing} ${ordCount + bachCount} ${T[lang].courses}</div>
+    </div>
+    <div class="level-cards">
+      ${ordCount > 0 ? `
+      <div class="level-card level-card-ordinary" onclick="selectLevel('ordinary')">
+        <div class="level-card-icon">📋</div>
+        <div class="level-card-text">
+          <div class="level-card-title">${T[lang].ordinary}</div>
+          <div class="level-card-sub">${lang==='en'?'NTA Level 4–6 · 3 Years':'Ngazi ya NTA 4–6 · Miaka 3'}</div>
+        </div>
+        <div class="level-card-count">${ordCount}</div>
+        <div class="level-card-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>` : ''}
+      ${bachCount > 0 ? `
+      <div class="level-card level-card-bachelor" onclick="selectLevel('bachelor')">
+        <div class="level-card-icon">🎓</div>
+        <div class="level-card-text">
+          <div class="level-card-title">${T[lang].bachelor}</div>
+          <div class="level-card-sub">${lang==='en'?'NTA Level 7–8 · 3 Years':'Ngazi ya NTA 7–8 · Miaka 3'}</div>
+        </div>
+        <div class="level-card-count">${bachCount}</div>
+        <div class="level-card-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>` : ''}
+    </div>`;
+}
+
+function selectLevel(level) {
+  selectedLevel = level;
+  navStack.push('s3');
+  renderCoursesScreen();
+  navigateTo('screen3', 'forward');
+  updateHeader();
+  document.getElementById('searchInput').value = '';
+}
+
+// ── SCREEN 3: COURSES LIST ──
+function renderCoursesScreen(query = '') {
+  const lang = currentLang;
+  let courses = COURSES.filter(c => c.dept === selectedDept && c.type === selectedLevel);
+  if (query) courses = courses.filter(c => c.name.en.toLowerCase().includes(query) || c.name.sw.toLowerCase().includes(query));
+
+  const wrap = document.getElementById('coursesScreen');
+  const empty = document.getElementById('emptyState');
+
+  if (!courses.length) {
+    wrap.innerHTML = '';
+    wrap.appendChild(empty);
+    empty.style.display = 'block';
+    document.getElementById('emptyText').textContent = T[lang].noResults;
+    return;
+  }
+  empty.style.display = 'none';
+
+  wrap.innerHTML = courses.map(c => `
+    <div class="course-card-item" onclick="selectCourse(${c.id})">
+      <div class="course-card-icon ci-${c.dept}">${c.icon}</div>
+      <div class="course-card-text">
+        <div class="course-card-name">${c.name[lang]}${c.comingSoon?`<span class="partial-badge">⏳</span>`:''}</div>
+        <div class="course-card-meta"><span>⏱ ${c.duration[lang]}</span></div>
+      </div>
+      <div class="course-card-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>`).join('');
+}
+
+function onSearch() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  renderCoursesScreen(q);
+}
+
+function selectCourse(id) {
+  selectedCourse = COURSES.find(c => c.id === id);
+  activeDetailTab = 'modules';
+  navStack.push('s4');
+  renderDetailScreen();
+  navigateTo('screen4', 'forward');
+  updateHeader();
+}
+
+// ── SCREEN 4: COURSE DETAIL ──
+function renderDetailScreen() {
+  const lang = currentLang;
+  const c = selectedCourse;
+  const t = T[lang];
+  const meta = DEPT_META[c.dept];
+
+  // dept badge color map
+  const badgeColors = {
+    Automotive:'background:#FFF3E0;color:#E65100',Civil:'background:#E1F5EE;color:#1D9E75',
+    Transport:'background:#EDE7F6;color:#512DA8',Electrical:'background:#FFF8E1;color:#F57F17',
+    Mechanical:'background:#FCE4EC;color:#880E4F',ICT:'background:#E3F2FD;color:#0D47A1',
+    Science:'background:#F3E5F5;color:#6A1B9A'
+  };
+
+  // modules content
+  const modulesHTML = c.comingSoon
+    ? `<div class="coming-soon-box"><div style="font-size:24px">⏳</div><p>${t.comingSoon}<br><small>${t.comingSoonSub}</small></p></div>`
+    : c.semesters.map(s => `
         <div class="semester-block">
-          <div class="semester-label">${s.label[lang]}</div>
-          ${s.subjects.map((sub,i)=>`
+          <div class="semester-header">${s.label[lang]}</div>
+          ${s.subjects.map((sub,i) => `
             <div class="subject-row">
               <div class="subject-num">${i+1}</div>
               <div class="subject-dot"></div>
               <div class="subject-name">${sub.name}</div>
               ${sub.code&&sub.code!=='—'?`<div class="subject-code">${sub.code}</div>`:''}
             </div>`).join('')}
-        </div>`).join('')+
-        `<div class="entry-section"><div class="entry-title">${t.entry}</div><div class="entry-text">${c.entry[lang]}</div></div>`;
-    const careerHTML=`<div class="careers-panel">
-      <div class="career-section">
-        <div class="career-title">💼 ${t.employed}</div>
-        ${c.careers.employed.map(car=>`
-          <div class="career-item">
-            <div class="career-emoji">${car.emoji}</div>
-            <div class="career-info">
-              <div class="career-role">${car.role[lang]}</div>
-              <div class="career-desc">${car.desc[lang]}</div>
-              ${car.salary?`<span class="salary-badge">${car.salary}</span>`:''}
-            </div>
-          </div>`).join('')}
-      </div>
-      <div class="career-section">
-        <div class="career-title">🚀 ${t.selfEmployed}</div>
-        ${c.careers.self.map(car=>`
-          <div class="career-item">
-            <div class="career-emoji">${car.emoji}</div>
-            <div class="career-info">
-              <div class="career-role">${car.role[lang]}</div>
-              <div class="career-desc">${car.desc[lang]}</div>
-            </div>
-          </div>`).join('')}
-      </div>
+        </div>`).join('');
+
+  // careers content
+  const careersHTML = `
+    <div class="career-section">
+      <div class="career-section-title">💼 ${t.employed}</div>
+      ${c.careers.employed.map(car=>`
+        <div class="career-item">
+          <div class="career-emoji">${car.emoji}</div>
+          <div>
+            <div class="career-role">${car.role[lang]}</div>
+            <div class="career-desc">${car.desc[lang]}</div>
+            
+          </div>
+        </div>`).join('')}
+    </div>
+    <div class="career-section">
+      <div class="career-section-title">🚀 ${t.selfEmployed}</div>
+      ${c.careers.self.map(car=>`
+        <div class="career-item">
+          <div class="career-emoji">${car.emoji}</div>
+          <div>
+            <div class="career-role">${car.role[lang]}</div>
+            <div class="career-desc">${car.desc[lang]}</div>
+          </div>
+        </div>`).join('')}
     </div>`;
-    return `
-    <div class="course-card${isOpen?' open':''}">
-      <div class="card-summary" onclick="toggleCard(${c.id})">
-        <div class="dept-icon dept-${c.dept}">${c.icon}</div>
-        <div class="card-text">
-          <span class="dept-badge dept-${c.dept}">${c.dept}</span>${isBach?`<span class="level-badge">Bachelor</span>`:''}${hasCS?`<span class="level-badge" style="background:#FFF3E0;color:#E65100">⏳ Partial</span>`:''}
-          <div class="course-name">${c.name[lang]}</div>
-          <div class="course-meta"><span>📋 ${isBach?t.bachelor:t.ordinary}</span><span>⏱ ${c.duration[lang]}</span></div>
-        </div>
-        <div class="chevron-wrap"><div class="chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-      </div>
-      <div class="card-tabs">
-        <button class="tab-btn${activeTab==='modules'?' active':''}" onclick="setTab(${c.id},'modules',event)">📚 ${t.modules}</button>
-        <button class="tab-btn${activeTab==='careers'?' active':''}" onclick="setTab(${c.id},'careers',event)">💼 ${t.careers}</button>
-      </div>
-      <div class="card-panel${activeTab==='modules'?' active':''}">${modulesContent}</div>
-      <div class="card-panel${activeTab==='careers'?' active':''}">${careerHTML}</div>
+
+  // entry content
+  const entryHTML = `
+    <div class="entry-box">
+      <div class="entry-label">${t.entry}</div>
+      <div class="entry-text">${c.entry[lang]}</div>
     </div>`;
-  }).join('');
+
+  document.getElementById('detailScreen').innerHTML = `
+    <div class="detail-hero">
+      <div class="detail-dept-badge" style="${badgeColors[c.dept]}">${meta.icon} ${c.dept}</div>
+      <div class="detail-course-name">${c.name[lang]}</div>
+      <div class="detail-pills">
+        <span class="detail-pill">📋 ${c.type==='bachelor'?t.bachelor:t.ordinary}</span>
+        <span class="detail-pill">⏱ ${c.duration[lang]}</span>
+      </div>
+    </div>
+    <div class="detail-tabs">
+      <button class="detail-tab ${activeDetailTab==='modules'?'active':''}" onclick="switchTab('modules')">📚 ${t.modules}</button>
+      <button class="detail-tab ${activeDetailTab==='careers'?'active':''}" onclick="switchTab('careers')">💼 ${t.careers}</button>
+      <button class="detail-tab ${activeDetailTab==='entry'?'active':''}" onclick="switchTab('entry')">📋 ${t.entry.split(' ')[0]}</button>
+    </div>
+    <div class="detail-content" id="detailContent">
+      ${activeDetailTab==='modules'?modulesHTML:activeDetailTab==='careers'?careersHTML:entryHTML}
+    </div>`;
 }
-renderFilters();renderCourses();
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+
+function switchTab(tab) {
+  activeDetailTab = tab;
+  renderDetailScreen();
+  document.getElementById('screen4').scrollTop = 0;
+}
+
+// ── LANGUAGE ──
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btnEN').classList.toggle('active', lang==='en');
+  document.getElementById('btnSW').classList.toggle('active', lang==='sw');
+  // re-render current screen
+  const depth = navStack.length;
+  if (depth >= 1) renderDepts();
+  if (depth >= 2) renderLevelScreen();
+  if (depth >= 3) renderCoursesScreen(document.getElementById('searchInput').value.toLowerCase());
+  if (depth >= 4) renderDetailScreen();
+  updateHeader();
+}
+
+// ── INIT ──
+renderDepts();
+updateHeader();
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
 </script>
 </body>
 </html>

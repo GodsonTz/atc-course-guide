@@ -4,8 +4,6 @@
    Edit course content here. index.html reads this automatically.
    ============================================================ */
 
-let currentLang = 'en';
-
 const T = {
   en:{search:'Search courses...',appTitle:'ATC Course Guide',showing:'Showing',of:'of',courses:'courses',modules:'Modules',careers:'Careers',entry:'Entry Requirements',employed:'Employment Opportunities',selfEmployed:'Self-Employment',noResults:'No courses found.',all:'All',ordinary:'Ord. Diploma',bachelor:'Bachelor Degree',comingSoon:'⏳ Some module data not yet available',comingSoonSub:'Contact ATC Registrar for full module list'},
   sw:{search:'Tafuta kozi...',appTitle:'Mwongozo wa Kozi za ATC',showing:'Inaonyesha',of:'kati ya',courses:'kozi',modules:'Masomo',careers:'Kazi',entry:'Masharti ya Kujiunga',employed:'Fursa za Kuajiriwa',selfEmployed:'Kujiajiri',noResults:'Hakuna kozi zinazolingana.',all:'Zote',ordinary:'Stashahada ya Kawaida',bachelor:'Shahada ya Kwanza',comingSoon:'⏳ Baadhi ya data ya masomo haijapatikana bado',comingSoonSub:'Wasiliana na Msajili wa ATC kwa orodha kamili'}
@@ -38,9 +36,9 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming, Statistics and Probability'},{code:'GST 06202',name:'Enterprise Management'},{code:'MET 06201',name:'Computer Aided Drafting'},{code:'AET 06201',name:'Auto Workshop Management'},{code:'AET 06202',name:'Automotive Diagnostics'},{code:'AET 06203',name:'Project Manufacturing'},{code:'AET 06204',name:'Auto Electric Control Systems'},{code:'AET 06205',name:'Industrial Practical Training'}]}],
  careers:{employed:[
-  {emoji:'🚗',role:{en:'Automotive Technician',sw:'Fundi wa Magari'},desc:{en:'Diagnose and repair vehicles in garages and dealerships',sw:'Gundua na tengeneza magari katika karakana'},salary:'TZS 600K–2M/month'},
-  {emoji:'🔌',role:{en:'Auto Electrician',sw:'Fundi wa Umeme wa Gari'},desc:{en:'Service electrical systems in modern vehicles',sw:'Hudumia mifumo ya umeme ya magari ya kisasa'},salary:'TZS 700K–2M/month'},
-  {emoji:'🏭',role:{en:'Fleet Maintenance Engineer',sw:'Mhandisi wa Matengenezo ya Msafara'},desc:{en:'Manage vehicle fleets for transport companies',sw:'Simamia magari kwa makampuni ya usafirishaji'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🚗',role:{en:'Automotive Technician',sw:'Fundi wa Magari'},desc:{en:'Diagnose and repair vehicles in garages and dealerships',sw:'Gundua na tengeneza magari katika karakana'}},
+  {emoji:'🔌',role:{en:'Auto Electrician',sw:'Fundi wa Umeme wa Gari'},desc:{en:'Service electrical systems in modern vehicles',sw:'Hudumia mifumo ya umeme ya magari ya kisasa'}},
+  {emoji:'🏭',role:{en:'Fleet Maintenance Engineer',sw:'Mhandisi wa Matengenezo ya Msafara'},desc:{en:'Manage vehicle fleets for transport companies',sw:'Simamia magari kwa makampuni ya usafirishaji'}}],
  self:[
   {emoji:'🔧',role:{en:'Garage / Workshop Owner',sw:'Mmiliki wa Karakana ya Magari'},desc:{en:'Open your own auto repair and service center',sw:'Fungua kituo chako cha kutengeneza magari'}},
   {emoji:'🚕',role:{en:'Auto Spare Parts Dealer',sw:'Muuzaji wa Vipuri vya Magari'},desc:{en:'Import and sell spare parts for vehicles',sw:'Ingiza na uza vipuri vya magari'}}]}},
@@ -65,8 +63,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming, Statistics and Probability'},{code:'GST 06202',name:'Enterprise Management'},{code:'MET 06211',name:'3D Modelling Using Solid Works Software'},{code:'HET 06201',name:'Heavy Equipment Workshop Management'},{code:'HET 06202',name:'Heavy Equipment Electrical Maintenance'},{code:'HET 06203',name:'Engine Management and Control System Diagnosis'},{code:'HET 06204',name:'Project Work'},{code:'HET 06205',name:'Industrial Practical Training'}]}],
  careers:{employed:[
-  {emoji:'🚜',role:{en:'Heavy Equipment Technician',sw:'Fundi wa Vifaa Vizito'},desc:{en:'Maintain heavy machinery on construction and mining sites',sw:'Matengenezo ya vifaa vizito kwenye maeneo ya ujenzi na madini'},salary:'TZS 1M–3.5M/month'},
-  {emoji:'⛏️',role:{en:'Mining Equipment Engineer',sw:'Mhandisi wa Vifaa vya Machimbo'},desc:{en:'Service heavy machinery used in Tanzania mining sector',sw:'Hudumia vifaa vizito vya sekta ya madini Tanzania'},salary:'TZS 1.5M–4M/month'}],
+  {emoji:'🚜',role:{en:'Heavy Equipment Technician',sw:'Fundi wa Vifaa Vizito'},desc:{en:'Maintain heavy machinery on construction and mining sites',sw:'Matengenezo ya vifaa vizito kwenye maeneo ya ujenzi na madini'}},
+  {emoji:'⛏️',role:{en:'Mining Equipment Engineer',sw:'Mhandisi wa Vifaa vya Machimbo'},desc:{en:'Service heavy machinery used in Tanzania mining sector',sw:'Hudumia vifaa vizito vya sekta ya madini Tanzania'}}],
  self:[
   {emoji:'🏗️',role:{en:'Heavy Equipment Rental Business',sw:'Biashara ya Kukodisha Vifaa Vizito'},desc:{en:'Own and rent out excavators, bulldozers to contractors',sw:'Miliki na kodisha vifaa vizito kwa wakandarasi'}}]}},
 
@@ -89,9 +87,9 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'CED 06211',name:'Hydraulics and Fluid Mechanics'},{code:'CED 06212',name:'Construction Management and Procurement Practice'},{code:'CED 06213',name:'Public Health Engineering'},{code:'CED 06214',name:'Structural Steel Design'},{code:'CED 06215',name:'Building Materials and Maintenance'},{code:'CED 06216',name:'Project II (Implementation and Report Writing)'},{code:'CED 06217',name:'Social and Environmental Management'}]}],
  careers:{employed:[
-  {emoji:'🏗️',role:{en:'Site Engineer',sw:'Mhandisi wa Ujenzi'},desc:{en:'Supervise construction of buildings, roads and bridges',sw:'Simamia ujenzi wa majengo, barabara na madaraja'},salary:'TZS 1M–3.5M/month'},
-  {emoji:'📐',role:{en:'Quantity Surveyor',sw:'Mpima Gharama za Ujenzi'},desc:{en:'Estimate and manage construction project costs',sw:'Kadiria na simamia gharama za miradi ya ujenzi'},salary:'TZS 1M–2.5M/month'},
-  {emoji:'🌊',role:{en:'Water & Sanitation Engineer',sw:'Mhandisi wa Maji na Usafi'},desc:{en:'Design water supply and sewage systems',sw:'Buni mifumo ya usambazaji wa maji na maji taka'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🏗️',role:{en:'Site Engineer',sw:'Mhandisi wa Ujenzi'},desc:{en:'Supervise construction of buildings, roads and bridges',sw:'Simamia ujenzi wa majengo, barabara na madaraja'}},
+  {emoji:'📐',role:{en:'Quantity Surveyor',sw:'Mpima Gharama za Ujenzi'},desc:{en:'Estimate and manage construction project costs',sw:'Kadiria na simamia gharama za miradi ya ujenzi'}},
+  {emoji:'🌊',role:{en:'Water & Sanitation Engineer',sw:'Mhandisi wa Maji na Usafi'},desc:{en:'Design water supply and sewage systems',sw:'Buni mifumo ya usambazaji wa maji na maji taka'}}],
  self:[
   {emoji:'🏢',role:{en:'Construction Contractor',sw:'Mkandarasi wa Ujenzi'},desc:{en:'Run your own construction company and take contracts',sw:'Endesha kampuni yako ya ujenzi na pata mikataba'}},
   {emoji:'📋',role:{en:'Independent Quantity Surveyor',sw:'Mpima Gharama Huru'},desc:{en:'Offer cost estimation services to developers',sw:'Toa huduma za kukadiriwa gharama kwa wajenzi'}}]}},
@@ -108,8 +106,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'CID 06210',name:'Climate Smart Agriculture and Land Suitability for Irrigation'},{code:'CID 06211',name:'Basics of GIS and Remote Sensing'},{code:'CID 06212',name:'Construction Management and Procurement Practice'},{code:'CID 06213',name:'Irrigation Water Supply'},{code:'CID 06214',name:'Operation and Maintenance of Irrigation Systems'},{code:'CID 06215',name:'Performance Evaluation of Irrigation Systems'},{code:'CID 06222',name:'Social and Environment Management'},{code:'CID 06237',name:'Project (Implementation and Report Writing)'}]}],
  careers:{employed:[
-  {emoji:'💧',role:{en:'Irrigation Engineer',sw:'Mhandisi wa Umwagiliaji'},desc:{en:'Design and manage irrigation systems for farms',sw:'Buni na simamia mifumo ya umwagiliaji kwa mashamba'},salary:'TZS 1M–3M/month'},
-  {emoji:'🌾',role:{en:'Agricultural Water Manager',sw:'Msimamizi wa Maji ya Kilimo'},desc:{en:'Manage water resources for agricultural projects',sw:'Simamia rasilimali za maji kwa miradi ya kilimo'},salary:'TZS 900K–2.5M/month'}],
+  {emoji:'💧',role:{en:'Irrigation Engineer',sw:'Mhandisi wa Umwagiliaji'},desc:{en:'Design and manage irrigation systems for farms',sw:'Buni na simamia mifumo ya umwagiliaji kwa mashamba'}},
+  {emoji:'🌾',role:{en:'Agricultural Water Manager',sw:'Msimamizi wa Maji ya Kilimo'},desc:{en:'Manage water resources for agricultural projects',sw:'Simamia rasilimali za maji kwa miradi ya kilimo'}}],
  self:[
   {emoji:'🌱',role:{en:'Irrigation Consultant',sw:'Mshauri wa Umwagiliaji'},desc:{en:'Help farmers design and install irrigation systems',sw:'Saidia wakulima kubuni na kuweka mifumo ya umwagiliaji'}}]}},
 
@@ -131,8 +129,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'CAT 06201',name:'Project Architectural Design'},{code:'CAT 06202',name:'Professional Practice'},{code:'CAT 06203',name:'Construction Management and Procurement Practice'},{code:'CAT 06204',name:'Urban & Housing Development'},{code:'CAT 06205',name:'Advanced Building Technology'},{code:'CAT 06206',name:'Architectural Conservation'},{code:'CAT 06207',name:'Building Information Modelling'}]}],
  careers:{employed:[
-  {emoji:'🏛️',role:{en:'Architectural Technician',sw:'Fundi wa Usanifu wa Majengo'},desc:{en:'Work on architectural designs for construction firms',sw:'Fanya kazi kwenye michoro ya usanifu kwa makampuni ya ujenzi'},salary:'TZS 900K–2.5M/month'},
-  {emoji:'🏙️',role:{en:'Urban Planner Assistant',sw:'Msaidizi wa Mpango Mji'},desc:{en:'Support urban and housing development planning',sw:'Saidia mipango ya makazi na miji'},salary:'TZS 800K–2M/month'}],
+  {emoji:'🏛️',role:{en:'Architectural Technician',sw:'Fundi wa Usanifu wa Majengo'},desc:{en:'Work on architectural designs for construction firms',sw:'Fanya kazi kwenye michoro ya usanifu kwa makampuni ya ujenzi'}},
+  {emoji:'🏙️',role:{en:'Urban Planner Assistant',sw:'Msaidizi wa Mpango Mji'},desc:{en:'Support urban and housing development planning',sw:'Saidia mipango ya makazi na miji'}}],
  self:[
   {emoji:'✏️',role:{en:'Freelance Architectural Designer',sw:'Mbuni Huru wa Majengo'},desc:{en:'Design houses and buildings for private clients',sw:'Buni nyumba na majengo kwa wateja binafsi'}}]}},
 
@@ -155,8 +153,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'CHD 06222',name:'Social and Environmental Management'},{code:'CHD 06223',name:'Construction Management and Procurement Practice'},{code:'CHD 06236',name:'Pavement Engineering'},{code:'CHD 06230',name:'Structural Steel Design'},{code:'CHD 06235',name:'Hydraulics'},{code:'CHD 06237',name:'Project Data Analysis and Report'},{code:'Elective',name:'Railway Engineering (Elective)'},{code:'Elective',name:'Airport Engineering (Elective)'}]}],
  careers:{employed:[
-  {emoji:'🛣️',role:{en:'Road Engineer',sw:'Mhandisi wa Barabara'},desc:{en:'Design and supervise road construction projects',sw:'Buni na simamia miradi ya ujenzi wa barabara'},salary:'TZS 1M–3.5M/month'},
-  {emoji:'🌉',role:{en:'Bridge Engineer',sw:'Mhandisi wa Madaraja'},desc:{en:'Design and inspect bridges and culverts',sw:'Buni na kagua madaraja na bomba za mto'},salary:'TZS 1.2M–4M/month'}],
+  {emoji:'🛣️',role:{en:'Road Engineer',sw:'Mhandisi wa Barabara'},desc:{en:'Design and supervise road construction projects',sw:'Buni na simamia miradi ya ujenzi wa barabara'}},
+  {emoji:'🌉',role:{en:'Bridge Engineer',sw:'Mhandisi wa Madaraja'},desc:{en:'Design and inspect bridges and culverts',sw:'Buni na kagua madaraja na bomba za mto'}}],
  self:[
   {emoji:'🏢',role:{en:'Road Construction Contractor',sw:'Mkandarasi wa Barabara'},desc:{en:'Tender and manage road construction projects',sw:'Omba zabuni na simamia miradi ya ujenzi wa barabara'}}]}},
 
@@ -179,8 +177,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming, Statistics and Probability'},{code:'GST 06204',name:'Enterprise Management'},{code:'EET 06201',name:'Synchronous and Special Machines'},{code:'EET 06202',name:'Electric Drives'},{code:'EET 06203',name:'Refrigeration and Air Conditioning'},{code:'EET 06204',name:'Electrical Maintenance and Management'},{code:'EET 06205',name:'Electrical Power Transmission & Distribution'},{code:'EET 06206',name:'Renewable Energy'},{code:'EET 06207',name:'Project II'}]}],
  careers:{employed:[
-  {emoji:'⚡',role:{en:'Electrical Engineer',sw:'Mhandisi wa Umeme'},desc:{en:'Design and maintain electrical systems in industries',sw:'Buni na matengenezo ya mifumo ya umeme viwandani'},salary:'TZS 1M–3.5M/month'},
-  {emoji:'🔌',role:{en:'Electrical Installation Officer',sw:'Afisa wa Usakinishaji wa Umeme'},desc:{en:'Handle wiring and electrical installations in buildings',sw:'Shughulikia usakinishaji wa waya na umeme majengo'},salary:'TZS 600K–1.5M/month'}],
+  {emoji:'⚡',role:{en:'Electrical Engineer',sw:'Mhandisi wa Umeme'},desc:{en:'Design and maintain electrical systems in industries',sw:'Buni na matengenezo ya mifumo ya umeme viwandani'}},
+  {emoji:'🔌',role:{en:'Electrical Installation Officer',sw:'Afisa wa Usakinishaji wa Umeme'},desc:{en:'Handle wiring and electrical installations in buildings',sw:'Shughulikia usakinishaji wa waya na umeme majengo'}}],
  self:[
   {emoji:'🔌',role:{en:'Electrical Contractor',sw:'Mkandarasi wa Umeme'},desc:{en:'Run your own electrical installation business',sw:'Endesha biashara yako ya usakinishaji wa umeme'}}]}},
 
@@ -202,8 +200,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming, Statistics and Probability'},{code:'GST 06204',name:'Enterprise Management'},{code:'ETT 06201',name:'Telephony and Switching'},{code:'ETT 06202',name:'Microwave Technology'},{code:'ETT 06203',name:'Communication Systems'},{code:'ETT 06204',name:'Satellite Communication'},{code:'IPT 06',name:'Industrial Practical Training'}]}],
  careers:{employed:[
-  {emoji:'📡',role:{en:'Telecommunications Engineer',sw:'Mhandisi wa Mawasiliano'},desc:{en:'Work with telecom companies like Airtel, Vodacom, TTCL',sw:'Fanya kazi na makampuni ya simu kama Airtel, Vodacom'},salary:'TZS 1M–3.5M/month'},
-  {emoji:'📺',role:{en:'Broadcast Technician',sw:'Fundi wa Utangazaji'},desc:{en:'Maintain broadcasting equipment for TV and radio',sw:'Matengenezo ya vifaa vya utangazaji kwa TV na redio'},salary:'TZS 700K–2M/month'}],
+  {emoji:'📡',role:{en:'Telecommunications Engineer',sw:'Mhandisi wa Mawasiliano'},desc:{en:'Work with telecom companies like Airtel, Vodacom, TTCL',sw:'Fanya kazi na makampuni ya simu kama Airtel, Vodacom'}},
+  {emoji:'📺',role:{en:'Broadcast Technician',sw:'Fundi wa Utangazaji'},desc:{en:'Maintain broadcasting equipment for TV and radio',sw:'Matengenezo ya vifaa vya utangazaji kwa TV na redio'}}],
  self:[
   {emoji:'📶',role:{en:'ISP/WiFi Business Owner',sw:'Mmiliki wa Biashara ya Intaneti'},desc:{en:'Provide internet services to homes and businesses',sw:'Toa huduma za intaneti kwa nyumba na biashara'}}]}},
 
@@ -225,8 +223,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming and Probability'},{code:'GST 06202',name:'Enterprise Management'},{code:'EBT 06202',name:'Hospital Equipment Repair and Maintenance'},{code:'EBT 06204',name:'Medical Imaging Equipment Theory'},{code:'EBT 06203',name:'Hospital Electrical and Mechanical Systems'},{code:'EET 06203',name:'Refrigeration and Air Conditioning'},{code:'EET 06207',name:'Project II'},{code:'EBT 06201',name:'Therapeutic Medical Equipment'}]}],
  careers:{employed:[
-  {emoji:'🏥',role:{en:'Biomedical Equipment Technician',sw:'Fundi wa Vifaa vya Hospitali'},desc:{en:'Maintain and repair medical equipment in hospitals',sw:'Matengenezo na kutengeneza vifaa vya matibabu hospitalini'},salary:'TZS 900K–2.5M/month'},
-  {emoji:'🔬',role:{en:'Medical Device Engineer',sw:'Mhandisi wa Vifaa vya Matibabu'},desc:{en:'Work with hospitals and clinics on medical equipment',sw:'Fanya kazi na hospitali na kliniki kuhusu vifaa vya matibabu'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🏥',role:{en:'Biomedical Equipment Technician',sw:'Fundi wa Vifaa vya Hospitali'},desc:{en:'Maintain and repair medical equipment in hospitals',sw:'Matengenezo na kutengeneza vifaa vya matibabu hospitalini'}},
+  {emoji:'🔬',role:{en:'Medical Device Engineer',sw:'Mhandisi wa Vifaa vya Matibabu'},desc:{en:'Work with hospitals and clinics on medical equipment',sw:'Fanya kazi na hospitali na kliniki kuhusu vifaa vya matibabu'}}],
  self:[
   {emoji:'🏥',role:{en:'Medical Equipment Service Provider',sw:'Mtoa Huduma wa Vifaa vya Matibabu'},desc:{en:'Service and calibrate medical devices for clinics',sw:'Hudumia na rekebisha vifaa vya matibabu kwa kliniki'}}]}},
 
@@ -248,8 +246,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'EHT 06211',name:'Hydropower Plant Monitoring and Control'},{code:'EHT 06212',name:'Electrical Power Protection'},{code:'EHT 06213',name:'Synchronous and Special Machines'},{code:'EHT 06214',name:'Refrigeration and Air Conditioning'},{code:'EHT 06215',name:'Hydropower Environmental Management and Climate Change'},{code:'EHT 06216',name:'Electrical Power Transmission and Distribution'},{code:'EHT 06217',name:'Engineering Project Implementation'}]}],
  careers:{employed:[
-  {emoji:'💧',role:{en:'Hydropower Plant Engineer',sw:'Mhandisi wa Mtambo wa Maji'},desc:{en:'Operate and maintain hydroelectric power plants (TANESCO)',sw:'Endesha na matengenezo ya mitambo ya umeme wa maji (TANESCO)'},salary:'TZS 1M–3.5M/month'},
-  {emoji:'⚡',role:{en:'Power Systems Engineer',sw:'Mhandisi wa Mifumo ya Umeme'},desc:{en:'Manage electricity generation and distribution networks',sw:'Simamia uzalishaji na usambazaji wa umeme'},salary:'TZS 1.2M–4M/month'}],
+  {emoji:'💧',role:{en:'Hydropower Plant Engineer',sw:'Mhandisi wa Mtambo wa Maji'},desc:{en:'Operate and maintain hydroelectric power plants (TANESCO)',sw:'Endesha na matengenezo ya mitambo ya umeme wa maji (TANESCO)'}},
+  {emoji:'⚡',role:{en:'Power Systems Engineer',sw:'Mhandisi wa Mifumo ya Umeme'},desc:{en:'Manage electricity generation and distribution networks',sw:'Simamia uzalishaji na usambazaji wa umeme'}}],
  self:[
   {emoji:'🌊',role:{en:'Small Hydro Developer',sw:'Mjenzi wa Mitambo Midogo ya Umeme wa Maji'},desc:{en:'Install micro-hydro systems for rural electrification',sw:'Weka mifumo midogo ya umeme wa maji vijijini'}}]}},
 
@@ -271,8 +269,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming and Probability'},{code:'GST 06202',name:'Enterprise Management'},{code:'EST 06201',name:'Solar Power Plant Maintenance'},{code:'EST 06202',name:'Energy Efficiency and Economics'},{code:'EET 06201',name:'Synchronous and Special Machines'},{code:'EET 06204',name:'Electrical Maintenance and Management'},{code:'EET 06205',name:'Electrical Power Transmission and Distribution'},{code:'EET 06207',name:'Project II'}]}],
  careers:{employed:[
-  {emoji:'☀️',role:{en:'Solar Energy Engineer',sw:'Mhandisi wa Nishati ya Jua'},desc:{en:'Install and maintain solar power systems for homes and businesses',sw:'Weka na matengenezo ya mifumo ya jua kwa nyumba na biashara'},salary:'TZS 900K–2.5M/month'},
-  {emoji:'⚡',role:{en:'Renewable Energy Technician',sw:'Fundi wa Nishati Mbadala'},desc:{en:'Work on solar and hybrid energy projects',sw:'Fanya kazi kwenye miradi ya nishati ya jua na hybrid'},salary:'TZS 800K–2M/month'}],
+  {emoji:'☀️',role:{en:'Solar Energy Engineer',sw:'Mhandisi wa Nishati ya Jua'},desc:{en:'Install and maintain solar power systems for homes and businesses',sw:'Weka na matengenezo ya mifumo ya jua kwa nyumba na biashara'}},
+  {emoji:'⚡',role:{en:'Renewable Energy Technician',sw:'Fundi wa Nishati Mbadala'},desc:{en:'Work on solar and hybrid energy projects',sw:'Fanya kazi kwenye miradi ya nishati ya jua na hybrid'}}],
  self:[
   {emoji:'☀️',role:{en:'Solar Installation Business',sw:'Biashara ya Usakinishaji wa Jua'},desc:{en:'Install solar panels for homes, schools and businesses',sw:'Weka paneli za jua kwa nyumba, shule na biashara'}}]}},
 
@@ -294,8 +292,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming and Probability'},{code:'GST 06202',name:'Enterprise Management'},{code:'EET 06201',name:'Synchronous and Special Machines'},{code:'EET 06205',name:'Electrical Power Transmission and Distribution'},{code:'EWT 06201',name:'Wind Energy Systems Maintenance and Management'},{code:'EWT 06202',name:'Energy Efficiency and Economics'},{code:'EWT 06203',name:'Renewable Energy Hybrid System Design'},{code:'EWT 06204',name:'Meteorological Analysis and Forecasting'},{code:'EWT 06205',name:'Wind Energy Project II'}]}],
  careers:{employed:[
-  {emoji:'🌬️',role:{en:'Wind Energy Technician',sw:'Fundi wa Nishati ya Upepo'},desc:{en:'Install and maintain wind turbines',sw:'Weka na matengenezo ya mitambo ya upepo'},salary:'TZS 900K–2.5M/month'},
-  {emoji:'☀️',role:{en:'Renewable Energy Engineer',sw:'Mhandisi wa Nishati Mbadala'},desc:{en:'Work on solar, wind and hybrid energy systems',sw:'Fanya kazi kwenye mifumo ya jua, upepo na hybrid'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🌬️',role:{en:'Wind Energy Technician',sw:'Fundi wa Nishati ya Upepo'},desc:{en:'Install and maintain wind turbines',sw:'Weka na matengenezo ya mitambo ya upepo'}},
+  {emoji:'☀️',role:{en:'Renewable Energy Engineer',sw:'Mhandisi wa Nishati Mbadala'},desc:{en:'Work on solar, wind and hybrid energy systems',sw:'Fanya kazi kwenye mifumo ya jua, upepo na hybrid'}}],
  self:[
   {emoji:'⚡',role:{en:'Renewable Energy Installer',sw:'Msakinishaji wa Nishati Mbadala'},desc:{en:'Install solar and wind energy systems for homes and businesses',sw:'Weka mifumo ya jua na upepo kwa nyumba na biashara'}}]}},
 
@@ -305,8 +303,8 @@ const COURSES=[
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
  semesters:[],
  careers:{employed:[
-  {emoji:'☢️',role:{en:'Nuclear Technician',sw:'Fundi wa Nyuklia'},desc:{en:'Work with Tanzania Atomic Energy Commission (TAEC)',sw:'Fanya kazi na Tume ya Nishati ya Atomiki Tanzania (TAEC)'},salary:'TZS 1M–3M/month'},
-  {emoji:'🔬',role:{en:'Radiation Safety Officer',sw:'Afisa wa Usalama wa Mionzi'},desc:{en:'Monitor and control radiation in hospitals and industries',sw:'Fuatilia na dhibiti mionzi hospitalini na viwandani'},salary:'TZS 1M–2.5M/month'}],
+  {emoji:'☢️',role:{en:'Nuclear Technician',sw:'Fundi wa Nyuklia'},desc:{en:'Work with Tanzania Atomic Energy Commission (TAEC)',sw:'Fanya kazi na Tume ya Nishati ya Atomiki Tanzania (TAEC)'}},
+  {emoji:'🔬',role:{en:'Radiation Safety Officer',sw:'Afisa wa Usalama wa Mionzi'},desc:{en:'Monitor and control radiation in hospitals and industries',sw:'Fuatilia na dhibiti mionzi hospitalini na viwandani'}}],
  self:[
   {emoji:'🏥',role:{en:'Radiation Safety Consultant',sw:'Mshauri wa Usalama wa Mionzi'},desc:{en:'Advise hospitals on safe use of radiation equipment',sw:'Shauri hospitali kuhusu matumizi salama ya vifaa vya mionzi'}}]}},
 
@@ -328,8 +326,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'IET 06211',name:'Industrial Process Control and Monitoring'},{code:'IET 06212',name:'Signal Processing and Applications'},{code:'IET 06213',name:'Instruments Maintenance and Repair'},{code:'IET 06214',name:'Telemetry Systems Installation and Maintenance'},{code:'IET 06215',name:'Engineering Project Implementation'}]}],
  careers:{employed:[
-  {emoji:'🎛️',role:{en:'Instrumentation Technician',sw:'Fundi wa Vyombo vya Kupimia'},desc:{en:'Maintain measurement and control systems in factories',sw:'Matengenezo ya mifumo ya kupimia na udhibiti viwandani'},salary:'TZS 900K–2.5M/month'},
-  {emoji:'🏭',role:{en:'Process Control Engineer',sw:'Mhandisi wa Udhibiti wa Uzalishaji'},desc:{en:'Monitor and control industrial manufacturing processes',sw:'Fuatilia na udhibiti michakato ya uzalishaji viwandani'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🎛️',role:{en:'Instrumentation Technician',sw:'Fundi wa Vyombo vya Kupimia'},desc:{en:'Maintain measurement and control systems in factories',sw:'Matengenezo ya mifumo ya kupimia na udhibiti viwandani'}},
+  {emoji:'🏭',role:{en:'Process Control Engineer',sw:'Mhandisi wa Udhibiti wa Uzalishaji'},desc:{en:'Monitor and control industrial manufacturing processes',sw:'Fuatilia na udhibiti michakato ya uzalishaji viwandani'}}],
  self:[
   {emoji:'🔧',role:{en:'Instrumentation Consultant',sw:'Mshauri wa Vyombo vya Kupimia'},desc:{en:'Calibrate and service instruments for industries',sw:'Rekebisha na hudumia vyombo vya kupimia kwa viwanda'}}]}},
 
@@ -352,8 +350,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'MET 06211',name:'CNC Programming and Application'},{code:'MET 06212',name:'Fundamentals of Air-conditioning System'},{code:'MET 06213',name:'Fundamentals of Pump and Compressor Systems'},{code:'MET 06214',name:'Machine Installation, Commissioning and Maintenance'},{code:'MET 06215',name:'Workshop Management'},{code:'MET 06216',name:'Mechanical Engineering Project II – Production'}]}],
  careers:{employed:[
-  {emoji:'⚙️',role:{en:'Mechanical Engineer',sw:'Mhandisi wa Mitambo'},desc:{en:'Design and maintain machinery in factories and industries',sw:'Buni na matengenezo ya mashine viwandani'},salary:'TZS 1M–3.5M/month'},
-  {emoji:'🏭',role:{en:'Production Engineer',sw:'Mhandisi wa Uzalishaji'},desc:{en:'Oversee manufacturing processes in factories',sw:'Simamia michakato ya utengenezaji viwandani'},salary:'TZS 1M–3M/month'}],
+  {emoji:'⚙️',role:{en:'Mechanical Engineer',sw:'Mhandisi wa Mitambo'},desc:{en:'Design and maintain machinery in factories and industries',sw:'Buni na matengenezo ya mashine viwandani'}},
+  {emoji:'🏭',role:{en:'Production Engineer',sw:'Mhandisi wa Uzalishaji'},desc:{en:'Oversee manufacturing processes in factories',sw:'Simamia michakato ya utengenezaji viwandani'}}],
  self:[
   {emoji:'🔧',role:{en:'Workshop / Garage Owner',sw:'Mmiliki wa Karakana'},desc:{en:'Run your own machine repair and fabrication workshop',sw:'Endesha karakana yako ya kutengeneza mashine'}}]}},
 
@@ -375,7 +373,7 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming and Probability'},{code:'GST 06202',name:'Enterprise Management'},{code:'MBT 06201',name:'Material Technology'},{code:'MBT 06202',name:'Construction of Bio-digester'},{code:'MET 06208',name:'Fundamental of 3D Modelling Using Solid Works'},{code:'MET 06209',name:'Fundamentals of Air-conditioning System'},{code:'MET 06211',name:'Industrial Automation'},{code:'MET 06212',name:'Mechanical Workshop Management'},{code:'RET 06201',name:'Renewable Energy Hybrid System Design'},{code:'MBT 06203',name:'Bioenergy Project II – Production'}]}],
  careers:{employed:[
-  {emoji:'🌱',role:{en:'Bioenergy Engineer',sw:'Mhandisi wa Nishati ya Kibiolojia'},desc:{en:'Work on biogas, biomass and renewable energy projects',sw:'Fanya kazi kwenye miradi ya biogas, biomass na nishati mbadala'},salary:'TZS 900K–2.5M/month'}],
+  {emoji:'🌱',role:{en:'Bioenergy Engineer',sw:'Mhandisi wa Nishati ya Kibiolojia'},desc:{en:'Work on biogas, biomass and renewable energy projects',sw:'Fanya kazi kwenye miradi ya biogas, biomass na nishati mbadala'}}],
  self:[
   {emoji:'🔥',role:{en:'Biogas Plant Installer',sw:'Msakinishaji wa Mitambo ya Biogas'},desc:{en:'Install biogas digesters for farms and homes',sw:'Weka mitambo ya biogas kwa mashamba na nyumba'}}]}},
 
@@ -393,8 +391,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'PWT 06212',name:'Solar Thermal Energy Systems'},{code:'PWT 06213',name:'Principles of Water, Oil and Gas Control'},{code:'PWT 06214',name:'Water, Oil and Gas Piping, Operation and System Planning'},{code:'PWT 06215',name:'Oil and Gas Fired Appliances and Pressure Vessels'},{code:'PWT 06216',name:'Pipe-works Engineering Project II – Installation'}]}],
  careers:{employed:[
-  {emoji:'🔩',role:{en:'Pipework Engineer',sw:'Mhandisi wa Mabomba'},desc:{en:'Install and maintain pipe systems in buildings and industries',sw:'Weka na matengenezo ya mabomba majengo na viwandani'},salary:'TZS 900K–2.5M/month'},
-  {emoji:'⛽',role:{en:'Oil & Gas Technician',sw:'Fundi wa Mafuta na Gesi'},desc:{en:'Work on oil, gas and petroleum pipe systems',sw:'Fanya kazi kwenye mifumo ya mabomba ya mafuta na gesi'},salary:'TZS 1.2M–4M/month'}],
+  {emoji:'🔩',role:{en:'Pipework Engineer',sw:'Mhandisi wa Mabomba'},desc:{en:'Install and maintain pipe systems in buildings and industries',sw:'Weka na matengenezo ya mabomba majengo na viwandani'}},
+  {emoji:'⛽',role:{en:'Oil & Gas Technician',sw:'Fundi wa Mafuta na Gesi'},desc:{en:'Work on oil, gas and petroleum pipe systems',sw:'Fanya kazi kwenye mifumo ya mabomba ya mafuta na gesi'}}],
  self:[
   {emoji:'🔧',role:{en:'Plumbing Contractor',sw:'Mkandarasi wa Mabomba'},desc:{en:'Run your own plumbing and pipe installation business',sw:'Endesha biashara yako ya kuweka mabomba'}}]}},
 
@@ -414,8 +412,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GGT 06211',name:'Engineering Geology'},{code:'GGT 06212',name:'Mining Survey'},{code:'GGT 06213',name:'Rock Carving Techniques'},{code:'GGT 06214',name:'Mining Geology Software'},{code:'GGT 06215',name:'Legal Structure in Mining Operation'},{code:'GGT 06216',name:'Mine Hazards'},{code:'GGT 06217',name:'Project Implementation'}]}],
  careers:{employed:[
-  {emoji:'💎',role:{en:'Gemologist / Gemstone Technician',sw:'Mtaalamu wa Madini ya Thamani'},desc:{en:'Grade and process gemstones for export companies',sw:'Panga na sinda madini ya thamani kwa makampuni ya usafirishaji'},salary:'TZS 800K–2.5M/month'},
-  {emoji:'⛏️',role:{en:'Mining Engineer',sw:'Mhandisi wa Machimbo'},desc:{en:'Work in Tanzania mining industry (gold, diamonds, tanzanite)',sw:'Fanya kazi katika viwanda vya madini Tanzania'},salary:'TZS 1M–4M/month'}],
+  {emoji:'💎',role:{en:'Gemologist / Gemstone Technician',sw:'Mtaalamu wa Madini ya Thamani'},desc:{en:'Grade and process gemstones for export companies',sw:'Panga na sinda madini ya thamani kwa makampuni ya usafirishaji'}},
+  {emoji:'⛏️',role:{en:'Mining Engineer',sw:'Mhandisi wa Machimbo'},desc:{en:'Work in Tanzania mining industry (gold, diamonds, tanzanite)',sw:'Fanya kazi katika viwanda vya madini Tanzania'}}],
  self:[
   {emoji:'💍',role:{en:'Gemstone Business / Jewellery',sw:'Biashara ya Madini na Vito'},desc:{en:'Buy, process and sell gemstones and jewellery',sw:'Nunua, sinda na uza madini ya thamani na vito'}}]}},
 
@@ -438,8 +436,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GSD 06203',name:'Supervisory Communication Skills'},{code:'CSD 06201',name:'Advanced Network Management'},{code:'CSD 06202',name:'Java Programming'},{code:'CSD 06203',name:'Fundamental of Data Structures and Algorithms'},{code:'CSD 06204',name:'Microprocessor Technology'},{code:'ITT 06201',name:'Principles of Management'},{code:'FYP II',name:'Final Year Project II'}]}],
  careers:{employed:[
-  {emoji:'💻',role:{en:'Software Developer',sw:'Mtengenezaji wa Programu'},desc:{en:'Build apps and systems for companies and startups',sw:'Tengeneza programu na mifumo kwa makampuni'},salary:'TZS 1M–3M/month'},
-  {emoji:'🔒',role:{en:'Cybersecurity Analyst',sw:'Mchambuzi wa Usalama wa Mtandao'},desc:{en:'Protect company systems from hackers and threats',sw:'Linda mifumo ya makampuni dhidi ya wavamizi'},salary:'TZS 1.5M–4M/month'}],
+  {emoji:'💻',role:{en:'Software Developer',sw:'Mtengenezaji wa Programu'},desc:{en:'Build apps and systems for companies and startups',sw:'Tengeneza programu na mifumo kwa makampuni'}},
+  {emoji:'🔒',role:{en:'Cybersecurity Analyst',sw:'Mchambuzi wa Usalama wa Mtandao'},desc:{en:'Protect company systems from hackers and threats',sw:'Linda mifumo ya makampuni dhidi ya wavamizi'}}],
  self:[
   {emoji:'🚀',role:{en:'Tech Startup Founder',sw:'Mwanzilishi wa Kampuni ya Teknolojia'},desc:{en:'Build your own software products and sell them',sw:'Jenga bidhaa zako za programu na uziuze'}},
   {emoji:'🖥️',role:{en:'Freelance Developer',sw:'Msanidi Huru'},desc:{en:'Work remotely for clients via Upwork, Fiverr',sw:'Fanya kazi kwa wateja kupitia Upwork, Fiverr'}}]}},
@@ -462,8 +460,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GSD 06203',name:'Supervisory Communication Skills'},{code:'ITD 06201',name:'Principles of Management'},{code:'ITD 06202',name:'Wireless Networking'},{code:'ITD 06203',name:'Advanced Network Management'},{code:'ITD 06204',name:'Final Year Project II'}]}],
  careers:{employed:[
-  {emoji:'🌐',role:{en:'Network Administrator',sw:'Msimamizi wa Mtandao'},desc:{en:'Manage and maintain computer networks in organizations',sw:'Simamia mitandao ya kompyuta katika mashirika'},salary:'TZS 900K–2.5M/month'},
-  {emoji:'🖥️',role:{en:'System Administrator',sw:'Msimamizi wa Mifumo'},desc:{en:'Manage servers and IT infrastructure',sw:'Simamia seva na miundombinu ya IT'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🌐',role:{en:'Network Administrator',sw:'Msimamizi wa Mtandao'},desc:{en:'Manage and maintain computer networks in organizations',sw:'Simamia mitandao ya kompyuta katika mashirika'}},
+  {emoji:'🖥️',role:{en:'System Administrator',sw:'Msimamizi wa Mifumo'},desc:{en:'Manage servers and IT infrastructure',sw:'Simamia seva na miundombinu ya IT'}}],
  self:[
   {emoji:'📶',role:{en:'ISP/WiFi Business Owner',sw:'Mmiliki wa Biashara ya Intaneti'},desc:{en:'Provide internet services to homes and businesses',sw:'Toa huduma za intaneti kwa nyumba na biashara'}}]}},
 
@@ -485,8 +483,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'CDD 06211',name:'Encryption Technology'},{code:'CDD 06212',name:'Information Quality Assurance'},{code:'CDD 06213',name:'Database Security'},{code:'CDD 06214',name:'Mobile and Wireless Security'},{code:'CDD 06215',name:'Mobile Device Forensic'},{code:'CDD 06216',name:'Information Security Management'},{code:'CDD 06217',name:'Project Implementation'}]}],
  careers:{employed:[
-  {emoji:'🛡️',role:{en:'Cybersecurity Analyst',sw:'Mchambuzi wa Usalama wa Mtandao'},desc:{en:'Monitor and protect organizational networks from attacks',sw:'Fuatilia na linda mitandao ya mashirika dhidi ya mashambulio'},salary:'TZS 1.5M–4M/month'},
-  {emoji:'🔍',role:{en:'Digital Forensic Investigator',sw:'Mpelelezi wa Kidijitali'},desc:{en:'Investigate cybercrimes for police and courts',sw:'Chunguza uhalifu wa mtandao kwa polisi na mahakama'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🛡️',role:{en:'Cybersecurity Analyst',sw:'Mchambuzi wa Usalama wa Mtandao'},desc:{en:'Monitor and protect organizational networks from attacks',sw:'Fuatilia na linda mitandao ya mashirika dhidi ya mashambulio'}},
+  {emoji:'🔍',role:{en:'Digital Forensic Investigator',sw:'Mpelelezi wa Kidijitali'},desc:{en:'Investigate cybercrimes for police and courts',sw:'Chunguza uhalifu wa mtandao kwa polisi na mahakama'}}],
  self:[
   {emoji:'🔐',role:{en:'Cybersecurity Consultant',sw:'Mshauri wa Usalama wa Mtandao'},desc:{en:'Help businesses secure their systems independently',sw:'Saidia biashara kulinda mifumo yao kwa uhuru'}}]}},
 
@@ -506,8 +504,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester I & II (contact ATC)',sw:'Ngazi ya 6 — Wasiliana na ATC'},subjects:[
    {code:'—',name:'NTA Level 6 modules — contact ATC Registrar for full list'}]}],
  careers:{employed:[
-  {emoji:'🎨',role:{en:'Graphic Designer',sw:'Mbuni wa Picha'},desc:{en:'Create visual content for brands and media companies',sw:'Tengeneza maudhui ya kuona kwa biashara na kampuni za habari'},salary:'TZS 600K–2M/month'},
-  {emoji:'📱',role:{en:'UI/UX Designer',sw:'Mbuni wa Kiolesura cha Mtumiaji'},desc:{en:'Design user interfaces for apps and websites',sw:'Buni miingiliano ya mtumiaji kwa programu na tovuti'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🎨',role:{en:'Graphic Designer',sw:'Mbuni wa Picha'},desc:{en:'Create visual content for brands and media companies',sw:'Tengeneza maudhui ya kuona kwa biashara na kampuni za habari'}},
+  {emoji:'📱',role:{en:'UI/UX Designer',sw:'Mbuni wa Kiolesura cha Mtumiaji'},desc:{en:'Design user interfaces for apps and websites',sw:'Buni miingiliano ya mtumiaji kwa programu na tovuti'}}],
  self:[
   {emoji:'🎨',role:{en:'Freelance Designer / Animator',sw:'Mbuni / Mhuishaji Huru'},desc:{en:'Work for clients on Fiverr, Upwork, and locally',sw:'Fanya kazi kwa wateja kwenye Fiverr, Upwork, na ndani ya nchi'}},
   {emoji:'📺',role:{en:'Content Creator / YouTuber',sw:'Mtengenezaji wa Maudhui / YouTuber'},desc:{en:'Build a YouTube or social media channel and monetize it',sw:'Jenga channel ya YouTube na uipate pesa'}}]}},
@@ -531,8 +529,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'LST 06201',name:'Radiation Protection and Safety'},{code:'LST 06202',name:'Electrical and Waves Practicals'},{code:'LST 06203',name:'Fundamentals of Industrial Chemistry'},{code:'LST 06204',name:'Molecular Genetics'},{code:'LST 06205',name:'Quality Control and Assurance'},{code:'LST 06206',name:'Project'}]}],
  careers:{employed:[
-  {emoji:'🔬',role:{en:'Laboratory Technician',sw:'Fundi wa Maabara'},desc:{en:'Work in hospital, research, or industrial labs',sw:'Fanya kazi katika maabara ya hospitali, utafiti, au viwanda'},salary:'TZS 700K–2M/month'},
-  {emoji:'💊',role:{en:'Quality Control Analyst',sw:'Mchambuzi wa Ubora'},desc:{en:'Test products in pharmaceutical and food industries',sw:'Pima bidhaa katika viwanda vya dawa na chakula'},salary:'TZS 800K–2.5M/month'}],
+  {emoji:'🔬',role:{en:'Laboratory Technician',sw:'Fundi wa Maabara'},desc:{en:'Work in hospital, research, or industrial labs',sw:'Fanya kazi katika maabara ya hospitali, utafiti, au viwanda'}},
+  {emoji:'💊',role:{en:'Quality Control Analyst',sw:'Mchambuzi wa Ubora'},desc:{en:'Test products in pharmaceutical and food industries',sw:'Pima bidhaa katika viwanda vya dawa na chakula'}}],
  self:[
   {emoji:'🧪',role:{en:'Private Lab Services',sw:'Huduma za Maabara Binafsi'},desc:{en:'Offer water, food, and soil testing services',sw:'Toa huduma za kupima maji, chakula, na udongo'}}]}},
 
@@ -555,8 +553,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'ITU',name:'Mobile Security'},{code:'—',name:'Information System Security'},{code:'ITU',name:'System Administration'},{code:'—',name:'Network Management and Administration'},{code:'—',name:'Project Implementation'}]}],
  careers:{employed:[
-  {emoji:'💻',role:{en:'Senior Software Engineer',sw:'Mhandisi Mkuu wa Programu'},desc:{en:'Lead software development teams at tech companies',sw:'Ongoza timu za utengenezaji programu kampuni za teknolojia'},salary:'TZS 2M–6M/month'},
-  {emoji:'🤖',role:{en:'AI/ML Engineer',sw:'Mhandisi wa AI na Kujifunza kwa Mashine'},desc:{en:'Build artificial intelligence and machine learning systems',sw:'Jenga mifumo ya akili bandia na modeli za kujifunza'},salary:'TZS 3M–8M/month'}],
+  {emoji:'💻',role:{en:'Senior Software Engineer',sw:'Mhandisi Mkuu wa Programu'},desc:{en:'Lead software development teams at tech companies',sw:'Ongoza timu za utengenezaji programu kampuni za teknolojia'}},
+  {emoji:'🤖',role:{en:'AI/ML Engineer',sw:'Mhandisi wa AI na Kujifunza kwa Mashine'},desc:{en:'Build artificial intelligence and machine learning systems',sw:'Jenga mifumo ya akili bandia na modeli za kujifunza'}}],
  self:[
   {emoji:'🚀',role:{en:'Tech Startup Co-Founder',sw:'Mwanzilishi wa Kampuni ya Teknolojia'},desc:{en:'Build innovative tech products for Tanzania and Africa',sw:'Jenga bidhaa za teknolojia za ubunifu kwa Tanzania na Afrika'}}]}},
 
@@ -574,8 +572,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'—',name:'Ethical Hacking'},{code:'—',name:'Information System Auditing'},{code:'—',name:'Server Administration'},{code:'—',name:'Network Management and Administration'},{code:'—',name:'Undergraduate Project Implementation'}]}],
  careers:{employed:[
-  {emoji:'📊',role:{en:'IT Manager',sw:'Meneja wa IT'},desc:{en:'Lead IT departments in government and private sectors',sw:'Ongoza idara za IT serikalini na sekta binafsi'},salary:'TZS 1.5M–4M/month'},
-  {emoji:'☁️',role:{en:'Cloud Engineer',sw:'Mhandisi wa Wingu'},desc:{en:'Build and manage cloud systems (AWS, Azure, Google Cloud)',sw:'Jenga na simamia mifumo ya wingu (AWS, Azure, Google Cloud)'},salary:'TZS 2M–6M/month'}],
+  {emoji:'📊',role:{en:'IT Manager',sw:'Meneja wa IT'},desc:{en:'Lead IT departments in government and private sectors',sw:'Ongoza idara za IT serikalini na sekta binafsi'}},
+  {emoji:'☁️',role:{en:'Cloud Engineer',sw:'Mhandisi wa Wingu'},desc:{en:'Build and manage cloud systems (AWS, Azure, Google Cloud)',sw:'Jenga na simamia mifumo ya wingu (AWS, Azure, Google Cloud)'}}],
  self:[
   {emoji:'🔧',role:{en:'IT Consultant',sw:'Mshauri wa IT'},desc:{en:'Advise businesses on their IT systems and needs',sw:'Shauri biashara kuhusu mifumo na mahitaji yao ya IT'}}]}},
 
@@ -597,8 +595,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'05211',name:'Differential Equations and Coordinate Geometry'},{code:'05212',name:'Introduction to Networking'},{code:'05213',name:'Structural Mechanics'},{code:'05214',name:'Quantity Surveying'},{code:'05215',name:'Workshop and Construction Practice'},{code:'05216',name:'Construction Management'},{code:'05217',name:'Road Construction and Maintenance'},{code:'05218',name:'Basic Hi-Tech Farming'},{code:'IPT',name:'Industrial Practical Training'}]}],
  careers:{employed:[
-  {emoji:'🏗️',role:{en:'Senior Civil Engineer',sw:'Mhandisi Mkuu wa Ujenzi'},desc:{en:'Lead major infrastructure and building projects',sw:'Ongoza miradi mikubwa ya miundombinu na ujenzi'},salary:'TZS 2M–6M/month'},
-  {emoji:'🌍',role:{en:'Project Manager — Infrastructure',sw:'Msimamizi wa Miradi ya Miundombinu'},desc:{en:'Manage large-scale construction projects for government/NGOs',sw:'Simamia miradi mikubwa ya ujenzi kwa serikali/NGO'},salary:'TZS 2.5M–7M/month'}],
+  {emoji:'🏗️',role:{en:'Senior Civil Engineer',sw:'Mhandisi Mkuu wa Ujenzi'},desc:{en:'Lead major infrastructure and building projects',sw:'Ongoza miradi mikubwa ya miundombinu na ujenzi'}},
+  {emoji:'🌍',role:{en:'Project Manager — Infrastructure',sw:'Msimamizi wa Miradi ya Miundombinu'},desc:{en:'Manage large-scale construction projects for government/NGOs',sw:'Simamia miradi mikubwa ya ujenzi kwa serikali/NGO'}}],
  self:[
   {emoji:'🏢',role:{en:'Engineering Consultancy Firm',sw:'Kampuni ya Ushauri wa Uhandisi'},desc:{en:'Start your own civil engineering consultancy',sw:'Anzisha kampuni yako ya ushauri wa uhandisi'}}]}},
 
@@ -620,9 +618,9 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'CIU 08211',name:'Irrigation Water Management'},{code:'CIU 08212',name:'Contract Management'},{code:'CIU 08213',name:'Structural Timber Design'},{code:'CIU 08214',name:'Wastewater Management'},{code:'CIU 08215',name:'Engineering Ethics'},{code:'CIU 08216',name:'Project Data Analysis and Realization'},{code:'CIU 08217',name:'Maintenance of Civil and Irrigation Infrastructure'},{code:'CIU 08218',name:'Bridge Design and Construction'}]}],
  careers:{employed:[
-  {emoji:'💧',role:{en:'Irrigation Project Engineer',sw:'Mhandisi wa Miradi ya Umwagiliaji'},desc:{en:'Lead large-scale irrigation schemes for MAJI, FAO, NGOs',sw:'Ongoza miradi mikubwa ya umwagiliaji kwa MAJI, FAO, NGO'},salary:'TZS 2M–5M/month'},
-  {emoji:'🌾',role:{en:'Agricultural Infrastructure Manager',sw:'Msimamizi wa Miundombinu ya Kilimo'},desc:{en:'Manage water infrastructure for agricultural districts',sw:'Simamia miundombinu ya maji kwa wilaya za kilimo'},salary:'TZS 1.5M–4M/month'},
-  {emoji:'🏗️',role:{en:'Senior Civil Engineer — Water',sw:'Mhandisi Mkuu wa Ujenzi wa Maji'},desc:{en:'Design dams, canals and water supply systems',sw:'Buni mabwawa, mifereji na mifumo ya usambazaji maji'},salary:'TZS 2M–6M/month'}],
+  {emoji:'💧',role:{en:'Irrigation Project Engineer',sw:'Mhandisi wa Miradi ya Umwagiliaji'},desc:{en:'Lead large-scale irrigation schemes for MAJI, FAO, NGOs',sw:'Ongoza miradi mikubwa ya umwagiliaji kwa MAJI, FAO, NGO'}},
+  {emoji:'🌾',role:{en:'Agricultural Infrastructure Manager',sw:'Msimamizi wa Miundombinu ya Kilimo'},desc:{en:'Manage water infrastructure for agricultural districts',sw:'Simamia miundombinu ya maji kwa wilaya za kilimo'}},
+  {emoji:'🏗️',role:{en:'Senior Civil Engineer — Water',sw:'Mhandisi Mkuu wa Ujenzi wa Maji'},desc:{en:'Design dams, canals and water supply systems',sw:'Buni mabwawa, mifereji na mifumo ya usambazaji maji'}}],
  self:[
   {emoji:'🌱',role:{en:'Irrigation Consultancy Firm',sw:'Kampuni ya Ushauri wa Umwagiliaji'},desc:{en:'Start your own irrigation engineering consultancy',sw:'Anzisha kampuni yako ya ushauri wa uhandisi wa umwagiliaji'}},
   {emoji:'💧',role:{en:'Water Harvesting Business',sw:'Biashara ya Uvunaji wa Maji'},desc:{en:'Design and install rainwater harvesting systems for farms',sw:'Buni na weka mifumo ya uvunaji wa maji ya mvua kwa mashamba'}}]}},
@@ -645,8 +643,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'—',name:'Design Software Practices'},{code:'—',name:'Structural Timber Design'},{code:'—',name:'Pavement Design and Construction'},{code:'—',name:'Bridge and Pavement Maintenance'},{code:'—',name:'Engineering Ethics'},{code:'—',name:'Project Data Analysis and Report'},{code:'—',name:'Design of Water Supply System'},{code:'—',name:'Public Health Management'}]}],
  careers:{employed:[
-  {emoji:'🛣️',role:{en:'Senior Road Engineer',sw:'Mhandisi Mkuu wa Barabara'},desc:{en:'Lead road and highway design and construction projects',sw:'Ongoza miradi ya kubuni na ujenzi wa barabara'},salary:'TZS 2M–5M/month'},
-  {emoji:'🌉',role:{en:'Bridge Design Engineer',sw:'Mhandisi wa Kubuni Madaraja'},desc:{en:'Design complex bridge structures for Tanzania infrastructure',sw:'Buni miundo ya madaraja kwa miundombinu ya Tanzania'},salary:'TZS 2M–6M/month'}],
+  {emoji:'🛣️',role:{en:'Senior Road Engineer',sw:'Mhandisi Mkuu wa Barabara'},desc:{en:'Lead road and highway design and construction projects',sw:'Ongoza miradi ya kubuni na ujenzi wa barabara'}},
+  {emoji:'🌉',role:{en:'Bridge Design Engineer',sw:'Mhandisi wa Kubuni Madaraja'},desc:{en:'Design complex bridge structures for Tanzania infrastructure',sw:'Buni miundo ya madaraja kwa miundombinu ya Tanzania'}}],
  self:[
   {emoji:'🏗️',role:{en:'Road Engineering Consultant',sw:'Mshauri wa Uhandisi wa Barabara'},desc:{en:'Offer road design and supervision services independently',sw:'Toa huduma za kubuni na kusimamia barabara kwa uhuru'}}]}},
 
@@ -668,8 +666,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'EAU 08211',name:'Special Electric Machines and Drives'},{code:'EAU 08212',name:'Nanotechnology'},{code:'EAU 08213',name:'Robotics'},{code:'EAU 08214',name:'Industrial Process Control'},{code:'EAU 08216',name:'Senior Project II'}]}],
  careers:{employed:[
-  {emoji:'🤖',role:{en:'Automation Engineer',sw:'Mhandisi wa Uendeshaji wa Kiotomatiki'},desc:{en:'Design automated systems for factories and industries',sw:'Buni mifumo ya kiotomatiki kwa viwanda'},salary:'TZS 2M–5M/month'},
-  {emoji:'⚡',role:{en:'Power Systems Engineer',sw:'Mhandisi wa Mifumo ya Umeme'},desc:{en:'Manage and design power distribution networks',sw:'Simamia na buni mitandao ya usambazaji wa umeme'},salary:'TZS 2M–6M/month'}],
+  {emoji:'🤖',role:{en:'Automation Engineer',sw:'Mhandisi wa Uendeshaji wa Kiotomatiki'},desc:{en:'Design automated systems for factories and industries',sw:'Buni mifumo ya kiotomatiki kwa viwanda'}},
+  {emoji:'⚡',role:{en:'Power Systems Engineer',sw:'Mhandisi wa Mifumo ya Umeme'},desc:{en:'Manage and design power distribution networks',sw:'Simamia na buni mitandao ya usambazaji wa umeme'}}],
  self:[
   {emoji:'🏭',role:{en:'Industrial Automation Consultant',sw:'Mshauri wa Uendeshaji wa Viwanda'},desc:{en:'Help factories automate their production processes',sw:'Saidia viwanda kuendesha uzalishaji wao kwa kiotomatiki'}}]}},
 
@@ -691,8 +689,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'EBU 08211',name:'Healthcare Management and Technology'},{code:'EAU 08211',name:'Special Electrical Machines and Drives'},{code:'EBU 08212',name:'Biomechanics'},{code:'EAU 08213',name:'Robotics'},{code:'EBU 08213',name:'Senior Project II'},{code:'EAU 08215',name:'Electrical Safety and Maintenance'}]}],
  careers:{employed:[
-  {emoji:'🏥',role:{en:'Senior Biomedical Engineer',sw:'Mhandisi Mkuu wa Vifaa vya Hospitali'},desc:{en:'Lead biomedical engineering teams in major hospitals',sw:'Ongoza timu za uhandisi wa vifaa vya matibabu hospitalini'},salary:'TZS 1.5M–4M/month'},
-  {emoji:'🔬',role:{en:'Medical Technology Specialist',sw:'Mtaalamu wa Teknolojia ya Matibabu'},desc:{en:'Specialize in advanced medical imaging and diagnostic equipment',sw:'Buni vifaa vya picha za matibabu na uchunguzi wa hali ya juu'},salary:'TZS 2M–5M/month'}],
+  {emoji:'🏥',role:{en:'Senior Biomedical Engineer',sw:'Mhandisi Mkuu wa Vifaa vya Hospitali'},desc:{en:'Lead biomedical engineering teams in major hospitals',sw:'Ongoza timu za uhandisi wa vifaa vya matibabu hospitalini'}},
+  {emoji:'🔬',role:{en:'Medical Technology Specialist',sw:'Mtaalamu wa Teknolojia ya Matibabu'},desc:{en:'Specialize in advanced medical imaging and diagnostic equipment',sw:'Buni vifaa vya picha za matibabu na uchunguzi wa hali ya juu'}}],
  self:[
   {emoji:'🏥',role:{en:'Medical Equipment Company',sw:'Kampuni ya Vifaa vya Matibabu'},desc:{en:'Import and service medical equipment for hospitals and clinics',sw:'Ingiza na hudumia vifaa vya matibabu kwa hospitali na kliniki'}}]}},
 
@@ -714,8 +712,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'GSU 08201',name:'Entrepreneurship for Engineers'},{code:'GSU 08202',name:'Engineering Project Management and Procurement'},{code:'GSU 08203',name:'Engineering Ethics and Professional Conducts'},{code:'REU 08201',name:'Geothermal Energy Technology'},{code:'REU 08202',name:'Hybrid Power Systems'},{code:'REU 08203',name:'Renewable Energy Project II'}]}],
  careers:{employed:[
-  {emoji:'☀️',role:{en:'Renewable Energy Project Manager',sw:'Msimamizi wa Miradi ya Nishati Mbadala'},desc:{en:'Manage solar, wind and hydro power projects',sw:'Simamia miradi ya umeme wa jua, upepo na maji'},salary:'TZS 2M–6M/month'},
-  {emoji:'🌍',role:{en:'Energy Policy Consultant',sw:'Mshauri wa Sera za Nishati'},desc:{en:'Advise government and NGOs on energy policy',sw:'Shauri serikali na NGO kuhusu sera za nishati'},salary:'TZS 2M–5M/month'}],
+  {emoji:'☀️',role:{en:'Renewable Energy Project Manager',sw:'Msimamizi wa Miradi ya Nishati Mbadala'},desc:{en:'Manage solar, wind and hydro power projects',sw:'Simamia miradi ya umeme wa jua, upepo na maji'}},
+  {emoji:'🌍',role:{en:'Energy Policy Consultant',sw:'Mshauri wa Sera za Nishati'},desc:{en:'Advise government and NGOs on energy policy',sw:'Shauri serikali na NGO kuhusu sera za nishati'}}],
  self:[
   {emoji:'⚡',role:{en:'Renewable Energy Company',sw:'Kampuni ya Nishati Mbadala'},desc:{en:'Build a solar/wind energy company serving rural Tanzania',sw:'Jenga kampuni ya nishati ya jua/upepo ikihudumia vijijini Tanzania'}}]}},
 
@@ -733,8 +731,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'MEU 08211',name:'Industrial Energy Management'},{code:'MEU 08212',name:'Industrial Automation'},{code:'MEU 08213',name:'Environmental Engineering and Management'},{code:'MEU 08214',name:'Robotics'},{code:'MEU 08215',name:'Project Implementation'}]}],
  careers:{employed:[
-  {emoji:'🏭',role:{en:'Senior Mechanical Engineer',sw:'Mhandisi Mkuu wa Mitambo'},desc:{en:'Lead engineering teams in manufacturing companies',sw:'Ongoza timu za uhandisi katika makampuni ya utengenezaji'},salary:'TZS 2M–6M/month'},
-  {emoji:'🤖',role:{en:'Robotics Engineer',sw:'Mhandisi wa Roboti'},desc:{en:'Design robotic systems for industrial automation',sw:'Buni mifumo ya roboti kwa uendeshaji wa viwanda'},salary:'TZS 2.5M–7M/month'}],
+  {emoji:'🏭',role:{en:'Senior Mechanical Engineer',sw:'Mhandisi Mkuu wa Mitambo'},desc:{en:'Lead engineering teams in manufacturing companies',sw:'Ongoza timu za uhandisi katika makampuni ya utengenezaji'}},
+  {emoji:'🤖',role:{en:'Robotics Engineer',sw:'Mhandisi wa Roboti'},desc:{en:'Design robotic systems for industrial automation',sw:'Buni mifumo ya roboti kwa uendeshaji wa viwanda'}}],
  self:[
   {emoji:'🏗️',role:{en:'Engineering Consultancy',sw:'Kampuni ya Ushauri wa Uhandisi'},desc:{en:'Offer mechanical engineering expertise to industries',sw:'Toa ujuzi wa uhandisi wa mitambo kwa viwanda'}}]}},
 
@@ -744,8 +742,8 @@ const COURSES=[
  entry:{en:'Ordinary Diploma in Mechanical, Electrical or related Engineering.',sw:'Stashahada ya Uhandisi wa Mitambo, Umeme au sawa nayo.'},
  semesters:[],
  careers:{employed:[
-  {emoji:'🤖',role:{en:'Mechatronics Engineer',sw:'Mhandisi wa Mekatroniki'},desc:{en:'Design and build electromechanical systems and robots',sw:'Buni na jenga mifumo ya umeme-mitambo na roboti'},salary:'TZS 2M–5M/month'},
-  {emoji:'🏭',role:{en:'Materials Engineer',sw:'Mhandisi wa Nyenzo'},desc:{en:'Research and develop new materials for manufacturing',sw:'Tafuta na buni nyenzo mpya kwa utengenezaji'},salary:'TZS 1.5M–4M/month'}],
+  {emoji:'🤖',role:{en:'Mechatronics Engineer',sw:'Mhandisi wa Mekatroniki'},desc:{en:'Design and build electromechanical systems and robots',sw:'Buni na jenga mifumo ya umeme-mitambo na roboti'}},
+  {emoji:'🏭',role:{en:'Materials Engineer',sw:'Mhandisi wa Nyenzo'},desc:{en:'Research and develop new materials for manufacturing',sw:'Tafuta na buni nyenzo mpya kwa utengenezaji'}}],
  self:[
   {emoji:'⚙️',role:{en:'Automation Solutions Provider',sw:'Mtoa Suluhisho la Uendeshaji wa Kiotomatiki'},desc:{en:'Design custom automation solutions for local industries',sw:'Buni suluhisho maalum za kiotomatiki kwa viwanda vya ndani'}}]}},
 
@@ -767,8 +765,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'AEU 08211',name:'Engineering Ethics and Professional Conduct Fundamentals'},{code:'AEU 08212',name:'Automotive Networking and Protocols'},{code:'AEU 08213',name:'Alternative Energy and Technology Fuel'},{code:'AEU 08214',name:'Environmental and Safety Engineering'},{code:'AEU 08215',name:'Project Management and Procurement Fundamentals'},{code:'AEU 08217',name:'Project Work'}]}],
  careers:{employed:[
-  {emoji:'🚗',role:{en:'Automotive Electronics Engineer',sw:'Mhandisi wa Elektroniki za Magari'},desc:{en:'Work with car manufacturers and service centers on advanced electronics',sw:'Fanya kazi na wazalishaji wa magari kwenye elektroniki za hali ya juu'},salary:'TZS 2M–5M/month'},
-  {emoji:'⚡',role:{en:'Electric Vehicle (EV) Engineer',sw:'Mhandisi wa Magari ya Umeme'},desc:{en:'Specialize in hybrid and electric vehicle systems',sw:'Buni mifumo ya magari ya umeme na hybrid'},salary:'TZS 2.5M–6M/month'}],
+  {emoji:'🚗',role:{en:'Automotive Electronics Engineer',sw:'Mhandisi wa Elektroniki za Magari'},desc:{en:'Work with car manufacturers and service centers on advanced electronics',sw:'Fanya kazi na wazalishaji wa magari kwenye elektroniki za hali ya juu'}},
+  {emoji:'⚡',role:{en:'Electric Vehicle (EV) Engineer',sw:'Mhandisi wa Magari ya Umeme'},desc:{en:'Specialize in hybrid and electric vehicle systems',sw:'Buni mifumo ya magari ya umeme na hybrid'}}],
  self:[
   {emoji:'🔌',role:{en:'EV Charging Infrastructure Business',sw:'Biashara ya Miundombinu ya Kuchaji Magari ya Umeme'},desc:{en:'Install and manage EV charging stations in Tanzania',sw:'Weka na simamia vituo vya kuchaji magari ya umeme Tanzania'}}]}},
 
@@ -784,8 +782,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'LIU 08201',name:'Quality Control and Standards'},{code:'LIU 08202',name:'Water and Soil Management'},{code:'LIU 08203',name:'Principles of Nuclear Science'},{code:'LIU 08204',name:'Project Design'},{code:'LIU 08205',name:'Professional Ethics'}]}],
  careers:{employed:[
-  {emoji:'🔬',role:{en:'Senior Laboratory Scientist',sw:'Mwanasayansi Mkuu wa Maabara'},desc:{en:'Lead laboratory operations in hospitals, industries and research',sw:'Ongoza shughuli za maabara hospitalini, viwandani na utafiti'},salary:'TZS 1.5M–4M/month'},
-  {emoji:'🏭',role:{en:'Industrial Quality Manager',sw:'Meneja wa Ubora wa Viwanda'},desc:{en:'Oversee quality control in food, pharma and chemical industries',sw:'Simamia udhibiti wa ubora katika viwanda vya chakula, dawa na kemikali'},salary:'TZS 1.5M–4M/month'}],
+  {emoji:'🔬',role:{en:'Senior Laboratory Scientist',sw:'Mwanasayansi Mkuu wa Maabara'},desc:{en:'Lead laboratory operations in hospitals, industries and research',sw:'Ongoza shughuli za maabara hospitalini, viwandani na utafiti'}},
+  {emoji:'🏭',role:{en:'Industrial Quality Manager',sw:'Meneja wa Ubora wa Viwanda'},desc:{en:'Oversee quality control in food, pharma and chemical industries',sw:'Simamia udhibiti wa ubora katika viwanda vya chakula, dawa na kemikali'}}],
  self:[
   {emoji:'🧪',role:{en:'Private Testing Laboratory',sw:'Maabara Binafsi ya Kupimia'},desc:{en:'Run your own lab testing food, water, soil and products',sw:'Endesha maabara yako ya kupima chakula, maji, udongo na bidhaa'}}]}}
 ];
