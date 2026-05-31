@@ -1,11 +1,23 @@
 /* ============================================================
    ATC Course Guide — courses.js
    Arusha Technical College · HDG. Tech © 2026
-   ============================================================
-   Edit course content here. The UI (index.html) reads this
-   file automatically — no need to touch index.html for data
-   updates.
+   Edit course content here. index.html reads this automatically.
    ============================================================ */
+
+let currentLang = 'en';
+
+const T = {
+  en:{search:'Search courses...',appTitle:'ATC Course Guide',showing:'Showing',of:'of',courses:'courses',modules:'Modules',careers:'Careers',entry:'Entry Requirements',employed:'Employment Opportunities',selfEmployed:'Self-Employment',noResults:'No courses found.',all:'All',ordinary:'Ord. Diploma',bachelor:'Bachelor Degree',comingSoon:'⏳ Some module data not yet available',comingSoonSub:'Contact ATC Registrar for full module list'},
+  sw:{search:'Tafuta kozi...',appTitle:'Mwongozo wa Kozi za ATC',showing:'Inaonyesha',of:'kati ya',courses:'kozi',modules:'Masomo',careers:'Kazi',entry:'Masharti ya Kujiunga',employed:'Fursa za Kuajiriwa',selfEmployed:'Kujiajiri',noResults:'Hakuna kozi zinazolingana.',all:'Zote',ordinary:'Stashahada ya Kawaida',bachelor:'Shahada ya Kwanza',comingSoon:'⏳ Baadhi ya data ya masomo haijapatikana bado',comingSoonSub:'Wasiliana na Msajili wa ATC kwa orodha kamili'}
+};
+
+const DEPTS = {
+  en:['All','Automotive','Civil','Transport','Electrical','Mechanical','ICT','Science'],
+  sw:['Zote','Otomotivi','Ujenzi','Usafiri','Umeme','Mitambo','TEHAMA','Sayansi']
+};
+
+const DEPT_KEYS = ['All','Automotive','Civil','Transport','Electrical','Mechanical','ICT','Science'];
+
 const COURSES=[
 // ===== AUTOMOTIVE =====
 {id:1,dept:'Automotive',icon:'🚗',type:'ordinary',
