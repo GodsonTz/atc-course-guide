@@ -1,4 +1,11 @@
-/* ATC Courses Data — extracted from index.html. Edit course content here. */
+/* ============================================================
+   ATC Course Guide — courses.js
+   Arusha Technical College · HDG. Tech © 2026
+   ============================================================
+   Edit course content here. The UI (index.html) reads this
+   file automatically — no need to touch index.html for data
+   updates.
+   ============================================================ */
 const COURSES=[
 // ===== AUTOMOTIVE =====
 {id:1,dept:'Automotive',icon:'🚗',type:'ordinary',
@@ -770,3 +777,4 @@ const COURSES=[
  self:[
   {emoji:'🧪',role:{en:'Private Testing Laboratory',sw:'Maabara Binafsi ya Kupimia'},desc:{en:'Run your own lab testing food, water, soil and products',sw:'Endesha maabara yako ya kupima chakula, maji, udongo na bidhaa'}}]}}
 ];
+
