@@ -1365,8 +1365,6 @@ let selectedLevel = null;
 let selectedCourse = null;
 let activeDetailTab = 'modules';
 let isAnimating = false;
-
-// ── DEPT META ──
 const DEPT_META = {
   Automotive:{ icon:'🚗', label:{en:'Automotive Engineering',sw:'Uhandisi wa Magari'} },
   Civil:     { icon:'🏗️', label:{en:'Civil Engineering',sw:'Uhandisi wa Ujenzi'} },
@@ -1377,8 +1375,7 @@ const DEPT_META = {
   Science:   { icon:'🔬', label:{en:'Science & Technology',sw:'Sayansi na Teknolojia'} }
 };
 
-const SCREEN_IDS = ['s1','s2','s3','s4'];
-const SCREEN_ELS = ['screen1','screen2','screen3','screen4'];
+
 
 // ── FIXED NAVIGATION (no overlapping) ──
 function navigateTo(toId, direction) {
@@ -1442,23 +1439,25 @@ function navigateTo(toId, direction) {
 
 // ── BROWSER BACK BUTTON SUPPORT ──
 
+
 // ── BROWSER BACK BUTTON SUPPORT ──
 function pushHistory(state) {
   history.pushState({ nav: state }, '');
 }
 
-window.addEventListener('popstate', (e) => {
+window.addEventListener('popstate', () => {
   if (navStack.length > 1) {
     navStack.pop();
-    const prev = navStack[navStack.length - 1];
-    navigateTo('screen' + (SCREEN_IDS.indexOf(prev) + 1), 'back');
+    const depth = navStack.length;
+    const screenId = 'screen' + depth;
+    navigateTo(screenId, 'back');
     updateHeader();
   }
 });
 
 function goBack() {
   if (navStack.length <= 1 || isAnimating) return;
-  history.back(); // triggers popstate which handles everything
+  history.back();
 }
 
 function updateHeader() {
