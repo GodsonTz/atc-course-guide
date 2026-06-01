@@ -162,12 +162,14 @@ body {
   overflow-x: hidden;
   padding-bottom: 5rem;
   transform: translateX(100%);
-  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
   will-change: transform;
   -webkit-overflow-scrolling: touch;
+  z-index: 0;
 }
-.screen.active { transform: translateX(0); }
-.screen.behind { transform: translateX(-30%); }
+.screen.active { transform: translateX(0); z-index: 1; }
+.screen.peek-left { transform: translateX(-25%); }
+.screen.no-anim { transition: none !important; }
 
 /* ── SCREEN 1 — DEPARTMENTS ── */
 .dept-grid {
@@ -1379,60 +1381,66 @@ const SCREEN_IDS = ['s1','s2','s3','s4'];
 const SCREEN_ELS = ['screen1','screen2','screen3','screen4'];
 
 // ── FIXED NAVIGATION (no overlapping) ──
-function navigateTo(screenId, direction) {
+function navigateTo(toId, direction) {
   if (isAnimating) return;
+  const ALL = ['screen1','screen2','screen3','screen4'];
+  const target = document.getElementById(toId);
+  if (!target) return;
+  const activeEl = document.querySelector('.screen.active');
+  if (!activeEl || activeEl === target) return;
+
   isAnimating = true;
 
-  const allScreens = document.querySelectorAll('.screen');
-  const target = document.getElementById(screenId);
-  const active = document.querySelector('.screen.active');
-  if (!target || target === active) { isAnimating = false; return; }
-
-  // Reset all screens first
-  allScreens.forEach(s => {
-    if (s !== active && s !== target) {
-      s.style.transition = 'none';
-      s.style.transform = 'translateX(100%)';
-      s.style.zIndex = '0';
-    }
+  // Step 1: Snap everything to base position (no animation)
+  ALL.forEach(id => {
+    const s = document.getElementById(id);
+    if (!s) return;
+    s.classList.add('no-anim');
+    s.classList.remove('active','peek-left');
+    void s.offsetWidth; // reflow
   });
 
   if (direction === 'forward') {
-    target.style.transition = 'none';
-    target.style.transform = 'translateX(100%)';
-    target.style.zIndex = '2';
-    active.style.zIndex = '1';
-    target.getBoundingClientRect(); // force reflow
-    target.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1)';
-    active.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1)';
-    target.style.transform = 'translateX(0)';
-    active.style.transform = 'translateX(-25%)';
+    // target starts at right (default), active starts at current (0)
+    activeEl.classList.add('active');   // active stays at 0
+    // target is already at 100% (default CSS)
+    void target.offsetWidth;
+    // Step 2: Animate
+    ALL.forEach(id => { const s = document.getElementById(id); if(s) s.classList.remove('no-anim'); });
+    activeEl.classList.add('peek-left');
+    activeEl.classList.remove('active');
+    target.classList.add('active');
   } else {
-    target.style.transition = 'none';
-    target.style.transform = 'translateX(-25%)';
-    target.style.zIndex = '1';
-    active.style.zIndex = '2';
-    target.getBoundingClientRect();
-    target.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1)';
-    active.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1)';
-    target.style.transform = 'translateX(0)';
-    active.style.transform = 'translateX(100%)';
+    // target starts at left (-25%), active starts at 0
+    target.classList.add('no-anim','peek-left');
+    activeEl.classList.add('active');
+    void target.offsetWidth;
+    // Step 2: Animate
+    ALL.forEach(id => { const s = document.getElementById(id); if(s) s.classList.remove('no-anim'); });
+    target.classList.remove('peek-left');
+    target.classList.add('active');
+    activeEl.classList.remove('active');
+    // active slides back to right (default 100%)
   }
 
   setTimeout(() => {
-    allScreens.forEach(s => {
-      s.style.transition = 'none';
-      s.style.zIndex = '0';
-      if (s !== target) s.style.transform = 'translateX(100%)';
+    // Cleanup
+    ALL.forEach(id => {
+      const s = document.getElementById(id);
+      if (!s) return;
+      s.classList.add('no-anim');
+      if (s !== target) {
+        s.classList.remove('active','peek-left');
+      }
     });
-    target.style.transform = 'translateX(0)';
-    target.style.zIndex = '1';
-    active.classList.remove('active');
     target.classList.add('active');
+    target.classList.remove('peek-left','no-anim');
     target.scrollTop = 0;
     isAnimating = false;
-  }, 360);
+  }, 380);
 }
+
+// ── BROWSER BACK BUTTON SUPPORT ──
 
 // ── BROWSER BACK BUTTON SUPPORT ──
 function pushHistory(state) {
