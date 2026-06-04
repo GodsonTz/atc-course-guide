@@ -1382,9 +1382,9 @@ function navigateTo(toId, direction) {
   if (isAnimating) return;
   const ALL = ['screen1','screen2','screen3','screen4'];
   const target = document.getElementById(toId);
-  if (!target) return;
+  if (!target) { isAnimating = false; return; }
   const activeEl = document.querySelector('.screen.active');
-  if (!activeEl || activeEl === target) return;
+  if (!activeEl || activeEl === target) { isAnimating = false; return; }
 
   isAnimating = true;
 
@@ -1435,6 +1435,9 @@ function navigateTo(toId, direction) {
     target.scrollTop = 0;
     isAnimating = false;
   }, 380);
+
+  // Safety net — force reset after 600ms no matter what
+  setTimeout(() => { isAnimating = false; }, 600);
 }
 
 // ── BROWSER BACK BUTTON SUPPORT ──
@@ -1585,14 +1588,15 @@ function renderCoursesScreen(query='') {
     c.name.en.toLowerCase().includes(query)||c.name.sw.toLowerCase().includes(query)
   );
   const wrap = document.getElementById('coursesScreen');
+  // Save emptyState before clearing innerHTML
   const empty = document.getElementById('emptyState');
   if (!courses.length) {
-    wrap.innerHTML=''; wrap.appendChild(empty);
-    empty.style.display='block';
-    document.getElementById('emptyText').textContent=T[lang].noResults;
+    if (empty) { wrap.innerHTML=''; wrap.appendChild(empty); empty.style.display='block'; }
+    const et = document.getElementById('emptyText');
+    if (et) et.textContent = T[lang].noResults;
     return;
   }
-  empty.style.display='none';
+  if (empty) empty.style.display='none';
   wrap.innerHTML = courses.map(c=>`
     <div class="course-card-item" onclick="selectCourse(${c.id})">
       <div class="course-card-icon ci-${c.dept}">${c.icon}</div>
