@@ -173,26 +173,26 @@ body {
 
 /* ── SCREEN 1 — DEPARTMENTS ── */
 .dept-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
   padding: 1.25rem;
 }
 
 .dept-card {
   border-radius: var(--radius-lg);
-  padding: 1.25rem 1rem 1rem;
+  padding: 1.1rem 1.1rem;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  min-height: 140px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
   transition: transform 0.18s, box-shadow 0.18s;
   -webkit-tap-highlight-color: transparent;
 }
-.dept-card:active { transform: scale(0.96); }
+.dept-card:active { transform: scale(0.97); }
 
 .dept-card-bg {
   position: absolute; inset: 0;
@@ -200,27 +200,38 @@ body {
   background: radial-gradient(circle at 80% 20%, white, transparent 60%);
 }
 .dept-card-pattern {
-  position: absolute; bottom: -10px; right: -10px;
-  font-size: 64px; opacity: 0.12;
+  position: absolute; bottom: -14px; right: -8px;
+  font-size: 56px; opacity: 0.10;
   line-height: 1;
   pointer-events: none;
 }
 .dept-card-icon {
-  font-size: 32px; margin-bottom: 0.5rem;
+  font-size: 30px;
   position: relative; z-index: 1;
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.12);
+  border-radius: 12px;
 }
+.dept-card-text { position: relative; z-index: 1; flex: 1; min-width: 0; }
 .dept-card-name {
   font-family: 'Syne', sans-serif;
   font-size: 14px; font-weight: 700;
   color: #fff;
   line-height: 1.2;
-  position: relative; z-index: 1;
 }
 .dept-card-count {
   font-size: 10px; font-weight: 500;
   color: rgba(255,255,255,0.6);
-  margin-top: 4px;
-  position: relative; z-index: 1;
+  margin-top: 3px;
+}
+.dept-card-desc {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.4;
+  margin-top: 6px;
 }
 
 /* dept colors */
@@ -233,8 +244,7 @@ body {
 .dept-Science { background: linear-gradient(135deg, #6a1090, #a030d0); }
 
 /* wide card for last odd item */
-.dept-card.wide { grid-column: 1 / -1; min-height: 110px; flex-direction: row; align-items: center; gap: 1rem; }
-.dept-card.wide .dept-card-pattern { bottom: -5px; right: 20px; font-size: 80px; }
+
 
 /* ── SCREEN 2 — LEVEL SELECTION ── */
 .level-screen { padding: 1.25rem; }
@@ -1457,13 +1467,13 @@ let selectedCourse = null;
 let activeDetailTab = 'modules';
 let isAnimating = false;
 const DEPT_META = {
-  Automotive:{ icon:'🚗', label:{en:'Automotive Engineering',sw:'Uhandisi wa Magari'} },
-  Civil:     { icon:'🏗️', label:{en:'Civil Engineering',sw:'Uhandisi wa Ujenzi'} },
-  Transport: { icon:'🛣️', label:{en:'Transportation Engineering',sw:'Uhandisi wa Usafiri'} },
-  Electrical:{ icon:'⚡', label:{en:'Electrical Engineering',sw:'Uhandisi wa Umeme'} },
-  Mechanical:{ icon:'⚙️', label:{en:'Mechanical Engineering',sw:'Uhandisi wa Mitambo'} },
-  ICT:       { icon:'💻', label:{en:'ICT',sw:'TEHAMA'} },
-  Science:   { icon:'🔬', label:{en:'Science & Technology',sw:'Sayansi na Teknolojia'} }
+  Automotive:{ icon:'🚗', label:{en:'Automotive Engineering',sw:'Uhandisi wa Magari'}, desc:{en:'Every car, bus, and truck on Tanzania\'s roads needs someone who understands what makes it run — and what to do when it stops. As an automotive engineer, you\'ll learn to diagnose, repair and maintain vehicles using modern tools, from traditional engines to today\'s computerized and hybrid systems.',sw:'Kila gari, basi, na lori barabarani Tanzania linahitaji mtu anayeelewa kinachokifanya kiendeshe — na cha kufanya kikisimama. Ukiwa mhandisi wa magari, utajifunza kuchunguza, kutengeneza na kutunza magari kwa kutumia vifaa vya kisasa, kuanzia injini za kawaida hadi mifumo ya kompyuta na hybrid ya leo.'} },
+  Civil:     { icon:'🏗️', label:{en:'Civil Engineering',sw:'Uhandisi wa Ujenzi'}, desc:{en:'Behind every road you drive on, every building you enter, and every bridge you cross stands a civil engineer who designed it to be safe and lasting. You\'ll learn to plan, design and oversee the construction of the structures that hold up entire communities.',sw:'Nyuma ya kila barabara unayopita, kila jengo unaloingia, na kila daraja unalovuka kuna mhandisi wa ujenzi aliyelibuni liwe salama na la kudumu. Utajifunza kupanga, kubuni na kusimamia ujenzi wa miundo inayoshikilia jamii nzima.'} },
+  Transport: { icon:'🛣️', label:{en:'Transportation Engineering',sw:'Uhandisi wa Usafiri'}, desc:{en:'How do goods travel from a farm in Arusha to a market in Dar es Salaam? How does a city avoid traffic chaos? Transportation engineers design the highways, road networks and traffic systems that keep an entire country moving efficiently and safely.',sw:'Vipi bidhaa zinasafiri kutoka shambani Arusha hadi sokoni Dar es Salaam? Vipi jiji linaepuka msongamano wa magari? Wahandisi wa usafiri wanabuni barabara kuu, mitandao ya barabara na mifumo ya msongamano inayoweka nchi nzima ikisogea kwa ufanisi na usalama.'} },
+  Electrical:{ icon:'⚡', label:{en:'Electrical Engineering',sw:'Uhandisi wa Umeme'}, desc:{en:'Every light, charger, factory machine and hospital device runs on electricity someone designed and built. As an electrical engineer, you\'ll learn to generate it, control it, and deliver it safely — skills needed in every town, every industry, across Tanzania and beyond.',sw:'Kila taa, chaja, mashine ya kiwandani na kifaa cha hospitali kinaendeshwa na umeme ambao mtu fulani aliubuni na kuujenga. Ukiwa mhandisi wa umeme, utajifunza kuuzalisha, kuudhibiti, na kuupeleka kwa usalama — ujuzi unaohitajika kila mji, kila kiwanda, Tanzania na kote duniani.'} },
+  Mechanical:{ icon:'⚙️', label:{en:'Mechanical Engineering',sw:'Uhandisi wa Mitambo'}, desc:{en:'From the machines that manufacture everyday products to the engines that power industry, almost nothing gets built or made without mechanical engineering. You\'ll learn to design, build and maintain the machinery that Tanzania\'s factories and industries depend on every single day.',sw:'Kuanzia mashine zinazotengeneza bidhaa za kila siku hadi injini zinazoendesha viwanda, karibu hakuna kinachojengwa au kutengenezwa bila uhandisi wa mitambo. Utajifunza kubuni, kujenga na kutunza mashine ambazo viwanda na sekta za Tanzania zinategemea kila siku.'} },
+  ICT:       { icon:'💻', label:{en:'ICT',sw:'TEHAMA'}, desc:{en:'The app on your phone, the website you visited today, the system that keeps your bank account secure — all of it was built by someone who studied ICT. You\'ll learn to write code, build software, manage networks, and protect digital systems in a field with opportunities anywhere in the world.',sw:'App iliyo simu yako, website uliyotembelea leo, mfumo unaolinda akaunti yako ya benki — yote yalijengwa na mtu aliyesoma TEHAMA. Utajifunza kuandika code, kujenga programu, kusimamia mitandao, na kulinda mifumo ya kidijitali katika fani yenye fursa popote duniani.'} },
+  Science:   { icon:'🔬', label:{en:'Science & Technology',sw:'Sayansi na Teknolojia'}, desc:{en:'Behind every accurate medical test, every safe food product, and every quality-checked industrial output is a laboratory scientist who made sure it was right. You\'ll learn the precise techniques used in hospitals, factories and research centers to test, analyze and guarantee quality.',sw:'Nyuma ya kila kipimo sahihi cha matibabu, kila bidhaa salama ya chakula, na kila kitu cha kiwandani kilichoangaliwa ubora kuna mwanasayansi wa maabara aliyehakikisha kiko sahihi. Utajifunza mbinu makini zinazotumika hospitalini, viwandani na vituo vya utafiti kupima, kuchambua na kuhakikisha ubora.'} }
 };
 
 
@@ -1595,21 +1605,19 @@ function renderDepts() {
   const lang = currentLang;
   const deptKeys = ['Automotive','Civil','Transport','Electrical','Mechanical','ICT','Science'];
   let html = '';
-  deptKeys.forEach((d, i) => {
+  deptKeys.forEach((d) => {
     const meta = DEPT_META[d];
     const ord = COURSES.filter(c=>c.dept===d&&c.type==='ordinary').length;
     const bach = COURSES.filter(c=>c.dept===d&&c.type==='bachelor').length;
     const total = ord + bach;
-    const isLast = i === deptKeys.length-1;
-    const isOdd = deptKeys.length % 2 !== 0;
-    const wide = isLast && isOdd ? 'wide' : '';
-    html += `<div class="dept-card dept-${d} ${wide}" onclick="selectDept('${d}')">
+    html += `<div class="dept-card dept-${d}" onclick="selectDept('${d}')">
       <div class="dept-card-bg"></div>
       <div class="dept-card-pattern">${meta.icon}</div>
       <div class="dept-card-icon">${meta.icon}</div>
-      <div>
+      <div class="dept-card-text">
         <div class="dept-card-name">${meta.label[lang]}</div>
         <div class="dept-card-count">${total} ${T[lang].courses}</div>
+        <div class="dept-card-desc">${meta.desc[lang]}</div>
       </div>
     </div>`;
   });
