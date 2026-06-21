@@ -446,6 +446,26 @@ body {
 }
 .entry-text { font-size: 13px; color: var(--text-dark); line-height: 1.7; }
 
+/* description & suitableFor boxes */
+.desc-box {
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 0.5px solid var(--border);
+  padding: 1.25rem;
+  margin-bottom: 14px;
+}
+.desc-box.suitable {
+  background: var(--green-light);
+  border-color: rgba(29,158,117,0.25);
+}
+.desc-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--green-mid); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 6px;
+}
+.desc-text { font-size: 13px; color: var(--text-dark); line-height: 1.7; }
+
 /* careers */
 .career-section { margin-bottom: 1.25rem; }
 .career-section-title {
@@ -575,8 +595,8 @@ body {
 
 <script>
 const T={
-  en:{search:'Search courses...',appTitle:'ATC Course Guide',showing:'Showing',of:'of',courses:'courses',modules:'Modules',careers:'Careers',entry:'Entry Requirements',employed:'Employment Opportunities',selfEmployed:'Self-Employment',noResults:'No courses found.',all:'All',ordinary:'Ord. Diploma',bachelor:'Bachelor Degree',comingSoon:'⏳ Some module data not yet available',comingSoonSub:'Contact ATC Registrar for full module list'},
-  sw:{search:'Tafuta kozi...',appTitle:'Mwongozo wa Kozi za ATC',showing:'Inaonyesha',of:'kati ya',courses:'kozi',modules:'Masomo',careers:'Kazi',entry:'Masharti ya Kujiunga',employed:'Fursa za Kuajiriwa',selfEmployed:'Kujiajiri',noResults:'Hakuna kozi zinazolingana.',all:'Zote',ordinary:'Stashahada ya Kawaida',bachelor:'Shahada ya Kwanza',comingSoon:'⏳ Baadhi ya data ya masomo haijapatikana bado',comingSoonSub:'Wasiliana na Msajili wa ATC kwa orodha kamili'}
+  en:{search:'Search courses...',appTitle:'ATC Course Guide',showing:'Showing',of:'of',courses:'courses',modules:'Modules',careers:'Careers',entry:'Entry Requirements',employed:'Employment Opportunities',selfEmployed:'Self-Employment',noResults:'No courses found.',all:'All',ordinary:'Ord. Diploma',bachelor:'Bachelor Degree',comingSoon:'⏳ Some module data not yet available',comingSoonSub:'Contact ATC Registrar for full module list',whatYoullLearn:'📘 What You Will Learn',isThisForYou:'🎯 Is This For You?'},
+  sw:{search:'Tafuta kozi...',appTitle:'Mwongozo wa Kozi za ATC',showing:'Inaonyesha',of:'kati ya',courses:'kozi',modules:'Masomo',careers:'Kazi',entry:'Masharti ya Kujiunga',employed:'Fursa za Kuajiriwa',selfEmployed:'Kujiajiri',noResults:'Hakuna kozi zinazolingana.',all:'Zote',ordinary:'Stashahada ya Kawaida',bachelor:'Shahada ya Kwanza',comingSoon:'⏳ Baadhi ya data ya masomo haijapatikana bado',comingSoonSub:'Wasiliana na Msajili wa ATC kwa orodha kamili',whatYoullLearn:'📘 Utajifunza Nini',isThisForYou:'🎯 Je Inakufaa?'}
 };
 const DEPTS={
   en:['All','Automotive','Civil','Transport','Electrical','Mechanical','ICT','Science'],
@@ -589,6 +609,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Automotive Engineering',sw:'Stashahada ya Uhandisi wa Magari'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn how vehicles work from the inside out — engines, brakes, electrical systems, and diagnostics. You will spend time both in classrooms and workshops fixing real vehicles, using diagnostic tools, and understanding modern automotive technology including hybrid and computerized systems.',sw:'Utajifunza jinsi magari yanavyofanya kazi kwa ndani — injini, breki, mifumo ya umeme, na uchunguzi wa hitilafu. Utatumia muda darasani na karakanani ukitengeneza magari halisi, ukitumia vifaa vya uchunguzi, na kuelewa teknolojia ya kisasa ya magari ikiwemo mifumo ya hybrid na kompyuta.'},
+ suitableFor:{en:'Best for students who enjoy working with their hands, are curious about how machines work, and want a skill that is always in demand — every vehicle in Tanzania needs a mechanic. Strong in Physics and practical problem-solving.',sw:'Inafaa kwa wanafunzi wanaopenda kufanya kazi kwa mikono, wenye udadisi wa jinsi mashine zinavyofanya kazi, na wanaotaka ujuzi unaohitajika kila wakati — kila gari Tanzania linahitaji fundi. Wenye uwezo mzuri wa Fizikia na kutatua matatizo kivitendo.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04101',name:'Algebra and Trigonometry'},{code:'GST 04102',name:'Mechanics and Nuclear Physics'},{code:'GST 04103',name:'English Language Basics'},{code:'MET 04101',name:'Basics of Engineering Drawing'},{code:'MET 04102',name:'Mechanical Engineering Materials'},{code:'AET 04101',name:'Basics of Automotive Technology'},{code:'MET 04105',name:'Basics of Manufacturing Engineering'},{code:'AET 04102',name:'Fundamentals of Electrical and Electronics Engineering'}]},
@@ -603,9 +625,9 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming, Statistics and Probability'},{code:'GST 06202',name:'Enterprise Management'},{code:'MET 06201',name:'Computer Aided Drafting'},{code:'AET 06201',name:'Auto Workshop Management'},{code:'AET 06202',name:'Automotive Diagnostics'},{code:'AET 06203',name:'Project Manufacturing'},{code:'AET 06204',name:'Auto Electric Control Systems'},{code:'AET 06205',name:'Industrial Practical Training'}]}],
  careers:{employed:[
-  {emoji:'🚗',role:{en:'Automotive Technician',sw:'Fundi wa Magari'},desc:{en:'Diagnose and repair vehicles in garages and dealerships',sw:'Gundua na tengeneza magari katika karakana'},salary:'TZS 600K–2M/month'},
-  {emoji:'🔌',role:{en:'Auto Electrician',sw:'Fundi wa Umeme wa Gari'},desc:{en:'Service electrical systems in modern vehicles',sw:'Hudumia mifumo ya umeme ya magari ya kisasa'},salary:'TZS 700K–2M/month'},
-  {emoji:'🏭',role:{en:'Fleet Maintenance Engineer',sw:'Mhandisi wa Matengenezo ya Msafara'},desc:{en:'Manage vehicle fleets for transport companies',sw:'Simamia magari kwa makampuni ya usafirishaji'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🚗',role:{en:'Automotive Technician',sw:'Fundi wa Magari'},desc:{en:'Diagnose and repair vehicles in garages and dealerships',sw:'Gundua na tengeneza magari katika karakana'}},
+  {emoji:'🔌',role:{en:'Auto Electrician',sw:'Fundi wa Umeme wa Gari'},desc:{en:'Service electrical systems in modern vehicles',sw:'Hudumia mifumo ya umeme ya magari ya kisasa'}},
+  {emoji:'🏭',role:{en:'Fleet Maintenance Engineer',sw:'Mhandisi wa Matengenezo ya Msafara'},desc:{en:'Manage vehicle fleets for transport companies',sw:'Simamia magari kwa makampuni ya usafirishaji'}}],
  self:[
   {emoji:'🔧',role:{en:'Garage / Workshop Owner',sw:'Mmiliki wa Karakana ya Magari'},desc:{en:'Open your own auto repair and service center',sw:'Fungua kituo chako cha kutengeneza magari'}},
   {emoji:'🚕',role:{en:'Auto Spare Parts Dealer',sw:'Muuzaji wa Vipuri vya Magari'},desc:{en:'Import and sell spare parts for vehicles',sw:'Ingiza na uza vipuri vya magari'}}]}},
@@ -616,6 +638,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Heavy Duty Equipment Engineering',sw:'Stashahada ya Uhandisi wa Vifaa Vizito'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn to maintain and repair heavy machinery like excavators, bulldozers and mining equipment used in construction and mining sites across Tanzania. Covers hydraulic and pneumatic systems, engine maintenance, and heavy equipment diagnostics.',sw:'Utajifunza kutunza na kutengeneza vifaa vizito kama excavators, bulldozers na vifaa vya machimbo vinavyotumika maeneo ya ujenzi na madini Tanzania. Inajumuisha mifumo ya hydraulic na pneumatic, utunzaji wa injini, na uchunguzi wa vifaa vizito.'},
+ suitableFor:{en:'Best for hands-on students interested in large machinery used in construction and mining — a high-demand specialty given Tanzania\'s growing mining and infrastructure sectors. Strong in Physics, with mechanical aptitude.',sw:'Inafaa kwa wanafunzi wa vitendo wenye nia ya mashine kubwa zinazotumika ujenzi na madini — fani yenye mahitaji makubwa kutokana na ukuaji wa sekta za madini na miundombinu Tanzania. Wenye uwezo mzuri wa Fizikia, na ustadi wa kimitambo.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04101',name:'Algebra and Trigonometry'},{code:'GST 04102',name:'Mechanics and Nuclear Physics'},{code:'GST 04103',name:'English Language Basics'},{code:'MET 04101',name:'Basics of Engineering Drawing'},{code:'MET 04102',name:'Mechanical Engineering Materials'},{code:'MET 04105',name:'Basics of Manufacturing Engineering'},{code:'HET 04101',name:'Fundamental of Engines and Traction'}]},
@@ -630,8 +654,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming, Statistics and Probability'},{code:'GST 06202',name:'Enterprise Management'},{code:'MET 06211',name:'3D Modelling Using Solid Works Software'},{code:'HET 06201',name:'Heavy Equipment Workshop Management'},{code:'HET 06202',name:'Heavy Equipment Electrical Maintenance'},{code:'HET 06203',name:'Engine Management and Control System Diagnosis'},{code:'HET 06204',name:'Project Work'},{code:'HET 06205',name:'Industrial Practical Training'}]}],
  careers:{employed:[
-  {emoji:'🚜',role:{en:'Heavy Equipment Technician',sw:'Fundi wa Vifaa Vizito'},desc:{en:'Maintain heavy machinery on construction and mining sites',sw:'Matengenezo ya vifaa vizito kwenye maeneo ya ujenzi na madini'},salary:'TZS 1M–3.5M/month'},
-  {emoji:'⛏️',role:{en:'Mining Equipment Engineer',sw:'Mhandisi wa Vifaa vya Machimbo'},desc:{en:'Service heavy machinery used in Tanzania mining sector',sw:'Hudumia vifaa vizito vya sekta ya madini Tanzania'},salary:'TZS 1.5M–4M/month'}],
+  {emoji:'🚜',role:{en:'Heavy Equipment Technician',sw:'Fundi wa Vifaa Vizito'},desc:{en:'Maintain heavy machinery on construction and mining sites',sw:'Matengenezo ya vifaa vizito kwenye maeneo ya ujenzi na madini'}},
+  {emoji:'⛏️',role:{en:'Mining Equipment Engineer',sw:'Mhandisi wa Vifaa vya Machimbo'},desc:{en:'Service heavy machinery used in Tanzania mining sector',sw:'Hudumia vifaa vizito vya sekta ya madini Tanzania'}}],
  self:[
   {emoji:'🏗️',role:{en:'Heavy Equipment Rental Business',sw:'Biashara ya Kukodisha Vifaa Vizito'},desc:{en:'Own and rent out excavators, bulldozers to contractors',sw:'Miliki na kodisha vifaa vizito kwa wakandarasi'}}]}},
 
@@ -640,6 +664,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Civil Engineering',sw:'Stashahada ya Uhandisi wa Ujenzi'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn how to plan, design and supervise the construction of buildings, roads, bridges and water systems. Topics include structural design, soil mechanics, surveying, quantity surveying, and construction management — combining engineering science with hands-on site work.',sw:'Utajifunza jinsi ya kupanga, kubuni, na kusimamia ujenzi wa majengo, barabara, madaraja, na mifumo ya maji. Mada zinajumuisha ubunifu wa miundo, fani ya udongo, upimaji ardhi, ukadiriaji gharama, na usimamizi wa ujenzi — kuunganisha sayansi ya uhandisi na kazi za uwandani.'},
+ suitableFor:{en:'Best for students strong in Maths and Physics who enjoy planning, precision, and seeing physical structures rise from a design on paper. Great for those who want a stable, high-demand career in Tanzania\'s growing infrastructure sector.',sw:'Inafaa kwa wanafunzi wenye uwezo mzuri wa Hisabati na Fizikia, wanaopenda kupanga, usahihi, na kuona miundo ikijengwa kutoka kwenye mchoro. Nzuri kwa wale wanaotaka kazi imara, yenye mahitaji makubwa katika sekta ya miundombinu inayokua Tanzania.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04111',name:'Algebra and Trigonometry'},{code:'ITT 04117',name:'Basic Computer Application'},{code:'CET 04111',name:'Building Construction and Maintenance'},{code:'CET 04112',name:'Soil Mechanics'},{code:'CET 04113',name:'Basic Engineering Drawing'},{code:'CET 04114',name:'Construction Technology (Masonry, Carpentry)'},{code:'CET 04115',name:'Aluminum and Finishing Work'}]},
@@ -654,9 +680,9 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'CED 06211',name:'Hydraulics and Fluid Mechanics'},{code:'CED 06212',name:'Construction Management and Procurement Practice'},{code:'CED 06213',name:'Public Health Engineering'},{code:'CED 06214',name:'Structural Steel Design'},{code:'CED 06215',name:'Building Materials and Maintenance'},{code:'CED 06216',name:'Project II (Implementation and Report Writing)'},{code:'CED 06217',name:'Social and Environmental Management'}]}],
  careers:{employed:[
-  {emoji:'🏗️',role:{en:'Site Engineer',sw:'Mhandisi wa Ujenzi'},desc:{en:'Supervise construction of buildings, roads and bridges',sw:'Simamia ujenzi wa majengo, barabara na madaraja'},salary:'TZS 1M–3.5M/month'},
-  {emoji:'📐',role:{en:'Quantity Surveyor',sw:'Mpima Gharama za Ujenzi'},desc:{en:'Estimate and manage construction project costs',sw:'Kadiria na simamia gharama za miradi ya ujenzi'},salary:'TZS 1M–2.5M/month'},
-  {emoji:'🌊',role:{en:'Water & Sanitation Engineer',sw:'Mhandisi wa Maji na Usafi'},desc:{en:'Design water supply and sewage systems',sw:'Buni mifumo ya usambazaji wa maji na maji taka'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🏗️',role:{en:'Site Engineer',sw:'Mhandisi wa Ujenzi'},desc:{en:'Supervise construction of buildings, roads and bridges',sw:'Simamia ujenzi wa majengo, barabara na madaraja'}},
+  {emoji:'📐',role:{en:'Quantity Surveyor',sw:'Mpima Gharama za Ujenzi'},desc:{en:'Estimate and manage construction project costs',sw:'Kadiria na simamia gharama za miradi ya ujenzi'}},
+  {emoji:'🌊',role:{en:'Water & Sanitation Engineer',sw:'Mhandisi wa Maji na Usafi'},desc:{en:'Design water supply and sewage systems',sw:'Buni mifumo ya usambazaji wa maji na maji taka'}}],
  self:[
   {emoji:'🏢',role:{en:'Construction Contractor',sw:'Mkandarasi wa Ujenzi'},desc:{en:'Run your own construction company and take contracts',sw:'Endesha kampuni yako ya ujenzi na pata mikataba'}},
   {emoji:'📋',role:{en:'Independent Quantity Surveyor',sw:'Mpima Gharama Huru'},desc:{en:'Offer cost estimation services to developers',sw:'Toa huduma za kukadiriwa gharama kwa wajenzi'}}]}},
@@ -665,6 +691,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Civil and Irrigation Engineering',sw:'Stashahada ya Uhandisi wa Ujenzi na Umwagiliaji'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'A specialized version of Civil Engineering focused on water and farming infrastructure — designing irrigation schemes, dams, and water channels that help farmers grow crops year-round. Combines structural engineering with agricultural water management.',sw:'Toleo maalum la Uhandisi wa Ujenzi linalozingatia miundombinu ya maji na kilimo — kubuni mifumo ya umwagiliaji, mabwawa, na mifereji ya maji inayosaidia wakulima kulima mwaka mzima. Inachanganya uhandisi wa miundo na usimamizi wa maji ya kilimo.'},
+ suitableFor:{en:'Best for students interested in both engineering and agriculture, who want to help solve Tanzania\'s food security and water challenges. Strong in Maths and Physics, with interest in sustainable farming solutions.',sw:'Inafaa kwa wanafunzi wenye nia ya uhandisi na kilimo, wanaotaka kusaidia kutatua changamoto za usalama wa chakula na maji Tanzania. Wenye uwezo mzuri wa Hisabati na Fizikia, na nia ya suluhisho endelevu za kilimo.'},
  semesters:[
   {label:{en:'NTA Level 4 & 5 — Same as Civil Engineering',sw:'Ngazi ya 4 & 5 — Sawa na Uhandisi wa Ujenzi'},subjects:[
    {code:'—',name:'Shares NTA Level 4 & 5 modules with Civil Engineering programme'}]},
@@ -673,8 +701,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'CID 06210',name:'Climate Smart Agriculture and Land Suitability for Irrigation'},{code:'CID 06211',name:'Basics of GIS and Remote Sensing'},{code:'CID 06212',name:'Construction Management and Procurement Practice'},{code:'CID 06213',name:'Irrigation Water Supply'},{code:'CID 06214',name:'Operation and Maintenance of Irrigation Systems'},{code:'CID 06215',name:'Performance Evaluation of Irrigation Systems'},{code:'CID 06222',name:'Social and Environment Management'},{code:'CID 06237',name:'Project (Implementation and Report Writing)'}]}],
  careers:{employed:[
-  {emoji:'💧',role:{en:'Irrigation Engineer',sw:'Mhandisi wa Umwagiliaji'},desc:{en:'Design and manage irrigation systems for farms',sw:'Buni na simamia mifumo ya umwagiliaji kwa mashamba'},salary:'TZS 1M–3M/month'},
-  {emoji:'🌾',role:{en:'Agricultural Water Manager',sw:'Msimamizi wa Maji ya Kilimo'},desc:{en:'Manage water resources for agricultural projects',sw:'Simamia rasilimali za maji kwa miradi ya kilimo'},salary:'TZS 900K–2.5M/month'}],
+  {emoji:'💧',role:{en:'Irrigation Engineer',sw:'Mhandisi wa Umwagiliaji'},desc:{en:'Design and manage irrigation systems for farms',sw:'Buni na simamia mifumo ya umwagiliaji kwa mashamba'}},
+  {emoji:'🌾',role:{en:'Agricultural Water Manager',sw:'Msimamizi wa Maji ya Kilimo'},desc:{en:'Manage water resources for agricultural projects',sw:'Simamia rasilimali za maji kwa miradi ya kilimo'}}],
  self:[
   {emoji:'🌱',role:{en:'Irrigation Consultant',sw:'Mshauri wa Umwagiliaji'},desc:{en:'Help farmers design and install irrigation systems',sw:'Saidia wakulima kubuni na kuweka mifumo ya umwagiliaji'}}]}},
 
@@ -682,6 +710,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Architecture',sw:'Stashahada ya Usanifu wa Majengo'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn to design buildings that are both beautiful and functional — from sketching initial concepts to producing detailed construction drawings using software like AutoCAD and SketchUp. Covers building history, structural basics, and urban planning principles.',sw:'Utajifunza kubuni majengo yenye uzuri na matumizi mazuri — kuanzia michoro ya awali hadi michoro ya kina ya ujenzi kwa kutumia programu kama AutoCAD na SketchUp. Inajumuisha historia ya majengo, misingi ya miundo, na kanuni za mipango miji.'},
+ suitableFor:{en:'Best for creative students who enjoy drawing, design, and imagining spaces — combined with technical precision. Good balance of art and engineering, ideal for those strong in both Maths and visual creativity.',sw:'Inafaa kwa wanafunzi wabunifu wanaopenda kuchora, ubunifu, na kufikiria nafasi — pamoja na usahihi wa kiufundi. Mchanganyiko mzuri wa sanaa na uhandisi, inafaa kwa wenye uwezo wa Hisabati na ubunifu wa kuona.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04111',name:'Algebra and Trigonometry'},{code:'ITT 04117',name:'Basic Computer Application'},{code:'CAT 04101',name:'Introduction to Architectural Draughting'},{code:'CAT 04102',name:'Building Maintenance'},{code:'CAT 04103',name:'Vernacular Building Materials'},{code:'CAT 04104',name:'Introduction to Building Services'},{code:'CAT 04105',name:'Construction Technology (Masonry, Carpentry)'}]},
@@ -696,8 +726,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'CAT 06201',name:'Project Architectural Design'},{code:'CAT 06202',name:'Professional Practice'},{code:'CAT 06203',name:'Construction Management and Procurement Practice'},{code:'CAT 06204',name:'Urban & Housing Development'},{code:'CAT 06205',name:'Advanced Building Technology'},{code:'CAT 06206',name:'Architectural Conservation'},{code:'CAT 06207',name:'Building Information Modelling'}]}],
  careers:{employed:[
-  {emoji:'🏛️',role:{en:'Architectural Technician',sw:'Fundi wa Usanifu wa Majengo'},desc:{en:'Work on architectural designs for construction firms',sw:'Fanya kazi kwenye michoro ya usanifu kwa makampuni ya ujenzi'},salary:'TZS 900K–2.5M/month'},
-  {emoji:'🏙️',role:{en:'Urban Planner Assistant',sw:'Msaidizi wa Mpango Mji'},desc:{en:'Support urban and housing development planning',sw:'Saidia mipango ya makazi na miji'},salary:'TZS 800K–2M/month'}],
+  {emoji:'🏛️',role:{en:'Architectural Technician',sw:'Fundi wa Usanifu wa Majengo'},desc:{en:'Work on architectural designs for construction firms',sw:'Fanya kazi kwenye michoro ya usanifu kwa makampuni ya ujenzi'}},
+  {emoji:'🏙️',role:{en:'Urban Planner Assistant',sw:'Msaidizi wa Mpango Mji'},desc:{en:'Support urban and housing development planning',sw:'Saidia mipango ya makazi na miji'}}],
  self:[
   {emoji:'✏️',role:{en:'Freelance Architectural Designer',sw:'Mbuni Huru wa Majengo'},desc:{en:'Design houses and buildings for private clients',sw:'Buni nyumba na majengo kwa wateja binafsi'}}]}},
 
@@ -706,6 +736,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Civil and Highway Engineering',sw:'Stashahada ya Uhandisi wa Barabara na Ujenzi'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'A focused path within civil engineering that specializes in roads, highways, bridges and transport systems. You will learn road design, traffic engineering, pavement materials, and bridge construction — the backbone of how people and goods move across Tanzania.',sw:'Njia maalum ndani ya uhandisi wa ujenzi inayolenga barabara, njia kuu, madaraja na mifumo ya usafiri. Utajifunza ubunifu wa barabara, uhandisi wa msongamano, vifaa vya barabara, na ujenzi wa madaraja — uti wa mgongo wa jinsi watu na bidhaa zinavyosafiri Tanzania.'},
+ suitableFor:{en:'Best for students interested in large-scale infrastructure that connects communities. Strong in Maths and Physics, with interest in how transport networks shape a country\'s development.',sw:'Inafaa kwa wanafunzi wenye nia ya miundombinu mikubwa inayounganisha jamii. Wenye uwezo mzuri wa Hisabati na Fizikia, na nia ya jinsi mitandao ya usafiri inavyochochea maendeleo ya nchi.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04111',name:'Algebra and Trigonometry'},{code:'ITT 04117',name:'Basic Computer Application'},{code:'CHT 04111',name:'Building Construction and Maintenance'},{code:'CHT 04112',name:'Soil Mechanics'},{code:'CHT 04113',name:'Basic Engineering Drawing'},{code:'CHT 04114',name:'Construction Technology (Masonry, Carpentry, Painting)'},{code:'CHT 04115',name:'Basic Labour Based Road Engineering'}]},
@@ -720,8 +752,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'CHD 06222',name:'Social and Environmental Management'},{code:'CHD 06223',name:'Construction Management and Procurement Practice'},{code:'CHD 06236',name:'Pavement Engineering'},{code:'CHD 06230',name:'Structural Steel Design'},{code:'CHD 06235',name:'Hydraulics'},{code:'CHD 06237',name:'Project Data Analysis and Report'},{code:'Elective',name:'Railway Engineering (Elective)'},{code:'Elective',name:'Airport Engineering (Elective)'}]}],
  careers:{employed:[
-  {emoji:'🛣️',role:{en:'Road Engineer',sw:'Mhandisi wa Barabara'},desc:{en:'Design and supervise road construction projects',sw:'Buni na simamia miradi ya ujenzi wa barabara'},salary:'TZS 1M–3.5M/month'},
-  {emoji:'🌉',role:{en:'Bridge Engineer',sw:'Mhandisi wa Madaraja'},desc:{en:'Design and inspect bridges and culverts',sw:'Buni na kagua madaraja na bomba za mto'},salary:'TZS 1.2M–4M/month'}],
+  {emoji:'🛣️',role:{en:'Road Engineer',sw:'Mhandisi wa Barabara'},desc:{en:'Design and supervise road construction projects',sw:'Buni na simamia miradi ya ujenzi wa barabara'}},
+  {emoji:'🌉',role:{en:'Bridge Engineer',sw:'Mhandisi wa Madaraja'},desc:{en:'Design and inspect bridges and culverts',sw:'Buni na kagua madaraja na bomba za mto'}}],
  self:[
   {emoji:'🏢',role:{en:'Road Construction Contractor',sw:'Mkandarasi wa Barabara'},desc:{en:'Tender and manage road construction projects',sw:'Omba zabuni na simamia miradi ya ujenzi wa barabara'}}]}},
 
@@ -730,6 +762,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Electrical Engineering',sw:'Stashahada ya Uhandisi wa Umeme'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn how electricity is generated, controlled, and safely delivered to homes, factories and cities. Covers electrical machines, circuit design, power systems, motor control, and industrial installations — the foundation behind everything that runs on electricity.',sw:'Utajifunza jinsi umeme unavyozalishwa, kudhibitiwa, na kupelekwa kwa usalama majumbani, viwandani na mijini. Inajumuisha mashine za umeme, ubunifu wa mizunguko, mifumo ya nguvu, udhibiti wa motors, na usakinishaji wa viwandani — msingi wa kila kitu kinachotumia umeme.'},
+ suitableFor:{en:'Best for students strong in Physics and Maths who are fascinated by how electrical systems power the modern world. A core engineering field with the widest range of job opportunities across every industry in Tanzania.',sw:'Inafaa kwa wanafunzi wenye uwezo mzuri wa Fizikia na Hisabati wanaovutiwa na jinsi mifumo ya umeme inavyoendesha dunia ya kisasa. Ni fani ya msingi ya uhandisi yenye fursa nyingi za ajira katika kila sekta Tanzania.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04101',name:'Algebra and Trigonometry'},{code:'GST 04102',name:'Mechanics and Nuclear Physics'},{code:'GST 04103',name:'English Language Basics'},{code:'EET 04101',name:'Basic Electricity'},{code:'ETT 04101',name:'Analogue Electronics'},{code:'EET 04102',name:'Domestic Installation and Mechanical Skills'},{code:'EET 04103',name:'Printed Circuit Board and Draughting Techniques'},{code:'EET 04104',name:'Electrical Measurements I'}]},
@@ -744,8 +778,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming, Statistics and Probability'},{code:'GST 06204',name:'Enterprise Management'},{code:'EET 06201',name:'Synchronous and Special Machines'},{code:'EET 06202',name:'Electric Drives'},{code:'EET 06203',name:'Refrigeration and Air Conditioning'},{code:'EET 06204',name:'Electrical Maintenance and Management'},{code:'EET 06205',name:'Electrical Power Transmission & Distribution'},{code:'EET 06206',name:'Renewable Energy'},{code:'EET 06207',name:'Project II'}]}],
  careers:{employed:[
-  {emoji:'⚡',role:{en:'Electrical Engineer',sw:'Mhandisi wa Umeme'},desc:{en:'Design and maintain electrical systems in industries',sw:'Buni na matengenezo ya mifumo ya umeme viwandani'},salary:'TZS 1M–3.5M/month'},
-  {emoji:'🔌',role:{en:'Electrical Installation Officer',sw:'Afisa wa Usakinishaji wa Umeme'},desc:{en:'Handle wiring and electrical installations in buildings',sw:'Shughulikia usakinishaji wa waya na umeme majengo'},salary:'TZS 600K–1.5M/month'}],
+  {emoji:'⚡',role:{en:'Electrical Engineer',sw:'Mhandisi wa Umeme'},desc:{en:'Design and maintain electrical systems in industries',sw:'Buni na matengenezo ya mifumo ya umeme viwandani'}},
+  {emoji:'🔌',role:{en:'Electrical Installation Officer',sw:'Afisa wa Usakinishaji wa Umeme'},desc:{en:'Handle wiring and electrical installations in buildings',sw:'Shughulikia usakinishaji wa waya na umeme majengo'}}],
  self:[
   {emoji:'🔌',role:{en:'Electrical Contractor',sw:'Mkandarasi wa Umeme'},desc:{en:'Run your own electrical installation business',sw:'Endesha biashara yako ya usakinishaji wa umeme'}}]}},
 
@@ -753,6 +787,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Electronics & Telecommunications Engineering',sw:'Stashahada ya Uhandisi wa Elektroniki na Mawasiliano'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn how phones, radios, TVs and satellites communicate across distances. Covers circuit design, antennas, signal transmission, microwave technology, and modern communication systems used by telecom companies like Airtel and Vodacom.',sw:'Utajifunza jinsi simu, redio, TV na satelaiti zinavyowasiliana kwa umbali. Inajumuisha ubunifu wa mizunguko, antena, usambazaji wa ishara, teknolojia ya microwave, na mifumo ya mawasiliano ya kisasa inayotumiwa na makampuni kama Airtel na Vodacom.'},
+ suitableFor:{en:'Best for students fascinated by how signals travel invisibly through the air — phone calls, WiFi, TV broadcasts. Strong in Physics and Maths, with interest in electronics and the telecom industry.',sw:'Inafaa kwa wanafunzi wanaovutiwa na jinsi ishara zinavyosafiri bila kuonekana hewani — simu, WiFi, matangazo ya TV. Wenye uwezo mzuri wa Fizikia na Hisabati, na nia ya elektroniki na sekta ya mawasiliano.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04101',name:'Algebra and Trigonometry'},{code:'GST 04102',name:'Mechanics and Nuclear Physics'},{code:'GST 04103',name:'English Language Basics'},{code:'EET 04101',name:'Basic Electricity'},{code:'ETT 04101',name:'Analogue Electronics'},{code:'EET 04102',name:'Domestic Installation and Mechanical Skills'},{code:'EET 04103',name:'Printed Circuit Board and Draughting Techniques'},{code:'EET 04104',name:'Electrical Measurements I'}]},
@@ -767,8 +803,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming, Statistics and Probability'},{code:'GST 06204',name:'Enterprise Management'},{code:'ETT 06201',name:'Telephony and Switching'},{code:'ETT 06202',name:'Microwave Technology'},{code:'ETT 06203',name:'Communication Systems'},{code:'ETT 06204',name:'Satellite Communication'},{code:'IPT 06',name:'Industrial Practical Training'}]}],
  careers:{employed:[
-  {emoji:'📡',role:{en:'Telecommunications Engineer',sw:'Mhandisi wa Mawasiliano'},desc:{en:'Work with telecom companies like Airtel, Vodacom, TTCL',sw:'Fanya kazi na makampuni ya simu kama Airtel, Vodacom'},salary:'TZS 1M–3.5M/month'},
-  {emoji:'📺',role:{en:'Broadcast Technician',sw:'Fundi wa Utangazaji'},desc:{en:'Maintain broadcasting equipment for TV and radio',sw:'Matengenezo ya vifaa vya utangazaji kwa TV na redio'},salary:'TZS 700K–2M/month'}],
+  {emoji:'📡',role:{en:'Telecommunications Engineer',sw:'Mhandisi wa Mawasiliano'},desc:{en:'Work with telecom companies like Airtel, Vodacom, TTCL',sw:'Fanya kazi na makampuni ya simu kama Airtel, Vodacom'}},
+  {emoji:'📺',role:{en:'Broadcast Technician',sw:'Fundi wa Utangazaji'},desc:{en:'Maintain broadcasting equipment for TV and radio',sw:'Matengenezo ya vifaa vya utangazaji kwa TV na redio'}}],
  self:[
   {emoji:'📶',role:{en:'ISP/WiFi Business Owner',sw:'Mmiliki wa Biashara ya Intaneti'},desc:{en:'Provide internet services to homes and businesses',sw:'Toa huduma za intaneti kwa nyumba na biashara'}}]}},
 
@@ -776,6 +812,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Electrical and Biomedical Engineering',sw:'Stashahada ya Uhandisi wa Umeme na Vifaa vya Hospitali'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn to install, maintain and repair the electrical and electronic equipment that hospitals depend on — from diagnostic machines to imaging equipment. Combines electrical engineering with basic human physiology and healthcare technology.',sw:'Utajifunza kusakinisha, kutunza na kutengeneza vifaa vya umeme na elektroniki ambavyo hospitali zinategemea — kuanzia mashine za uchunguzi hadi vifaa vya picha za matibabu. Inachanganya uhandisi wa umeme na fiziolojia ya msingi ya binadamu na teknolojia ya afya.'},
+ suitableFor:{en:'Best for students interested in both electrical engineering and healthcare — wanting to combine technical skill with helping save lives. Strong in Physics, with an interest in medicine or biology.',sw:'Inafaa kwa wanafunzi wenye nia ya uhandisi wa umeme na huduma za afya — wanaotaka kuchanganya ujuzi wa kiufundi na kusaidia kuokoa maisha. Wenye uwezo mzuri wa Fizikia, na nia ya udaktari au biolojia.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04101',name:'Algebra and Trigonometry'},{code:'GST 04102',name:'Mechanics and Nuclear Physics'},{code:'GST 04103',name:'English Language Basics'},{code:'EET 04101',name:'Basic Electricity'},{code:'ETT 04101',name:'Analogue Electronics'},{code:'EET 04102',name:'Basic of Workshop Technology and Practices'},{code:'ETT 04103',name:'Printed Circuit Board and Draughting Techniques'},{code:'EET 04103',name:'Electrical Measurements'}]},
@@ -790,8 +828,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming and Probability'},{code:'GST 06202',name:'Enterprise Management'},{code:'EBT 06202',name:'Hospital Equipment Repair and Maintenance'},{code:'EBT 06204',name:'Medical Imaging Equipment Theory'},{code:'EBT 06203',name:'Hospital Electrical and Mechanical Systems'},{code:'EET 06203',name:'Refrigeration and Air Conditioning'},{code:'EET 06207',name:'Project II'},{code:'EBT 06201',name:'Therapeutic Medical Equipment'}]}],
  careers:{employed:[
-  {emoji:'🏥',role:{en:'Biomedical Equipment Technician',sw:'Fundi wa Vifaa vya Hospitali'},desc:{en:'Maintain and repair medical equipment in hospitals',sw:'Matengenezo na kutengeneza vifaa vya matibabu hospitalini'},salary:'TZS 900K–2.5M/month'},
-  {emoji:'🔬',role:{en:'Medical Device Engineer',sw:'Mhandisi wa Vifaa vya Matibabu'},desc:{en:'Work with hospitals and clinics on medical equipment',sw:'Fanya kazi na hospitali na kliniki kuhusu vifaa vya matibabu'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🏥',role:{en:'Biomedical Equipment Technician',sw:'Fundi wa Vifaa vya Hospitali'},desc:{en:'Maintain and repair medical equipment in hospitals',sw:'Matengenezo na kutengeneza vifaa vya matibabu hospitalini'}},
+  {emoji:'🔬',role:{en:'Medical Device Engineer',sw:'Mhandisi wa Vifaa vya Matibabu'},desc:{en:'Work with hospitals and clinics on medical equipment',sw:'Fanya kazi na hospitali na kliniki kuhusu vifaa vya matibabu'}}],
  self:[
   {emoji:'🏥',role:{en:'Medical Equipment Service Provider',sw:'Mtoa Huduma wa Vifaa vya Matibabu'},desc:{en:'Service and calibrate medical devices for clinics',sw:'Hudumia na rekebisha vifaa vya matibabu kwa kliniki'}}]}},
 
@@ -799,6 +837,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Electrical and Hydropower Engineering',sw:'Stashahada ya Uhandisi wa Umeme na Nguvu za Maji'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn how flowing water is converted into electricity through dams and turbines — the technology behind much of Tanzania\'s national power supply. Covers power plant engineering, hydrology, and electrical machines used in hydroelectric stations like those run by TANESCO.',sw:'Utajifunza jinsi maji yanayotiririka yanavyobadilishwa kuwa umeme kupitia mabwawa na turbine — teknolojia inayotengeneza sehemu kubwa ya umeme wa taifa Tanzania. Inajumuisha uhandisi wa mitambo ya nguvu, hydrology, na mashine za umeme zinazotumika kwenye vituo vya umeme wa maji kama vya TANESCO.'},
+ suitableFor:{en:'Best for students interested in large-scale power generation and national infrastructure. Strong in Physics and Maths, with interest in renewable, sustainable energy sources.',sw:'Inafaa kwa wanafunzi wenye nia ya uzalishaji mkubwa wa umeme na miundombinu ya taifa. Wenye uwezo mzuri wa Fizikia na Hisabati, na nia ya vyanzo vya nishati mbadala na endelevu.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04111',name:'Algebra and Trigonometry'},{code:'GST 04112',name:'Fundamentals of Mechanics'},{code:'ITT 04117',name:'Basic Computer Application'},{code:'EHT 04111',name:'Electrical Installation'},{code:'EHT 04112',name:'Workshop Technology'},{code:'EHT 04113',name:'Basic Electricity'},{code:'EHT 04114',name:'Basic Electronics'},{code:'EHT 04115',name:'Basics of Hydropower Engineering'}]},
@@ -813,8 +853,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'EHT 06211',name:'Hydropower Plant Monitoring and Control'},{code:'EHT 06212',name:'Electrical Power Protection'},{code:'EHT 06213',name:'Synchronous and Special Machines'},{code:'EHT 06214',name:'Refrigeration and Air Conditioning'},{code:'EHT 06215',name:'Hydropower Environmental Management and Climate Change'},{code:'EHT 06216',name:'Electrical Power Transmission and Distribution'},{code:'EHT 06217',name:'Engineering Project Implementation'}]}],
  careers:{employed:[
-  {emoji:'💧',role:{en:'Hydropower Plant Engineer',sw:'Mhandisi wa Mtambo wa Maji'},desc:{en:'Operate and maintain hydroelectric power plants (TANESCO)',sw:'Endesha na matengenezo ya mitambo ya umeme wa maji (TANESCO)'},salary:'TZS 1M–3.5M/month'},
-  {emoji:'⚡',role:{en:'Power Systems Engineer',sw:'Mhandisi wa Mifumo ya Umeme'},desc:{en:'Manage electricity generation and distribution networks',sw:'Simamia uzalishaji na usambazaji wa umeme'},salary:'TZS 1.2M–4M/month'}],
+  {emoji:'💧',role:{en:'Hydropower Plant Engineer',sw:'Mhandisi wa Mtambo wa Maji'},desc:{en:'Operate and maintain hydroelectric power plants (TANESCO)',sw:'Endesha na matengenezo ya mitambo ya umeme wa maji (TANESCO)'}},
+  {emoji:'⚡',role:{en:'Power Systems Engineer',sw:'Mhandisi wa Mifumo ya Umeme'},desc:{en:'Manage electricity generation and distribution networks',sw:'Simamia uzalishaji na usambazaji wa umeme'}}],
  self:[
   {emoji:'🌊',role:{en:'Small Hydro Developer',sw:'Mjenzi wa Mitambo Midogo ya Umeme wa Maji'},desc:{en:'Install micro-hydro systems for rural electrification',sw:'Weka mifumo midogo ya umeme wa maji vijijini'}}]}},
 
@@ -822,6 +862,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Electrical and Solar Engineering',sw:'Stashahada ya Uhandisi wa Umeme na Nishati ya Jua'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn how to design and install solar power systems — converting sunlight into usable electricity for homes, schools and businesses, especially in areas without grid access. Combines electrical engineering with solar plant design and maintenance.',sw:'Utajifunza jinsi ya kubuni na kusakinisha mifumo ya umeme wa jua — kubadilisha mwanga wa jua kuwa umeme unaotumika majumbani, shuleni na bishara, hasa maeneo yasiyo na umeme wa gridi. Inachanganya uhandisi wa umeme na ubunifu na utunzaji wa mitambo ya jua.'},
+ suitableFor:{en:'Best for students passionate about clean energy and solving Tanzania\'s rural electrification challenges. Strong in Physics, with interest in sustainable, off-grid solutions that are growing fast across East Africa.',sw:'Inafaa kwa wanafunzi wenye shauku ya nishati safi na kutatua changamoto za umeme vijijini Tanzania. Wenye uwezo mzuri wa Fizikia, na nia ya suluhisho endelevu zisizotegemea gridi zinazokua haraka Afrika Mashariki.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04101',name:'Algebra and Trigonometry'},{code:'GST 04102',name:'Mechanics and Nuclear Physics'},{code:'EET 04101',name:'Basic Electrical Engineering'},{code:'ETT 04101',name:'Analogue Electronics'},{code:'ETT 04102',name:'Printed Circuit Board and Draughting Techniques'},{code:'EET 04102',name:'Basics of Workshop Technology and Practices'},{code:'EST 04101',name:'Solar Electrical Measurements'},{code:'RET 04101',name:'Energy and Climate Change'}]},
@@ -836,8 +878,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming and Probability'},{code:'GST 06202',name:'Enterprise Management'},{code:'EST 06201',name:'Solar Power Plant Maintenance'},{code:'EST 06202',name:'Energy Efficiency and Economics'},{code:'EET 06201',name:'Synchronous and Special Machines'},{code:'EET 06204',name:'Electrical Maintenance and Management'},{code:'EET 06205',name:'Electrical Power Transmission and Distribution'},{code:'EET 06207',name:'Project II'}]}],
  careers:{employed:[
-  {emoji:'☀️',role:{en:'Solar Energy Engineer',sw:'Mhandisi wa Nishati ya Jua'},desc:{en:'Install and maintain solar power systems for homes and businesses',sw:'Weka na matengenezo ya mifumo ya jua kwa nyumba na biashara'},salary:'TZS 900K–2.5M/month'},
-  {emoji:'⚡',role:{en:'Renewable Energy Technician',sw:'Fundi wa Nishati Mbadala'},desc:{en:'Work on solar and hybrid energy projects',sw:'Fanya kazi kwenye miradi ya nishati ya jua na hybrid'},salary:'TZS 800K–2M/month'}],
+  {emoji:'☀️',role:{en:'Solar Energy Engineer',sw:'Mhandisi wa Nishati ya Jua'},desc:{en:'Install and maintain solar power systems for homes and businesses',sw:'Weka na matengenezo ya mifumo ya jua kwa nyumba na biashara'}},
+  {emoji:'⚡',role:{en:'Renewable Energy Technician',sw:'Fundi wa Nishati Mbadala'},desc:{en:'Work on solar and hybrid energy projects',sw:'Fanya kazi kwenye miradi ya nishati ya jua na hybrid'}}],
  self:[
   {emoji:'☀️',role:{en:'Solar Installation Business',sw:'Biashara ya Usakinishaji wa Jua'},desc:{en:'Install solar panels for homes, schools and businesses',sw:'Weka paneli za jua kwa nyumba, shule na biashara'}}]}},
 
@@ -845,6 +887,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Electrical and Wind Energy Systems Engineering',sw:'Stashahada ya Uhandisi wa Umeme na Nishati ya Upepo'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn how wind turbines capture moving air and convert it into electricity. Covers turbine design and control, wind resource assessment, and integrating wind power into hybrid energy systems — an emerging field in Tanzania\'s renewable energy sector.',sw:'Utajifunza jinsi mitambo ya upepo inavyokamata hewa inayotembea na kuibadilisha kuwa umeme. Inajumuisha ubunifu na udhibiti wa turbine, tathmini ya rasilimali za upepo, na kuunganisha nguvu za upepo na mifumo mingine ya nishati — fani inayokua katika sekta ya nishati mbadala Tanzania.'},
+ suitableFor:{en:'Best for students interested in cutting-edge renewable energy technology. Strong in Physics and Maths, with curiosity about emerging green energy fields with growing global demand.',sw:'Inafaa kwa wanafunzi wenye nia ya teknolojia ya kisasa ya nishati mbadala. Wenye uwezo mzuri wa Fizikia na Hisabati, na udadisi wa fani mpya za nishati safi zenye mahitaji yanayokua duniani.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04101',name:'Algebra and Trigonometry'},{code:'GST 04102',name:'Mechanics and Nuclear Physics'},{code:'GST 04103',name:'English Language Basics'},{code:'EET 04101',name:'Basic Electricity'},{code:'ETT 04101',name:'Analogue Electronics'},{code:'ETT 04102',name:'Printed Circuit Board Techniques and Practice'},{code:'EET 04102',name:'Domestic Installation and Mechanical Skills'},{code:'EET 04103',name:'Electrical Measurements'},{code:'RET 04101',name:'Energy and Climate Change'}]},
@@ -859,8 +903,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming and Probability'},{code:'GST 06202',name:'Enterprise Management'},{code:'EET 06201',name:'Synchronous and Special Machines'},{code:'EET 06205',name:'Electrical Power Transmission and Distribution'},{code:'EWT 06201',name:'Wind Energy Systems Maintenance and Management'},{code:'EWT 06202',name:'Energy Efficiency and Economics'},{code:'EWT 06203',name:'Renewable Energy Hybrid System Design'},{code:'EWT 06204',name:'Meteorological Analysis and Forecasting'},{code:'EWT 06205',name:'Wind Energy Project II'}]}],
  careers:{employed:[
-  {emoji:'🌬️',role:{en:'Wind Energy Technician',sw:'Fundi wa Nishati ya Upepo'},desc:{en:'Install and maintain wind turbines',sw:'Weka na matengenezo ya mitambo ya upepo'},salary:'TZS 900K–2.5M/month'},
-  {emoji:'☀️',role:{en:'Renewable Energy Engineer',sw:'Mhandisi wa Nishati Mbadala'},desc:{en:'Work on solar, wind and hybrid energy systems',sw:'Fanya kazi kwenye mifumo ya jua, upepo na hybrid'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🌬️',role:{en:'Wind Energy Technician',sw:'Fundi wa Nishati ya Upepo'},desc:{en:'Install and maintain wind turbines',sw:'Weka na matengenezo ya mitambo ya upepo'}},
+  {emoji:'☀️',role:{en:'Renewable Energy Engineer',sw:'Mhandisi wa Nishati Mbadala'},desc:{en:'Work on solar, wind and hybrid energy systems',sw:'Fanya kazi kwenye mifumo ya jua, upepo na hybrid'}}],
  self:[
   {emoji:'⚡',role:{en:'Renewable Energy Installer',sw:'Msakinishaji wa Nishati Mbadala'},desc:{en:'Install solar and wind energy systems for homes and businesses',sw:'Weka mifumo ya jua na upepo kwa nyumba na biashara'}}]}},
 
@@ -868,10 +912,12 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Nuclear Science and Technology',sw:'Stashahada ya Sayansi na Teknolojia ya Nyuklia'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn the principles of nuclear science and radiation technology — including safety protocols, radiation measurement, and applications in medicine, agriculture, and energy. A specialized and highly regulated field overseen by national atomic energy authorities.',sw:'Utajifunza misingi ya sayansi ya nyuklia na teknolojia ya mionzi — ikiwemo taratibu za usalama, upimaji wa mionzi, na matumizi katika udaktari, kilimo, na nishati. Fani maalum na yenye udhibiti mkubwa inayosimamiwa na mamlaka za kitaifa za nishati ya atomiki.'},
+ suitableFor:{en:'Best for students very strong in Physics and Chemistry who are drawn to highly specialized, scientific careers. A rare and prestigious field with few specialists nationwide.',sw:'Inafaa kwa wanafunzi wenye uwezo mkubwa sana wa Fizikia na Kemia wanaovutiwa na kazi za kisayansi maalum sana. Fani adimu na yenye heshima kubwa, yenye wataalamu wachache nchini.'},
  semesters:[],
  careers:{employed:[
-  {emoji:'☢️',role:{en:'Nuclear Technician',sw:'Fundi wa Nyuklia'},desc:{en:'Work with Tanzania Atomic Energy Commission (TAEC)',sw:'Fanya kazi na Tume ya Nishati ya Atomiki Tanzania (TAEC)'},salary:'TZS 1M–3M/month'},
-  {emoji:'🔬',role:{en:'Radiation Safety Officer',sw:'Afisa wa Usalama wa Mionzi'},desc:{en:'Monitor and control radiation in hospitals and industries',sw:'Fuatilia na dhibiti mionzi hospitalini na viwandani'},salary:'TZS 1M–2.5M/month'}],
+  {emoji:'☢️',role:{en:'Nuclear Technician',sw:'Fundi wa Nyuklia'},desc:{en:'Work with Tanzania Atomic Energy Commission (TAEC)',sw:'Fanya kazi na Tume ya Nishati ya Atomiki Tanzania (TAEC)'}},
+  {emoji:'🔬',role:{en:'Radiation Safety Officer',sw:'Afisa wa Usalama wa Mionzi'},desc:{en:'Monitor and control radiation in hospitals and industries',sw:'Fuatilia na dhibiti mionzi hospitalini na viwandani'}}],
  self:[
   {emoji:'🏥',role:{en:'Radiation Safety Consultant',sw:'Mshauri wa Usalama wa Mionzi'},desc:{en:'Advise hospitals on safe use of radiation equipment',sw:'Shauri hospitali kuhusu matumizi salama ya vifaa vya mionzi'}}]}},
 
@@ -879,6 +925,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Instrumentation Engineering',sw:'Stashahada ya Uhandisi wa Vyombo vya Kupimia'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn how to install, calibrate and maintain the sensors and measurement devices that monitor and control industrial processes — from factory production lines to oil and gas plants. Covers pneumatics, signal processing, and industrial automation systems.',sw:'Utajifunza kusakinisha, kurekebisha na kutunza vihisi na vifaa vya kupimia vinavyofuatilia na kudhibiti michakato ya viwandani — kuanzia mistari ya uzalishaji viwandani hadi mitambo ya mafuta na gesi. Inajumuisha pneumatics, uchakataji wa ishara, na mifumo ya automation ya viwandani.'},
+ suitableFor:{en:'Best for detail-oriented students who enjoy precision and accuracy. Strong in Physics and Maths, with interest in how factories and industrial plants are monitored and kept running smoothly.',sw:'Inafaa kwa wanafunzi makini wenye nia ya usahihi na umakini. Wenye uwezo mzuri wa Fizikia na Hisabati, na nia ya jinsi viwanda na mitambo vinavyofuatiliwa na kuendeshwa vizuri.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04111',name:'Algebra and Trigonometry'},{code:'GST 04112',name:'Fundamentals of Mechanics'},{code:'ITT 04117',name:'Basic Computer Applications'},{code:'IET 04111',name:'Occupational Health and Safety'},{code:'IET 04112',name:'Technical Drawing'},{code:'IET 04113',name:'Electrical Installation'},{code:'IET 04114',name:'Electrical Circuit Troubleshooting'},{code:'IET 04115',name:'Electrical Measurements'}]},
@@ -893,8 +941,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'IET 06211',name:'Industrial Process Control and Monitoring'},{code:'IET 06212',name:'Signal Processing and Applications'},{code:'IET 06213',name:'Instruments Maintenance and Repair'},{code:'IET 06214',name:'Telemetry Systems Installation and Maintenance'},{code:'IET 06215',name:'Engineering Project Implementation'}]}],
  careers:{employed:[
-  {emoji:'🎛️',role:{en:'Instrumentation Technician',sw:'Fundi wa Vyombo vya Kupimia'},desc:{en:'Maintain measurement and control systems in factories',sw:'Matengenezo ya mifumo ya kupimia na udhibiti viwandani'},salary:'TZS 900K–2.5M/month'},
-  {emoji:'🏭',role:{en:'Process Control Engineer',sw:'Mhandisi wa Udhibiti wa Uzalishaji'},desc:{en:'Monitor and control industrial manufacturing processes',sw:'Fuatilia na udhibiti michakato ya uzalishaji viwandani'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🎛️',role:{en:'Instrumentation Technician',sw:'Fundi wa Vyombo vya Kupimia'},desc:{en:'Maintain measurement and control systems in factories',sw:'Matengenezo ya mifumo ya kupimia na udhibiti viwandani'}},
+  {emoji:'🏭',role:{en:'Process Control Engineer',sw:'Mhandisi wa Udhibiti wa Uzalishaji'},desc:{en:'Monitor and control industrial manufacturing processes',sw:'Fuatilia na udhibiti michakato ya uzalishaji viwandani'}}],
  self:[
   {emoji:'🔧',role:{en:'Instrumentation Consultant',sw:'Mshauri wa Vyombo vya Kupimia'},desc:{en:'Calibrate and service instruments for industries',sw:'Rekebisha na hudumia vyombo vya kupimia kwa viwanda'}}]}},
 
@@ -903,6 +951,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Mechanical Engineering',sw:'Stashahada ya Uhandisi wa Mitambo'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn how machines are designed, built, and kept running — from factory production lines to industrial equipment. Covers engineering drawing, machine design, welding, thermodynamics, and modern manufacturing technology like CNC and 3D modelling.',sw:'Utajifunza jinsi mashine zinavyobuniwa, kujengwa, na kuendeshwa — kuanzia mistari ya uzalishaji viwandani hadi vifaa vya viwandani. Inajumuisha michoro ya uhandisi, ubunifu wa mashine, kulehemu, thermodynamics, na teknolojia ya kisasa ya utengenezaji kama CNC na 3D modelling.'},
+ suitableFor:{en:'Best for students who enjoy building, fixing, and understanding how mechanical things work. Strong in Physics and Maths, with hands-on problem-solving skills — a broad field with opportunities in nearly every industry.',sw:'Inafaa kwa wanafunzi wanaopenda kujenga, kutengeneza, na kuelewa jinsi vitu vya kimitambo vinavyofanya kazi. Wenye uwezo mzuri wa Fizikia na Hisabati, na ujuzi wa kutatua matatizo kivitendo — fani pana yenye fursa katika karibu kila sekta.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04111',name:'Algebra and Trigonometry'},{code:'MET 04111',name:'Basics of Engineering Drawing'},{code:'MET 04112',name:'Basics of Engineering Materials'},{code:'MET 04113',name:'Mechanical Engineering Science'},{code:'MET 04114',name:'Basics of Automotive Technology'},{code:'MET 04115',name:'General Workshop Practice'},{code:'MET 04116',name:'Occupational Health, Safety and Work Relations'}]},
@@ -917,8 +967,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'MET 06211',name:'CNC Programming and Application'},{code:'MET 06212',name:'Fundamentals of Air-conditioning System'},{code:'MET 06213',name:'Fundamentals of Pump and Compressor Systems'},{code:'MET 06214',name:'Machine Installation, Commissioning and Maintenance'},{code:'MET 06215',name:'Workshop Management'},{code:'MET 06216',name:'Mechanical Engineering Project II – Production'}]}],
  careers:{employed:[
-  {emoji:'⚙️',role:{en:'Mechanical Engineer',sw:'Mhandisi wa Mitambo'},desc:{en:'Design and maintain machinery in factories and industries',sw:'Buni na matengenezo ya mashine viwandani'},salary:'TZS 1M–3.5M/month'},
-  {emoji:'🏭',role:{en:'Production Engineer',sw:'Mhandisi wa Uzalishaji'},desc:{en:'Oversee manufacturing processes in factories',sw:'Simamia michakato ya utengenezaji viwandani'},salary:'TZS 1M–3M/month'}],
+  {emoji:'⚙️',role:{en:'Mechanical Engineer',sw:'Mhandisi wa Mitambo'},desc:{en:'Design and maintain machinery in factories and industries',sw:'Buni na matengenezo ya mashine viwandani'}},
+  {emoji:'🏭',role:{en:'Production Engineer',sw:'Mhandisi wa Uzalishaji'},desc:{en:'Oversee manufacturing processes in factories',sw:'Simamia michakato ya utengenezaji viwandani'}}],
  self:[
   {emoji:'🔧',role:{en:'Workshop / Garage Owner',sw:'Mmiliki wa Karakana'},desc:{en:'Run your own machine repair and fabrication workshop',sw:'Endesha karakana yako ya kutengeneza mashine'}}]}},
 
@@ -926,6 +976,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Mechanical and Bio-energy Engineering',sw:'Stashahada ya Uhandisi wa Mitambo na Nishati ya Kibiolojia'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn how organic waste — like crop residues, manure and biomass — can be converted into clean energy through gasifiers and bio-digesters. Combines mechanical engineering fundamentals with renewable energy technology focused on agricultural and rural communities.',sw:'Utajifunza jinsi taka za kikaboni — kama mabaki ya mazao, samadi na biomass — zinavyoweza kubadilishwa kuwa nishati safi kupitia gasifiers na bio-digesters. Inachanganya misingi ya uhandisi wa mitambo na teknolojia ya nishati mbadala inayolenga jamii za kilimo na vijijini.'},
+ suitableFor:{en:'Best for students interested in mechanical engineering with a focus on sustainability and rural development. Strong in Physics and Chemistry, with interest in turning waste into useful energy.',sw:'Inafaa kwa wanafunzi wenye nia ya uhandisi wa mitambo wenye mwelekeo wa uendelevu na maendeleo vijijini. Wenye uwezo mzuri wa Fizikia na Kemia, na nia ya kubadilisha taka kuwa nishati muhimu.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04101',name:'Algebra and Trigonometry'},{code:'GST 04102',name:'Mechanics and Nuclear Physics'},{code:'GST 04103',name:'Basics of English Language'},{code:'EET 04101',name:'Basic Electrical Engineering'},{code:'MET 04101',name:'Basics of Engineering Drawing'},{code:'MET 04102',name:'Mechanical Engineering Materials'},{code:'MET 04105',name:'Basics of Manufacturing Engineering'},{code:'MBT 04101',name:'Energy and Environment'}]},
@@ -940,7 +992,7 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GST 06201',name:'Linear Programming and Probability'},{code:'GST 06202',name:'Enterprise Management'},{code:'MBT 06201',name:'Material Technology'},{code:'MBT 06202',name:'Construction of Bio-digester'},{code:'MET 06208',name:'Fundamental of 3D Modelling Using Solid Works'},{code:'MET 06209',name:'Fundamentals of Air-conditioning System'},{code:'MET 06211',name:'Industrial Automation'},{code:'MET 06212',name:'Mechanical Workshop Management'},{code:'RET 06201',name:'Renewable Energy Hybrid System Design'},{code:'MBT 06203',name:'Bioenergy Project II – Production'}]}],
  careers:{employed:[
-  {emoji:'🌱',role:{en:'Bioenergy Engineer',sw:'Mhandisi wa Nishati ya Kibiolojia'},desc:{en:'Work on biogas, biomass and renewable energy projects',sw:'Fanya kazi kwenye miradi ya biogas, biomass na nishati mbadala'},salary:'TZS 900K–2.5M/month'}],
+  {emoji:'🌱',role:{en:'Bioenergy Engineer',sw:'Mhandisi wa Nishati ya Kibiolojia'},desc:{en:'Work on biogas, biomass and renewable energy projects',sw:'Fanya kazi kwenye miradi ya biogas, biomass na nishati mbadala'}}],
  self:[
   {emoji:'🔥',role:{en:'Biogas Plant Installer',sw:'Msakinishaji wa Mitambo ya Biogas'},desc:{en:'Install biogas digesters for farms and homes',sw:'Weka mitambo ya biogas kwa mashamba na nyumba'}}]}},
 
@@ -948,6 +1000,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Pipe Works, Water, Oil and Gas Engineering',sw:'Stashahada ya Uhandisi wa Mabomba, Maji, Mafuta na Gesi'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn to design, install and maintain piping systems that carry water, oil, gas and steam — found in buildings, factories, and petroleum facilities. Covers welding, pump technology, fire protection systems, and pressure vessel safety.',sw:'Utajifunza kubuni, kusakinisha na kutunza mifumo ya mabomba inayobeba maji, mafuta, gesi na mvuke — inayopatikana majengoni, viwandani, na vituo vya petroli. Inajumuisha kulehemu, teknolojia ya pampu, mifumo ya kuzuia moto, na usalama wa vyombo vya shinikizo.'},
+ suitableFor:{en:'Best for hands-on students interested in the oil, gas and water infrastructure sectors — industries with strong demand and good pay in Tanzania. Strong in Physics, with attention to safety and precision.',sw:'Inafaa kwa wanafunzi wa vitendo wenye nia ya sekta za mafuta, gesi na miundombinu ya maji — viwanda vyenye mahitaji makubwa na malipo mazuri Tanzania. Wenye uwezo mzuri wa Fizikia, na umakini wa usalama na usahihi.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'MET 04111',name:'Basics of Engineering Drawing'},{code:'MET 04112',name:'Basics of Engineering Materials'},{code:'PWT 04111',name:'Piping Components and Metering'},{code:'PWT 04112',name:'Basics of Electrical and Electronics Engineering'},{code:'PWT 04113',name:'Benchwork for Pipework'}]},
@@ -958,8 +1012,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'PWT 06212',name:'Solar Thermal Energy Systems'},{code:'PWT 06213',name:'Principles of Water, Oil and Gas Control'},{code:'PWT 06214',name:'Water, Oil and Gas Piping, Operation and System Planning'},{code:'PWT 06215',name:'Oil and Gas Fired Appliances and Pressure Vessels'},{code:'PWT 06216',name:'Pipe-works Engineering Project II – Installation'}]}],
  careers:{employed:[
-  {emoji:'🔩',role:{en:'Pipework Engineer',sw:'Mhandisi wa Mabomba'},desc:{en:'Install and maintain pipe systems in buildings and industries',sw:'Weka na matengenezo ya mabomba majengo na viwandani'},salary:'TZS 900K–2.5M/month'},
-  {emoji:'⛽',role:{en:'Oil & Gas Technician',sw:'Fundi wa Mafuta na Gesi'},desc:{en:'Work on oil, gas and petroleum pipe systems',sw:'Fanya kazi kwenye mifumo ya mabomba ya mafuta na gesi'},salary:'TZS 1.2M–4M/month'}],
+  {emoji:'🔩',role:{en:'Pipework Engineer',sw:'Mhandisi wa Mabomba'},desc:{en:'Install and maintain pipe systems in buildings and industries',sw:'Weka na matengenezo ya mabomba majengo na viwandani'}},
+  {emoji:'⛽',role:{en:'Oil & Gas Technician',sw:'Fundi wa Mafuta na Gesi'},desc:{en:'Work on oil, gas and petroleum pipe systems',sw:'Fanya kazi kwenye mifumo ya mabomba ya mafuta na gesi'}}],
  self:[
   {emoji:'🔧',role:{en:'Plumbing Contractor',sw:'Mkandarasi wa Mabomba'},desc:{en:'Run your own plumbing and pipe installation business',sw:'Endesha biashara yako ya kuweka mabomba'}}]}},
 
@@ -967,6 +1021,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Geology and Gemstone Processing Engineering',sw:'Stashahada ya Uhandisi wa Jiolojia na Usindikaji wa Madini'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics/Eng. Science, Maths, Chemistry, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Kiingereza.'},
+ description:{en:'You will learn how to identify, extract and process valuable minerals and gemstones — from understanding rock formations to cutting and polishing gems like tanzanite. Covers geology, mining methods, exploration techniques, and gemstone craftsmanship.',sw:'Utajifunza kutambua, kuchimba na kusindika madini na vito vya thamani — kuanzia kuelewa miundo ya miamba hadi kukata na kung\'arisha vito kama tanzanite. Inajumuisha jiolojia, mbinu za uchimbaji, mbinu za uchunguzi, na ufundi wa vito.'},
+ suitableFor:{en:'Best for students fascinated by rocks, minerals and Tanzania\'s rich mining heritage — home to tanzanite, gold and diamonds. Strong in Physics and Chemistry, with interest in geology and the mining industry.',sw:'Inafaa kwa wanafunzi wanaovutiwa na miamba, madini na urithi mkubwa wa madini Tanzania — nyumbani kwa tanzanite, dhahabu na almasi. Wenye uwezo mzuri wa Fizikia na Kemia, na nia ya jiolojia na sekta ya madini.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GGT 04111',name:'Introduction to Geology and Earth Processes'},{code:'GGT 04112',name:'Fundamentals of Gemmology'},{code:'GGT 04113',name:'Occupational Health, Safety and Work Relations'},{code:'GGT 04114',name:'Basics of Land Surveying'},{code:'GGT 04115',name:'Basics of Gemstone Cutting and Polishing'}]},
@@ -979,8 +1035,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GGT 06211',name:'Engineering Geology'},{code:'GGT 06212',name:'Mining Survey'},{code:'GGT 06213',name:'Rock Carving Techniques'},{code:'GGT 06214',name:'Mining Geology Software'},{code:'GGT 06215',name:'Legal Structure in Mining Operation'},{code:'GGT 06216',name:'Mine Hazards'},{code:'GGT 06217',name:'Project Implementation'}]}],
  careers:{employed:[
-  {emoji:'💎',role:{en:'Gemologist / Gemstone Technician',sw:'Mtaalamu wa Madini ya Thamani'},desc:{en:'Grade and process gemstones for export companies',sw:'Panga na sinda madini ya thamani kwa makampuni ya usafirishaji'},salary:'TZS 800K–2.5M/month'},
-  {emoji:'⛏️',role:{en:'Mining Engineer',sw:'Mhandisi wa Machimbo'},desc:{en:'Work in Tanzania mining industry (gold, diamonds, tanzanite)',sw:'Fanya kazi katika viwanda vya madini Tanzania'},salary:'TZS 1M–4M/month'}],
+  {emoji:'💎',role:{en:'Gemologist / Gemstone Technician',sw:'Mtaalamu wa Madini ya Thamani'},desc:{en:'Grade and process gemstones for export companies',sw:'Panga na sinda madini ya thamani kwa makampuni ya usafirishaji'}},
+  {emoji:'⛏️',role:{en:'Mining Engineer',sw:'Mhandisi wa Machimbo'},desc:{en:'Work in Tanzania mining industry (gold, diamonds, tanzanite)',sw:'Fanya kazi katika viwanda vya madini Tanzania'}}],
  self:[
   {emoji:'💍',role:{en:'Gemstone Business / Jewellery',sw:'Biashara ya Madini na Vito'},desc:{en:'Buy, process and sell gemstones and jewellery',sw:'Nunua, sinda na uza madini ya thamani na vito'}}]}},
 
@@ -989,6 +1045,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Computer Science',sw:'Stashahada ya Sayansi ya Kompyuta'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes including Basic Maths and English.',sw:'CSEE na angalau alama 4 za D ikiwemo Hisabati na Kiingereza.'},
+ description:{en:'You will learn how to write code that powers software, websites and mobile apps. Covers programming languages (C, Java, Python), data structures, software design, cybersecurity, and database management — the technical foundation behind nearly every digital product you use.',sw:'Utajifunza kuandika code inayoendesha programu, websites na apps za simu. Inajumuisha lugha za programu (C, Java, Python), data structures, ubunifu wa programu, usalama wa mtandao, na usimamizi wa database — msingi wa kiufundi nyuma ya karibu kila bidhaa ya kidijitali unayotumia.'},
+ suitableFor:{en:'Best for logical thinkers who enjoy solving problems step by step. Strong in Maths, with curiosity about how apps and websites are built. A fast-growing field with opportunities to work remotely for companies worldwide.',sw:'Inafaa kwa wenye mawazo ya kimantiki wanaopenda kutatua matatizo hatua kwa hatua. Wenye uwezo mzuri wa Hisabati, na udadisi wa jinsi apps na websites zinavyojengwa. Fani inayokua haraka yenye fursa za kufanya kazi mbali na makampuni ya kimataifa.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04103',name:'English Language Basics'},{code:'GST 04106',name:'Elementary Mathematics'},{code:'ITT 04101',name:'Computer Fundamentals and Applications'},{code:'ITT 04102',name:'Microcomputer Applications'},{code:'CST',name:'Basics of Computer Networks'},{code:'—',name:'Basics of Electronics'}]},
@@ -1003,8 +1061,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GSD 06203',name:'Supervisory Communication Skills'},{code:'CSD 06201',name:'Advanced Network Management'},{code:'CSD 06202',name:'Java Programming'},{code:'CSD 06203',name:'Fundamental of Data Structures and Algorithms'},{code:'CSD 06204',name:'Microprocessor Technology'},{code:'ITT 06201',name:'Principles of Management'},{code:'FYP II',name:'Final Year Project II'}]}],
  careers:{employed:[
-  {emoji:'💻',role:{en:'Software Developer',sw:'Mtengenezaji wa Programu'},desc:{en:'Build apps and systems for companies and startups',sw:'Tengeneza programu na mifumo kwa makampuni'},salary:'TZS 1M–3M/month'},
-  {emoji:'🔒',role:{en:'Cybersecurity Analyst',sw:'Mchambuzi wa Usalama wa Mtandao'},desc:{en:'Protect company systems from hackers and threats',sw:'Linda mifumo ya makampuni dhidi ya wavamizi'},salary:'TZS 1.5M–4M/month'}],
+  {emoji:'💻',role:{en:'Software Developer',sw:'Mtengenezaji wa Programu'},desc:{en:'Build apps and systems for companies and startups',sw:'Tengeneza programu na mifumo kwa makampuni'}},
+  {emoji:'🔒',role:{en:'Cybersecurity Analyst',sw:'Mchambuzi wa Usalama wa Mtandao'},desc:{en:'Protect company systems from hackers and threats',sw:'Linda mifumo ya makampuni dhidi ya wavamizi'}}],
  self:[
   {emoji:'🚀',role:{en:'Tech Startup Founder',sw:'Mwanzilishi wa Kampuni ya Teknolojia'},desc:{en:'Build your own software products and sell them',sw:'Jenga bidhaa zako za programu na uziuze'}},
   {emoji:'🖥️',role:{en:'Freelance Developer',sw:'Msanidi Huru'},desc:{en:'Work remotely for clients via Upwork, Fiverr',sw:'Fanya kazi kwa wateja kupitia Upwork, Fiverr'}}]}},
@@ -1013,6 +1071,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Information Technology',sw:'Stashahada ya Teknolojia ya Habari'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes including English.',sw:'CSEE na angalau alama 4 za D ikiwemo Kiingereza.'},
+ description:{en:'You will learn how to set up, manage and secure the computer networks and systems that organizations depend on daily. Covers network administration, system administration, server management, and IT infrastructure — keeping technology running smoothly behind the scenes.',sw:'Utajifunza kuanzisha, kusimamia na kulinda mitandao na mifumo ya kompyuta ambayo mashirika yanategemea kila siku. Inajumuisha usimamizi wa mtandao, usimamizi wa mfumo, usimamizi wa seva, na miundombinu ya IT — kuhakikisha teknolojia inaendesha vizuri nyuma ya pazia.'},
+ suitableFor:{en:'Best for practical-minded students who enjoy keeping systems running and solving technical problems. Strong in English and basic Maths, with interest in becoming the "IT person" every organization needs.',sw:'Inafaa kwa wanafunzi wa vitendo wanaopenda kuhakikisha mifumo inaendesha vizuri na kutatua matatizo ya kiufundi. Wenye uwezo mzuri wa Kiingereza na Hisabati ya msingi, na nia ya kuwa "mtu wa IT" anayehitajika kila shirika.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'GST 04103',name:'English Language Basics'},{code:'GST 04106',name:'Elementary Mathematics'},{code:'ITT 04101',name:'Computer Fundamentals and Applications'},{code:'ITT 04102',name:'Microcomputer Applications'},{code:'ITT 04103',name:'Basics of Computer Networks'},{code:'ITT 04104',name:'Basics of Electronics'}]},
@@ -1027,8 +1087,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'GSD 06203',name:'Supervisory Communication Skills'},{code:'ITD 06201',name:'Principles of Management'},{code:'ITD 06202',name:'Wireless Networking'},{code:'ITD 06203',name:'Advanced Network Management'},{code:'ITD 06204',name:'Final Year Project II'}]}],
  careers:{employed:[
-  {emoji:'🌐',role:{en:'Network Administrator',sw:'Msimamizi wa Mtandao'},desc:{en:'Manage and maintain computer networks in organizations',sw:'Simamia mitandao ya kompyuta katika mashirika'},salary:'TZS 900K–2.5M/month'},
-  {emoji:'🖥️',role:{en:'System Administrator',sw:'Msimamizi wa Mifumo'},desc:{en:'Manage servers and IT infrastructure',sw:'Simamia seva na miundombinu ya IT'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🌐',role:{en:'Network Administrator',sw:'Msimamizi wa Mtandao'},desc:{en:'Manage and maintain computer networks in organizations',sw:'Simamia mitandao ya kompyuta katika mashirika'}},
+  {emoji:'🖥️',role:{en:'System Administrator',sw:'Msimamizi wa Mifumo'},desc:{en:'Manage servers and IT infrastructure',sw:'Simamia seva na miundombinu ya IT'}}],
  self:[
   {emoji:'📶',role:{en:'ISP/WiFi Business Owner',sw:'Mmiliki wa Biashara ya Intaneti'},desc:{en:'Provide internet services to homes and businesses',sw:'Toa huduma za intaneti kwa nyumba na biashara'}}]}},
 
@@ -1036,6 +1096,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Cyber Security & Digital Forensic',sw:'Stashahada ya Usalama wa Mtandao na Uchunguzi wa Kidijitali'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes including Basic Maths and English.',sw:'CSEE na angalau alama 4 za D ikiwemo Hisabati na Kiingereza.'},
+ description:{en:'You will learn how to protect computer systems from hackers and investigate digital crimes. Covers ethical hacking, encryption, digital forensics, and incident response — skills increasingly critical as Tanzania\'s banks, businesses and government go digital.',sw:'Utajifunza kulinda mifumo ya kompyuta dhidi ya wavamizi na kuchunguza uhalifu wa kidijitali. Inajumuisha ethical hacking, encryption, uchunguzi wa kidijitali, na majibu ya matukio — ujuzi unaozidi kuwa muhimu huku benki, biashara na serikali ya Tanzania ikienda kidijitali.'},
+ suitableFor:{en:'Best for curious, detail-oriented students who enjoy puzzles and investigation. Strong in Maths and logical thinking, with interest in protecting people and organizations from cybercrime — a high-demand, well-paid specialty.',sw:'Inafaa kwa wanafunzi wadadisi, makini wanaopenda mafumbo na uchunguzi. Wenye uwezo mzuri wa Hisabati na mawazo ya kimantiki, na nia ya kulinda watu na mashirika dhidi ya uhalifu wa mtandao — fani yenye mahitaji makubwa na malipo mazuri.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'CDT 04111',name:'Electronics Application in Computing'},{code:'CDT 04112',name:'Forensic Investigation'},{code:'ITT 04111',name:'Computer Application Operations'},{code:'CST 04112',name:'Computer Networks'},{code:'CST 04212',name:'Multimedia Analysis'}]},
@@ -1050,8 +1112,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'CDD 06211',name:'Encryption Technology'},{code:'CDD 06212',name:'Information Quality Assurance'},{code:'CDD 06213',name:'Database Security'},{code:'CDD 06214',name:'Mobile and Wireless Security'},{code:'CDD 06215',name:'Mobile Device Forensic'},{code:'CDD 06216',name:'Information Security Management'},{code:'CDD 06217',name:'Project Implementation'}]}],
  careers:{employed:[
-  {emoji:'🛡️',role:{en:'Cybersecurity Analyst',sw:'Mchambuzi wa Usalama wa Mtandao'},desc:{en:'Monitor and protect organizational networks from attacks',sw:'Fuatilia na linda mitandao ya mashirika dhidi ya mashambulio'},salary:'TZS 1.5M–4M/month'},
-  {emoji:'🔍',role:{en:'Digital Forensic Investigator',sw:'Mpelelezi wa Kidijitali'},desc:{en:'Investigate cybercrimes for police and courts',sw:'Chunguza uhalifu wa mtandao kwa polisi na mahakama'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🛡️',role:{en:'Cybersecurity Analyst',sw:'Mchambuzi wa Usalama wa Mtandao'},desc:{en:'Monitor and protect organizational networks from attacks',sw:'Fuatilia na linda mitandao ya mashirika dhidi ya mashambulio'}},
+  {emoji:'🔍',role:{en:'Digital Forensic Investigator',sw:'Mpelelezi wa Kidijitali'},desc:{en:'Investigate cybercrimes for police and courts',sw:'Chunguza uhalifu wa mtandao kwa polisi na mahakama'}}],
  self:[
   {emoji:'🔐',role:{en:'Cybersecurity Consultant',sw:'Mshauri wa Usalama wa Mtandao'},desc:{en:'Help businesses secure their systems independently',sw:'Saidia biashara kulinda mifumo yao kwa uhuru'}}]}},
 
@@ -1059,6 +1121,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Multimedia & Animation Technology',sw:'Stashahada ya Teknolojia ya Midia na Uhuishaji'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes including English.',sw:'CSEE na angalau alama 4 za D ikiwemo Kiingereza.'},
+ description:{en:'You will learn to create digital visual content — graphic design, video production, 2D animation, and motion graphics. Combines creative design skills with technical software like editing tools and UI/UX design — the growing field behind social media content, ads, and entertainment.',sw:'Utajifunza kutengeneza maudhui ya kuona ya kidijitali — ubunifu wa picha, utengenezaji wa video, 2D animation, na motion graphics. Inachanganya ujuzi wa ubunifu na programu za kiufundi kama vifaa vya kuhariri na UI/UX design — fani inayokua nyuma ya maudhui ya mitandao ya kijamii, matangazo, na burudani.'},
+ suitableFor:{en:'Best for creative students who enjoy visual storytelling, design, and bringing ideas to life on screen. Good for those interested in content creation, advertising, or entertainment industries.',sw:'Inafaa kwa wanafunzi wabunifu wanaopenda hadithi za picha, ubunifu, na kuleta mawazo hai kwenye skrini. Nzuri kwa wenye nia ya kutengeneza maudhui, matangazo, au sekta za burudani.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'MAT 04111',name:'Computer Application Operations'},{code:'MAT 04112',name:'Digital Art and Design'},{code:'MAT 04113',name:'Digital Photography'},{code:'MAT 04114',name:'Occupational Safety and Health Practices'},{code:'MAT 04115',name:'Introduction to Programming'},{code:'MAT 04116',name:'Computer Networks'}]},
@@ -1071,8 +1135,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester I & II (contact ATC)',sw:'Ngazi ya 6 — Wasiliana na ATC'},subjects:[
    {code:'—',name:'NTA Level 6 modules — contact ATC Registrar for full list'}]}],
  careers:{employed:[
-  {emoji:'🎨',role:{en:'Graphic Designer',sw:'Mbuni wa Picha'},desc:{en:'Create visual content for brands and media companies',sw:'Tengeneza maudhui ya kuona kwa biashara na kampuni za habari'},salary:'TZS 600K–2M/month'},
-  {emoji:'📱',role:{en:'UI/UX Designer',sw:'Mbuni wa Kiolesura cha Mtumiaji'},desc:{en:'Design user interfaces for apps and websites',sw:'Buni miingiliano ya mtumiaji kwa programu na tovuti'},salary:'TZS 1M–3M/month'}],
+  {emoji:'🎨',role:{en:'Graphic Designer',sw:'Mbuni wa Picha'},desc:{en:'Create visual content for brands and media companies',sw:'Tengeneza maudhui ya kuona kwa biashara na kampuni za habari'}},
+  {emoji:'📱',role:{en:'UI/UX Designer',sw:'Mbuni wa Kiolesura cha Mtumiaji'},desc:{en:'Design user interfaces for apps and websites',sw:'Buni miingiliano ya mtumiaji kwa programu na tovuti'}}],
  self:[
   {emoji:'🎨',role:{en:'Freelance Designer / Animator',sw:'Mbuni / Mhuishaji Huru'},desc:{en:'Work for clients on Fiverr, Upwork, and locally',sw:'Fanya kazi kwa wateja kwenye Fiverr, Upwork, na ndani ya nchi'}},
   {emoji:'📺',role:{en:'Content Creator / YouTuber',sw:'Mtengenezaji wa Maudhui / YouTuber'},desc:{en:'Build a YouTube or social media channel and monetize it',sw:'Jenga channel ya YouTube na uipate pesa'}}]}},
@@ -1082,6 +1146,8 @@ const COURSES=[
  name:{en:'Ordinary Diploma in Laboratory Science & Technology',sw:'Stashahada ya Sayansi na Teknolojia ya Maabara'},
  duration:{en:'3 Years',sw:'Miaka 3'},
  entry:{en:'CSEE with min. 4 D-grade passes in Physics, Maths, Chemistry, Biology, English.',sw:'CSEE na angalau alama 4 za D katika Fizikia, Hisabati, Kemia, Biolojia, Kiingereza.'},
+ description:{en:'You will learn how to conduct scientific tests and analyses in hospital, industrial, and research laboratories. Covers chemistry, biology, microbiology, and instrumentation techniques — the science behind diagnosing diseases, ensuring food safety, and quality control.',sw:'Utajifunza kufanya vipimo na uchambuzi wa kisayansi katika maabara za hospitali, viwandani, na utafiti. Inajumuisha kemia, biolojia, microbiology, na mbinu za vyombo vya kupimia — sayansi nyuma ya kuchunguza magonjwa, kuhakikisha usalama wa chakula, na udhibiti wa ubora.'},
+ suitableFor:{en:'Best for students who enjoy science experiments, precision and careful observation. Strong in Biology and Chemistry, with interest in healthcare, research, or industrial quality control careers.',sw:'Inafaa kwa wanafunzi wanaopenda majaribio ya kisayansi, usahihi na uchunguzi makini. Wenye uwezo mzuri wa Biolojia na Kemia, na nia ya kazi za huduma za afya, utafiti, au udhibiti wa ubora viwandani.'},
  semesters:[
   {label:{en:'NTA Level 4 — Semester I',sw:'Ngazi ya 4 — Muhula I'},subjects:[
    {code:'LST 04101',name:'Basic Mechanics for Laboratory Technology'},{code:'LST 04102',name:'Laboratory Safety, Procurement and Organization'},{code:'LST 04103',name:'Laboratory Techniques and Preparation of Reagents'},{code:'LST 04104',name:'Fundamentals of Cell Biology'},{code:'LST 04105',name:'Specimen Collection and Preservation'},{code:'LST 04106',name:'Basic Laboratory Instrumentation'}]},
@@ -1096,8 +1162,8 @@ const COURSES=[
   {label:{en:'NTA Level 6 — Semester II',sw:'Ngazi ya 6 — Muhula II'},subjects:[
    {code:'LST 06201',name:'Radiation Protection and Safety'},{code:'LST 06202',name:'Electrical and Waves Practicals'},{code:'LST 06203',name:'Fundamentals of Industrial Chemistry'},{code:'LST 06204',name:'Molecular Genetics'},{code:'LST 06205',name:'Quality Control and Assurance'},{code:'LST 06206',name:'Project'}]}],
  careers:{employed:[
-  {emoji:'🔬',role:{en:'Laboratory Technician',sw:'Fundi wa Maabara'},desc:{en:'Work in hospital, research, or industrial labs',sw:'Fanya kazi katika maabara ya hospitali, utafiti, au viwanda'},salary:'TZS 700K–2M/month'},
-  {emoji:'💊',role:{en:'Quality Control Analyst',sw:'Mchambuzi wa Ubora'},desc:{en:'Test products in pharmaceutical and food industries',sw:'Pima bidhaa katika viwanda vya dawa na chakula'},salary:'TZS 800K–2.5M/month'}],
+  {emoji:'🔬',role:{en:'Laboratory Technician',sw:'Fundi wa Maabara'},desc:{en:'Work in hospital, research, or industrial labs',sw:'Fanya kazi katika maabara ya hospitali, utafiti, au viwanda'}},
+  {emoji:'💊',role:{en:'Quality Control Analyst',sw:'Mchambuzi wa Ubora'},desc:{en:'Test products in pharmaceutical and food industries',sw:'Pima bidhaa katika viwanda vya dawa na chakula'}}],
  self:[
   {emoji:'🧪',role:{en:'Private Lab Services',sw:'Huduma za Maabara Binafsi'},desc:{en:'Offer water, food, and soil testing services',sw:'Toa huduma za kupima maji, chakula, na udongo'}}]}},
 
@@ -1106,6 +1172,8 @@ const COURSES=[
  name:{en:'Bachelor Degree in Computer Science (NTA Level 7–8)',sw:'Shahada ya Kwanza ya Sayansi ya Kompyuta (Ngazi ya 7–8)'},
  duration:{en:'2 Years (after Diploma)',sw:'Miaka 2 (baada ya Diploma)'},
  entry:{en:'Ordinary Diploma in Computer Science or related. Or A-Level with relevant subjects.',sw:'Stashahada ya Sayansi ya Kompyuta au sawa nayo. Au Kidato cha 6 na masomo husika.'},
+ description:{en:'An advanced extension of Computer Science covering machine learning, cloud computing, IoT, mobile development, and ethical hacking. You will go deeper into software engineering and emerging technologies, preparing you for senior technical or research roles.',sw:'Toleo la kina la Sayansi ya Kompyuta linalojumuisha machine learning, cloud computing, IoT, utengenezaji wa mobile, na ethical hacking. Utaingia kwa undani zaidi katika uhandisi wa programu na teknolojia mpya, kukuandaa kwa nafasi za juu za kiufundi au utafiti.'},
+ suitableFor:{en:'For Diploma graduates who want to deepen their software engineering skills and move into specialized fields like AI/Machine Learning. Also open to A-Level students strong in Maths who want to start straight into advanced computing.',sw:'Kwa wahitimu wa Diploma wanaotaka kuongeza ujuzi wa uhandisi wa programu na kuingia kwenye fani maalum kama AI/Machine Learning. Pia wazi kwa wanafunzi wa Kidato cha 6 wenye uwezo mzuri wa Hisabati wanaotaka kuanza moja kwa moja kwenye computing ya kina.'},
  semesters:[
   {label:{en:'NTA Level 7 — Semester I',sw:'Ngazi ya 7 — Muhula I'},subjects:[
    {code:'GSU 07112',name:'Applied Mathematics'},{code:'GSU 07113',name:'Technical Communication Skills'},{code:'GSU 07114',name:'Entrepreneurship'},{code:'CSU',name:'Programming in C'},{code:'ITU',name:'Front-End Web Development'},{code:'CSU',name:'Digital Electronics'},{code:'ITU',name:'Computer Network Design'},{code:'CSU',name:'Database Systems'}]},
@@ -1120,8 +1188,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'ITU',name:'Mobile Security'},{code:'—',name:'Information System Security'},{code:'ITU',name:'System Administration'},{code:'—',name:'Network Management and Administration'},{code:'—',name:'Project Implementation'}]}],
  careers:{employed:[
-  {emoji:'💻',role:{en:'Senior Software Engineer',sw:'Mhandisi Mkuu wa Programu'},desc:{en:'Lead software development teams at tech companies',sw:'Ongoza timu za utengenezaji programu kampuni za teknolojia'},salary:'TZS 2M–6M/month'},
-  {emoji:'🤖',role:{en:'AI/ML Engineer',sw:'Mhandisi wa AI na Kujifunza kwa Mashine'},desc:{en:'Build artificial intelligence and machine learning systems',sw:'Jenga mifumo ya akili bandia na modeli za kujifunza'},salary:'TZS 3M–8M/month'}],
+  {emoji:'💻',role:{en:'Senior Software Engineer',sw:'Mhandisi Mkuu wa Programu'},desc:{en:'Lead software development teams at tech companies',sw:'Ongoza timu za utengenezaji programu kampuni za teknolojia'}},
+  {emoji:'🤖',role:{en:'AI/ML Engineer',sw:'Mhandisi wa AI na Kujifunza kwa Mashine'},desc:{en:'Build artificial intelligence and machine learning systems',sw:'Jenga mifumo ya akili bandia na modeli za kujifunza'}}],
  self:[
   {emoji:'🚀',role:{en:'Tech Startup Co-Founder',sw:'Mwanzilishi wa Kampuni ya Teknolojia'},desc:{en:'Build innovative tech products for Tanzania and Africa',sw:'Jenga bidhaa za teknolojia za ubunifu kwa Tanzania na Afrika'}}]}},
 
@@ -1129,6 +1197,8 @@ const COURSES=[
  name:{en:'Bachelor Degree in Information Technology (NTA Level 7–8)',sw:'Shahada ya Kwanza ya Teknolojia ya Habari (Ngazi ya 7–8)'},
  duration:{en:'2 Years (after Diploma)',sw:'Miaka 2 (baada ya Diploma)'},
  entry:{en:'Ordinary Diploma in IT or related. Or A-Level with relevant subjects.',sw:'Stashahada ya IT au sawa nayo. Au Kidato cha 6 na masomo husika.'},
+ description:{en:'An advanced extension of IT focused on managing complex systems and infrastructure — cloud computing, advanced networking, ethical hacking, and IT project management. Prepares you for leadership roles overseeing an organization\'s entire technology backbone.',sw:'Toleo la kina la IT linalozingatia usimamizi wa mifumo na miundombinu changamano — cloud computing, mitandao ya kina, ethical hacking, na usimamizi wa miradi ya IT. Inakuandaa kwa nafasi za uongozi zinazosimamia muundo mzima wa teknolojia wa shirika.'},
+ suitableFor:{en:'For Diploma graduates wanting to move from technical execution into IT leadership and infrastructure management. Suitable for those who enjoy big-picture systems thinking, not just hands-on coding.',sw:'Kwa wahitimu wa Diploma wanaotaka kuhamia kutoka utekelezaji wa kiufundi kwenda uongozi wa IT na usimamizi wa miundombinu. Inafaa kwa wanaopenda kufikiri kwa mtazamo mpana wa mifumo, si tu kuandika code.'},
  semesters:[
   {label:{en:'NTA Level 7 — Semester I',sw:'Ngazi ya 7 — Muhula I'},subjects:[
    {code:'GSU 07112',name:'Algebra and Matrices'},{code:'GSU 07113',name:'Technical Communication Skills'},{code:'ITU',name:'Front-End Web Development'},{code:'ITU',name:'Computer Network Design'},{code:'CSU',name:'Database Systems'},{code:'CSU',name:'Digital Electronics'}]},
@@ -1139,8 +1209,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'—',name:'Ethical Hacking'},{code:'—',name:'Information System Auditing'},{code:'—',name:'Server Administration'},{code:'—',name:'Network Management and Administration'},{code:'—',name:'Undergraduate Project Implementation'}]}],
  careers:{employed:[
-  {emoji:'📊',role:{en:'IT Manager',sw:'Meneja wa IT'},desc:{en:'Lead IT departments in government and private sectors',sw:'Ongoza idara za IT serikalini na sekta binafsi'},salary:'TZS 1.5M–4M/month'},
-  {emoji:'☁️',role:{en:'Cloud Engineer',sw:'Mhandisi wa Wingu'},desc:{en:'Build and manage cloud systems (AWS, Azure, Google Cloud)',sw:'Jenga na simamia mifumo ya wingu (AWS, Azure, Google Cloud)'},salary:'TZS 2M–6M/month'}],
+  {emoji:'📊',role:{en:'IT Manager',sw:'Meneja wa IT'},desc:{en:'Lead IT departments in government and private sectors',sw:'Ongoza idara za IT serikalini na sekta binafsi'}},
+  {emoji:'☁️',role:{en:'Cloud Engineer',sw:'Mhandisi wa Wingu'},desc:{en:'Build and manage cloud systems (AWS, Azure, Google Cloud)',sw:'Jenga na simamia mifumo ya wingu (AWS, Azure, Google Cloud)'}}],
  self:[
   {emoji:'🔧',role:{en:'IT Consultant',sw:'Mshauri wa IT'},desc:{en:'Advise businesses on their IT systems and needs',sw:'Shauri biashara kuhusu mifumo na mahitaji yao ya IT'}}]}},
 
@@ -1148,6 +1218,8 @@ const COURSES=[
  name:{en:'Bachelor Degree in Civil Engineering (NTA Level 7–8)',sw:'Shahada ya Kwanza ya Uhandisi wa Ujenzi (Ngazi ya 7–8)'},
  duration:{en:'2 Years (after Diploma)',sw:'Miaka 2 (baada ya Diploma)'},
  entry:{en:'Ordinary Diploma in Civil Engineering or related. Or A-Level with Physics, Maths, Chemistry.',sw:'Stashahada ya Uhandisi wa Ujenzi au sawa nayo. Au Kidato cha 6 na Fizikia, Hisabati, Kemia.'},
+ description:{en:'An advanced extension of Civil Engineering covering complex structural design, steel structures, geotechnical engineering, and large-scale project management. Prepares you to lead major infrastructure projects rather than just execute designs.',sw:'Toleo la kina la Uhandisi wa Ujenzi linalojumuisha ubunifu wa miundo changamano, miundo ya chuma, uhandisi wa kijiotekiniki, na usimamizi wa miradi mikubwa. Inakuandaa kuongoza miradi mikubwa ya miundombinu badala ya kutekeleza michoro tu.'},
+ suitableFor:{en:'For Diploma graduates ready to take on senior design and project leadership roles. Suitable for those who want to eventually run their own construction or consultancy firm.',sw:'Kwa wahitimu wa Diploma walio tayari kuchukua nafasi za juu za ubunifu na uongozi wa miradi. Inafaa kwa wale wanaotaka hatimaye kuendesha kampuni yao ya ujenzi au ushauri.'},
  semesters:[
   {label:{en:'NTA Level 7 — Semester I',sw:'Ngazi ya 7 — Muhula I'},subjects:[
    {code:'GSU 07111',name:'Advanced Calculus'},{code:'GSU 07113',name:'Technical Communication Skills'},{code:'GSU 07114',name:'Entrepreneurship'},{code:'CEU 07111',name:'Engineering Surveying'},{code:'CEU 07112',name:'Building Planning and Drawing'},{code:'CEU 07113',name:'Civil Engineering Material'},{code:'CEU 07114',name:'Construction Technology'},{code:'CEU 07115',name:'Basics of Soil Mechanics'}]},
@@ -1162,8 +1234,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'05211',name:'Differential Equations and Coordinate Geometry'},{code:'05212',name:'Introduction to Networking'},{code:'05213',name:'Structural Mechanics'},{code:'05214',name:'Quantity Surveying'},{code:'05215',name:'Workshop and Construction Practice'},{code:'05216',name:'Construction Management'},{code:'05217',name:'Road Construction and Maintenance'},{code:'05218',name:'Basic Hi-Tech Farming'},{code:'IPT',name:'Industrial Practical Training'}]}],
  careers:{employed:[
-  {emoji:'🏗️',role:{en:'Senior Civil Engineer',sw:'Mhandisi Mkuu wa Ujenzi'},desc:{en:'Lead major infrastructure and building projects',sw:'Ongoza miradi mikubwa ya miundombinu na ujenzi'},salary:'TZS 2M–6M/month'},
-  {emoji:'🌍',role:{en:'Project Manager — Infrastructure',sw:'Msimamizi wa Miradi ya Miundombinu'},desc:{en:'Manage large-scale construction projects for government/NGOs',sw:'Simamia miradi mikubwa ya ujenzi kwa serikali/NGO'},salary:'TZS 2.5M–7M/month'}],
+  {emoji:'🏗️',role:{en:'Senior Civil Engineer',sw:'Mhandisi Mkuu wa Ujenzi'},desc:{en:'Lead major infrastructure and building projects',sw:'Ongoza miradi mikubwa ya miundombinu na ujenzi'}},
+  {emoji:'🌍',role:{en:'Project Manager — Infrastructure',sw:'Msimamizi wa Miradi ya Miundombinu'},desc:{en:'Manage large-scale construction projects for government/NGOs',sw:'Simamia miradi mikubwa ya ujenzi kwa serikali/NGO'}}],
  self:[
   {emoji:'🏢',role:{en:'Engineering Consultancy Firm',sw:'Kampuni ya Ushauri wa Uhandisi'},desc:{en:'Start your own civil engineering consultancy',sw:'Anzisha kampuni yako ya ushauri wa uhandisi'}}]}},
 
@@ -1171,6 +1243,8 @@ const COURSES=[
  name:{en:'Bachelor Degree in Civil and Irrigation Engineering (NTA Level 7–8)',sw:'Shahada ya Kwanza ya Uhandisi wa Ujenzi na Umwagiliaji (Ngazi ya 7–8)'},
  duration:{en:'3 Years (after Diploma)',sw:'Miaka 3 (baada ya Diploma)'},
  entry:{en:'Ordinary Diploma in Civil/Irrigation Engineering or related. Or A-Level with Physics, Maths, Chemistry.',sw:'Stashahada ya Uhandisi wa Ujenzi/Umwagiliaji au sawa nayo. Au Kidato cha 6 na Fizikia, Hisabati, Kemia.'},
+ description:{en:'An advanced extension combining civil engineering with large-scale irrigation system design — dams, reservoirs, and water management for major agricultural projects across Tanzania.',sw:'Toleo la kina linalochanganya uhandisi wa ujenzi na ubunifu wa mifumo mikubwa ya umwagiliaji — mabwawa, hifadhi za maji, na usimamizi wa maji kwa miradi mikubwa ya kilimo Tanzania.'},
+ suitableFor:{en:'For Diploma graduates ready to design large-scale water and agricultural infrastructure projects at a national level.',sw:'Kwa wahitimu wa Diploma walio tayari kubuni miradi mikubwa ya miundombinu ya maji na kilimo kitaifa.'},
  semesters:[
   {label:{en:'NTA Level 7 — Semester I',sw:'Ngazi ya 7 — Muhula I'},subjects:[
    {code:'GSU 07111',name:'Advanced Calculus'},{code:'GSU 07113',name:'Technical Communication Skills'},{code:'GSU 07114',name:'Entrepreneurship'},{code:'CIU 07111',name:'Engineering Surveying'},{code:'CIU 07112',name:'Building Planning and Drawing'},{code:'CIU 07113',name:'Civil Engineering Material'},{code:'CIU 07114',name:'Construction Technology'},{code:'CIU 07115',name:'Basics of Soil Mechanics'},{code:'CIU 07116',name:'Soil Science'}]},
@@ -1185,9 +1259,9 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'CIU 08211',name:'Irrigation Water Management'},{code:'CIU 08212',name:'Contract Management'},{code:'CIU 08213',name:'Structural Timber Design'},{code:'CIU 08214',name:'Wastewater Management'},{code:'CIU 08215',name:'Engineering Ethics'},{code:'CIU 08216',name:'Project Data Analysis and Realization'},{code:'CIU 08217',name:'Maintenance of Civil and Irrigation Infrastructure'},{code:'CIU 08218',name:'Bridge Design and Construction'}]}],
  careers:{employed:[
-  {emoji:'💧',role:{en:'Irrigation Project Engineer',sw:'Mhandisi wa Miradi ya Umwagiliaji'},desc:{en:'Lead large-scale irrigation schemes for MAJI, FAO, NGOs',sw:'Ongoza miradi mikubwa ya umwagiliaji kwa MAJI, FAO, NGO'},salary:'TZS 2M–5M/month'},
-  {emoji:'🌾',role:{en:'Agricultural Infrastructure Manager',sw:'Msimamizi wa Miundombinu ya Kilimo'},desc:{en:'Manage water infrastructure for agricultural districts',sw:'Simamia miundombinu ya maji kwa wilaya za kilimo'},salary:'TZS 1.5M–4M/month'},
-  {emoji:'🏗️',role:{en:'Senior Civil Engineer — Water',sw:'Mhandisi Mkuu wa Ujenzi wa Maji'},desc:{en:'Design dams, canals and water supply systems',sw:'Buni mabwawa, mifereji na mifumo ya usambazaji maji'},salary:'TZS 2M–6M/month'}],
+  {emoji:'💧',role:{en:'Irrigation Project Engineer',sw:'Mhandisi wa Miradi ya Umwagiliaji'},desc:{en:'Lead large-scale irrigation schemes for MAJI, FAO, NGOs',sw:'Ongoza miradi mikubwa ya umwagiliaji kwa MAJI, FAO, NGO'}},
+  {emoji:'🌾',role:{en:'Agricultural Infrastructure Manager',sw:'Msimamizi wa Miundombinu ya Kilimo'},desc:{en:'Manage water infrastructure for agricultural districts',sw:'Simamia miundombinu ya maji kwa wilaya za kilimo'}},
+  {emoji:'🏗️',role:{en:'Senior Civil Engineer — Water',sw:'Mhandisi Mkuu wa Ujenzi wa Maji'},desc:{en:'Design dams, canals and water supply systems',sw:'Buni mabwawa, mifereji na mifumo ya usambazaji maji'}}],
  self:[
   {emoji:'🌱',role:{en:'Irrigation Consultancy Firm',sw:'Kampuni ya Ushauri wa Umwagiliaji'},desc:{en:'Start your own irrigation engineering consultancy',sw:'Anzisha kampuni yako ya ushauri wa uhandisi wa umwagiliaji'}},
   {emoji:'💧',role:{en:'Water Harvesting Business',sw:'Biashara ya Uvunaji wa Maji'},desc:{en:'Design and install rainwater harvesting systems for farms',sw:'Buni na weka mifumo ya uvunaji wa maji ya mvua kwa mashamba'}}]}},
@@ -1196,6 +1270,8 @@ const COURSES=[
  name:{en:'Bachelor Degree in Civil and Highway Engineering (NTA Level 7–8)',sw:'Shahada ya Kwanza ya Uhandisi wa Barabara na Ujenzi (Ngazi ya 7–8)'},
  duration:{en:'3 Years (after Diploma)',sw:'Miaka 3 (baada ya Diploma)'},
  entry:{en:'Ordinary Diploma in Civil/Highway Engineering or related.',sw:'Stashahada ya Uhandisi wa Barabara/Ujenzi au sawa nayo.'},
+ description:{en:'An advanced extension covering complex highway design, traffic engineering, and bridge construction — preparing graduates to lead major national road and transport infrastructure projects.',sw:'Toleo la kina linalojumuisha ubunifu changamano wa barabara kuu, uhandisi wa msongamano, na ujenzi wa madaraja — kuandaa wahitimu kuongoza miradi mikubwa ya kitaifa ya barabara na miundombinu ya usafiri.'},
+ suitableFor:{en:'For Diploma graduates ready to lead national-scale road and highway projects, working with TANROADS or major construction firms.',sw:'Kwa wahitimu wa Diploma walio tayari kuongoza miradi ya kitaifa ya barabara, kufanya kazi na TANROADS au makampuni makubwa ya ujenzi.'},
  semesters:[
   {label:{en:'NTA Level 7 — Semester I',sw:'Ngazi ya 7 — Muhula I'},subjects:[
    {code:'—',name:'Advanced Calculus'},{code:'—',name:'Technical Communication Skills'},{code:'—',name:'Entrepreneurship'},{code:'—',name:'Land Surveying'},{code:'—',name:'Building Planning and Drawing'},{code:'—',name:'Civil Engineering Materials'},{code:'—',name:'Building Construction'},{code:'—',name:'Strength of Materials'}]},
@@ -1210,8 +1286,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'—',name:'Design Software Practices'},{code:'—',name:'Structural Timber Design'},{code:'—',name:'Pavement Design and Construction'},{code:'—',name:'Bridge and Pavement Maintenance'},{code:'—',name:'Engineering Ethics'},{code:'—',name:'Project Data Analysis and Report'},{code:'—',name:'Design of Water Supply System'},{code:'—',name:'Public Health Management'}]}],
  careers:{employed:[
-  {emoji:'🛣️',role:{en:'Senior Road Engineer',sw:'Mhandisi Mkuu wa Barabara'},desc:{en:'Lead road and highway design and construction projects',sw:'Ongoza miradi ya kubuni na ujenzi wa barabara'},salary:'TZS 2M–5M/month'},
-  {emoji:'🌉',role:{en:'Bridge Design Engineer',sw:'Mhandisi wa Kubuni Madaraja'},desc:{en:'Design complex bridge structures for Tanzania infrastructure',sw:'Buni miundo ya madaraja kwa miundombinu ya Tanzania'},salary:'TZS 2M–6M/month'}],
+  {emoji:'🛣️',role:{en:'Senior Road Engineer',sw:'Mhandisi Mkuu wa Barabara'},desc:{en:'Lead road and highway design and construction projects',sw:'Ongoza miradi ya kubuni na ujenzi wa barabara'}},
+  {emoji:'🌉',role:{en:'Bridge Design Engineer',sw:'Mhandisi wa Kubuni Madaraja'},desc:{en:'Design complex bridge structures for Tanzania infrastructure',sw:'Buni miundo ya madaraja kwa miundombinu ya Tanzania'}}],
  self:[
   {emoji:'🏗️',role:{en:'Road Engineering Consultant',sw:'Mshauri wa Uhandisi wa Barabara'},desc:{en:'Offer road design and supervision services independently',sw:'Toa huduma za kubuni na kusimamia barabara kwa uhuru'}}]}},
 
@@ -1219,6 +1295,8 @@ const COURSES=[
  name:{en:'Bachelor Degree in Electrical & Automation Engineering (NTA Level 7–8)',sw:'Shahada ya Kwanza ya Uhandisi wa Umeme na Uendeshaji (Ngazi ya 7–8)'},
  duration:{en:'2 Years (after Diploma)',sw:'Miaka 2 (baada ya Diploma)'},
  entry:{en:'Ordinary Diploma in Electrical Engineering or related. Or A-Level with Physics, Maths.',sw:'Stashahada ya Uhandisi wa Umeme au sawa nayo. Au Kidato cha 6 na Fizikia, Hisabati.'},
+ description:{en:'An advanced extension of Electrical Engineering focused on industrial automation, robotics, and control systems — the technology that runs automated factories and smart industrial processes.',sw:'Toleo la kina la Uhandisi wa Umeme linalozingatia automation ya viwandani, roboti, na mifumo ya udhibiti — teknolojia inayoendesha viwanda vya automatic na michakato mahiri ya viwandani.'},
+ suitableFor:{en:'For Diploma graduates wanting to specialize in cutting-edge automation and robotics — a fast-growing field as Tanzanian industries modernize.',sw:'Kwa wahitimu wa Diploma wanaotaka kujikita katika automation na roboti za kisasa — fani inayokua haraka huku viwanda vya Tanzania vikiboreka.'},
  semesters:[
   {label:{en:'NTA Level 7 — Semester I',sw:'Ngazi ya 7 — Muhula I'},subjects:[
    {code:'GSU 07111',name:'Advanced Calculus'},{code:'GSU 07113',name:'Technical Communication Skills'},{code:'GSU 07114',name:'Entrepreneurship'},{code:'MEU 07111',name:'Statics and Dynamics Mechanics'},{code:'EAU 07112',name:'Power Plants Engineering'},{code:'EAU 07113',name:'Analogue Electronics'},{code:'EAU 07113',name:'Sensor and Controllers'},{code:'EAU 07114',name:'Electromagnetics'},{code:'EAU 07115',name:'Electrical Circuit Analysis'}]},
@@ -1233,8 +1311,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'EAU 08211',name:'Special Electric Machines and Drives'},{code:'EAU 08212',name:'Nanotechnology'},{code:'EAU 08213',name:'Robotics'},{code:'EAU 08214',name:'Industrial Process Control'},{code:'EAU 08216',name:'Senior Project II'}]}],
  careers:{employed:[
-  {emoji:'🤖',role:{en:'Automation Engineer',sw:'Mhandisi wa Uendeshaji wa Kiotomatiki'},desc:{en:'Design automated systems for factories and industries',sw:'Buni mifumo ya kiotomatiki kwa viwanda'},salary:'TZS 2M–5M/month'},
-  {emoji:'⚡',role:{en:'Power Systems Engineer',sw:'Mhandisi wa Mifumo ya Umeme'},desc:{en:'Manage and design power distribution networks',sw:'Simamia na buni mitandao ya usambazaji wa umeme'},salary:'TZS 2M–6M/month'}],
+  {emoji:'🤖',role:{en:'Automation Engineer',sw:'Mhandisi wa Uendeshaji wa Kiotomatiki'},desc:{en:'Design automated systems for factories and industries',sw:'Buni mifumo ya kiotomatiki kwa viwanda'}},
+  {emoji:'⚡',role:{en:'Power Systems Engineer',sw:'Mhandisi wa Mifumo ya Umeme'},desc:{en:'Manage and design power distribution networks',sw:'Simamia na buni mitandao ya usambazaji wa umeme'}}],
  self:[
   {emoji:'🏭',role:{en:'Industrial Automation Consultant',sw:'Mshauri wa Uendeshaji wa Viwanda'},desc:{en:'Help factories automate their production processes',sw:'Saidia viwanda kuendesha uzalishaji wao kwa kiotomatiki'}}]}},
 
@@ -1242,6 +1320,8 @@ const COURSES=[
  name:{en:'Bachelor Degree in Electrical and Biomedical Engineering (NTA Level 7–8)',sw:'Shahada ya Kwanza ya Uhandisi wa Umeme na Vifaa vya Hospitali (Ngazi ya 7–8)'},
  duration:{en:'3 Years (after Diploma)',sw:'Miaka 3 (baada ya Diploma)'},
  entry:{en:'Ordinary Diploma in Electrical/Biomedical Engineering or related.',sw:'Stashahada ya Uhandisi wa Umeme/Vifaa vya Hospitali au sawa nayo.'},
+ description:{en:'An advanced extension of Biomedical Engineering covering embedded systems, medical imaging technology, and hospital information systems — preparing graduates for senior technical roles in modern healthcare facilities.',sw:'Toleo la kina la Uhandisi wa Vifaa vya Hospitali linalojumuisha embedded systems, teknolojia ya picha za matibabu, na mifumo ya taarifa za hospitali — kuandaa wahitimu kwa nafasi za juu za kiufundi katika vituo vya kisasa vya afya.'},
+ suitableFor:{en:'For Diploma graduates wanting to specialize further in advanced medical technology and hospital systems management.',sw:'Kwa wahitimu wa Diploma wanaotaka kujikita zaidi katika teknolojia ya kina ya matibabu na usimamizi wa mifumo ya hospitali.'},
  semesters:[
   {label:{en:'NTA Level 7 — Semester I',sw:'Ngazi ya 7 — Muhula I'},subjects:[
    {code:'GSU 07111',name:'Advanced Calculus'},{code:'GSU 07113',name:'Technical Communication Skills'},{code:'GSU 07114',name:'Entrepreneurship'},{code:'MEU 07111',name:'Statics and Dynamics Mechanics'},{code:'EAU 07111',name:'Analogue Electronics'},{code:'EBU 07111',name:'Medical Equipment Technology and Installation'},{code:'EAU 07113',name:'Sensor and Control'},{code:'EEU 07114',name:'Electromagnetics'},{code:'EEU 07115',name:'Electrical Circuit Analysis'}]},
@@ -1256,8 +1336,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'EBU 08211',name:'Healthcare Management and Technology'},{code:'EAU 08211',name:'Special Electrical Machines and Drives'},{code:'EBU 08212',name:'Biomechanics'},{code:'EAU 08213',name:'Robotics'},{code:'EBU 08213',name:'Senior Project II'},{code:'EAU 08215',name:'Electrical Safety and Maintenance'}]}],
  careers:{employed:[
-  {emoji:'🏥',role:{en:'Senior Biomedical Engineer',sw:'Mhandisi Mkuu wa Vifaa vya Hospitali'},desc:{en:'Lead biomedical engineering teams in major hospitals',sw:'Ongoza timu za uhandisi wa vifaa vya matibabu hospitalini'},salary:'TZS 1.5M–4M/month'},
-  {emoji:'🔬',role:{en:'Medical Technology Specialist',sw:'Mtaalamu wa Teknolojia ya Matibabu'},desc:{en:'Specialize in advanced medical imaging and diagnostic equipment',sw:'Buni vifaa vya picha za matibabu na uchunguzi wa hali ya juu'},salary:'TZS 2M–5M/month'}],
+  {emoji:'🏥',role:{en:'Senior Biomedical Engineer',sw:'Mhandisi Mkuu wa Vifaa vya Hospitali'},desc:{en:'Lead biomedical engineering teams in major hospitals',sw:'Ongoza timu za uhandisi wa vifaa vya matibabu hospitalini'}},
+  {emoji:'🔬',role:{en:'Medical Technology Specialist',sw:'Mtaalamu wa Teknolojia ya Matibabu'},desc:{en:'Specialize in advanced medical imaging and diagnostic equipment',sw:'Buni vifaa vya picha za matibabu na uchunguzi wa hali ya juu'}}],
  self:[
   {emoji:'🏥',role:{en:'Medical Equipment Company',sw:'Kampuni ya Vifaa vya Matibabu'},desc:{en:'Import and service medical equipment for hospitals and clinics',sw:'Ingiza na hudumia vifaa vya matibabu kwa hospitali na kliniki'}}]}},
 
@@ -1265,6 +1345,8 @@ const COURSES=[
  name:{en:'Bachelor Degree in Renewable Energy Engineering (NTA Level 7–8)',sw:'Shahada ya Kwanza ya Uhandisi wa Nishati Mbadala (Ngazi ya 7–8)'},
  duration:{en:'2 Years (after Diploma)',sw:'Miaka 2 (baada ya Diploma)'},
  entry:{en:'Ordinary Diploma in Electrical or Mechanical Engineering or related.',sw:'Stashahada ya Uhandisi wa Umeme au Mitambo au sawa nayo.'},
+ description:{en:'An advanced, dedicated programme in renewable energy covering solar, wind, hydro, and bioenergy systems at a deeper engineering level — designing complete green energy solutions for Tanzania\'s growing power needs.',sw:'Programu ya kina, maalum ya nishati mbadala inayojumuisha mifumo ya jua, upepo, maji na nishati ya kibiolojia kwa kina zaidi cha kiuhandisi — kubuni suluhisho kamili za nishati safi kwa mahitaji yanayokua ya umeme Tanzania.'},
+ suitableFor:{en:'For Diploma graduates from Electrical or Mechanical backgrounds who want to specialize entirely in renewable energy — one of the fastest-growing sectors globally and in Tanzania.',sw:'Kwa wahitimu wa Diploma kutoka asili ya Umeme au Mitambo wanaotaka kujikita kabisa katika nishati mbadala — moja ya sekta zinazokua haraka zaidi duniani na Tanzania.'},
  semesters:[
   {label:{en:'NTA Level 7 — Semester I',sw:'Ngazi ya 7 — Muhula I'},subjects:[
    {code:'GSU 07103',name:'Basics of Calculus'},{code:'GSU 07104',name:'Communication Skills for Engineers'},{code:'REU 07101',name:'Fundamentals of Renewable Energy Technologies'},{code:'REU 07102',name:'Energy Conversion Technologies'},{code:'MEU 07101',name:'Static and Dynamic Mechanics'},{code:'REU 07103',name:'Fundamentals of Computer Aided Drafting'},{code:'EEU 07101',name:'Power Plants Engineering'},{code:'REU 07104',name:'Applied Chemistry for Energy Engineering'}]},
@@ -1279,8 +1361,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'GSU 08201',name:'Entrepreneurship for Engineers'},{code:'GSU 08202',name:'Engineering Project Management and Procurement'},{code:'GSU 08203',name:'Engineering Ethics and Professional Conducts'},{code:'REU 08201',name:'Geothermal Energy Technology'},{code:'REU 08202',name:'Hybrid Power Systems'},{code:'REU 08203',name:'Renewable Energy Project II'}]}],
  careers:{employed:[
-  {emoji:'☀️',role:{en:'Renewable Energy Project Manager',sw:'Msimamizi wa Miradi ya Nishati Mbadala'},desc:{en:'Manage solar, wind and hydro power projects',sw:'Simamia miradi ya umeme wa jua, upepo na maji'},salary:'TZS 2M–6M/month'},
-  {emoji:'🌍',role:{en:'Energy Policy Consultant',sw:'Mshauri wa Sera za Nishati'},desc:{en:'Advise government and NGOs on energy policy',sw:'Shauri serikali na NGO kuhusu sera za nishati'},salary:'TZS 2M–5M/month'}],
+  {emoji:'☀️',role:{en:'Renewable Energy Project Manager',sw:'Msimamizi wa Miradi ya Nishati Mbadala'},desc:{en:'Manage solar, wind and hydro power projects',sw:'Simamia miradi ya umeme wa jua, upepo na maji'}},
+  {emoji:'🌍',role:{en:'Energy Policy Consultant',sw:'Mshauri wa Sera za Nishati'},desc:{en:'Advise government and NGOs on energy policy',sw:'Shauri serikali na NGO kuhusu sera za nishati'}}],
  self:[
   {emoji:'⚡',role:{en:'Renewable Energy Company',sw:'Kampuni ya Nishati Mbadala'},desc:{en:'Build a solar/wind energy company serving rural Tanzania',sw:'Jenga kampuni ya nishati ya jua/upepo ikihudumia vijijini Tanzania'}}]}},
 
@@ -1288,6 +1370,8 @@ const COURSES=[
  name:{en:'Bachelor Degree in Mechanical Engineering (NTA Level 7–8)',sw:'Shahada ya Kwanza ya Uhandisi wa Mitambo (Ngazi ya 7–8)'},
  duration:{en:'2–3 Years (after Diploma)',sw:'Miaka 2–3 (baada ya Diploma)'},
  entry:{en:'Ordinary Diploma in Mechanical Engineering or related. Or A-Level with Physics, Maths, Chemistry.',sw:'Stashahada ya Uhandisi wa Mitambo au sawa nayo.'},
+ description:{en:'An advanced extension of Mechanical Engineering covering robotics, industrial automation, and advanced manufacturing technology like CAM and CNC — preparing graduates to lead complex industrial and manufacturing operations.',sw:'Toleo la kina la Uhandisi wa Mitambo linalojumuisha roboti, automation ya viwandani, na teknolojia ya kina ya utengenezaji kama CAM na CNC — kuandaa wahitimu kuongoza shughuli changamano za viwandani na utengenezaji.'},
+ suitableFor:{en:'For Diploma graduates ready to take senior engineering and management roles in manufacturing, or A-Level students with strong technical aptitude wanting a deeper mechanical engineering foundation.',sw:'Kwa wahitimu wa Diploma walio tayari kuchukua nafasi za juu za uhandisi na usimamizi viwandani, au wanafunzi wa Kidato cha 6 wenye uwezo mkubwa wa kiufundi wanaotaka msingi wa kina wa uhandisi wa mitambo.'},
  semesters:[
   {label:{en:'NTA Level 7 — Semester III–IV',sw:'Ngazi ya 7 — Muhula III–IV'},subjects:[
    {code:'MEU 07311',name:'Workshop Technology'},{code:'MEU 07312',name:'Principle of Metal Cutting'},{code:'MEU 07314',name:'Material Technology'},{code:'MEU 07313',name:'Mechanics of Machines'},{code:'MEU 07411',name:'Computer Aided Design (CAD)'},{code:'MEU 07412',name:'Fluid Mechanics'},{code:'MEU 07413',name:'Strength of Materials'},{code:'MEU 07414',name:'Engineering Thermodynamics'},{code:'MEU 07415',name:'Machine Elements and Design'}]},
@@ -1298,8 +1382,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'MEU 08211',name:'Industrial Energy Management'},{code:'MEU 08212',name:'Industrial Automation'},{code:'MEU 08213',name:'Environmental Engineering and Management'},{code:'MEU 08214',name:'Robotics'},{code:'MEU 08215',name:'Project Implementation'}]}],
  careers:{employed:[
-  {emoji:'🏭',role:{en:'Senior Mechanical Engineer',sw:'Mhandisi Mkuu wa Mitambo'},desc:{en:'Lead engineering teams in manufacturing companies',sw:'Ongoza timu za uhandisi katika makampuni ya utengenezaji'},salary:'TZS 2M–6M/month'},
-  {emoji:'🤖',role:{en:'Robotics Engineer',sw:'Mhandisi wa Roboti'},desc:{en:'Design robotic systems for industrial automation',sw:'Buni mifumo ya roboti kwa uendeshaji wa viwanda'},salary:'TZS 2.5M–7M/month'}],
+  {emoji:'🏭',role:{en:'Senior Mechanical Engineer',sw:'Mhandisi Mkuu wa Mitambo'},desc:{en:'Lead engineering teams in manufacturing companies',sw:'Ongoza timu za uhandisi katika makampuni ya utengenezaji'}},
+  {emoji:'🤖',role:{en:'Robotics Engineer',sw:'Mhandisi wa Roboti'},desc:{en:'Design robotic systems for industrial automation',sw:'Buni mifumo ya roboti kwa uendeshaji wa viwanda'}}],
  self:[
   {emoji:'🏗️',role:{en:'Engineering Consultancy',sw:'Kampuni ya Ushauri wa Uhandisi'},desc:{en:'Offer mechanical engineering expertise to industries',sw:'Toa ujuzi wa uhandisi wa mitambo kwa viwanda'}}]}},
 
@@ -1307,10 +1391,12 @@ const COURSES=[
  name:{en:'Bachelor Degree in Mechatronics and Material Engineering (NTA Level 7–8)',sw:'Shahada ya Kwanza ya Uhandisi wa Mekatroniki na Nyenzo (Ngazi ya 7–8)'},
  duration:{en:'2 Years (after Diploma)',sw:'Miaka 2 (baada ya Diploma)'},
  entry:{en:'Ordinary Diploma in Mechanical, Electrical or related Engineering.',sw:'Stashahada ya Uhandisi wa Mitambo, Umeme au sawa nayo.'},
+ description:{en:'A specialized field combining mechanical, electrical, and computer engineering to design smart machines, robots, and automated systems — the technology behind modern manufacturing and robotics.',sw:'Fani maalum inayochanganya uhandisi wa mitambo, umeme, na kompyuta kubuni mashine mahiri, roboti, na mifumo ya automatic — teknolojia nyuma ya utengenezaji wa kisasa na roboti.'},
+ suitableFor:{en:'For Diploma graduates wanting to work at the intersection of mechanical and electrical engineering — designing the smart, automated machines of the future.',sw:'Kwa wahitimu wa Diploma wanaotaka kufanya kazi katikati ya uhandisi wa mitambo na umeme — kubuni mashine mahiri za automatic za baadaye.'},
  semesters:[],
  careers:{employed:[
-  {emoji:'🤖',role:{en:'Mechatronics Engineer',sw:'Mhandisi wa Mekatroniki'},desc:{en:'Design and build electromechanical systems and robots',sw:'Buni na jenga mifumo ya umeme-mitambo na roboti'},salary:'TZS 2M–5M/month'},
-  {emoji:'🏭',role:{en:'Materials Engineer',sw:'Mhandisi wa Nyenzo'},desc:{en:'Research and develop new materials for manufacturing',sw:'Tafuta na buni nyenzo mpya kwa utengenezaji'},salary:'TZS 1.5M–4M/month'}],
+  {emoji:'🤖',role:{en:'Mechatronics Engineer',sw:'Mhandisi wa Mekatroniki'},desc:{en:'Design and build electromechanical systems and robots',sw:'Buni na jenga mifumo ya umeme-mitambo na roboti'}},
+  {emoji:'🏭',role:{en:'Materials Engineer',sw:'Mhandisi wa Nyenzo'},desc:{en:'Research and develop new materials for manufacturing',sw:'Tafuta na buni nyenzo mpya kwa utengenezaji'}}],
  self:[
   {emoji:'⚙️',role:{en:'Automation Solutions Provider',sw:'Mtoa Suluhisho la Uendeshaji wa Kiotomatiki'},desc:{en:'Design custom automation solutions for local industries',sw:'Buni suluhisho maalum za kiotomatiki kwa viwanda vya ndani'}}]}},
 
@@ -1318,6 +1404,8 @@ const COURSES=[
  name:{en:'Bachelor Degree in Automotive Electronics Engineering (NTA Level 7–8)',sw:'Shahada ya Kwanza ya Uhandisi wa Elektroniki za Magari (Ngazi ya 7–8)'},
  duration:{en:'3 Years (after Diploma)',sw:'Miaka 3 (baada ya Diploma)'},
  entry:{en:'Ordinary Diploma in Automotive or Electronics Engineering or related.',sw:'Stashahada ya Uhandisi wa Magari au Elektroniki au sawa nayo.'},
+ description:{en:'An advanced field combining automotive and electronics engineering — covering computerized engine control, vehicle electronic systems, and diagnostics for the increasingly digital and smart vehicles on Tanzanian roads.',sw:'Fani ya kina inayochanganya uhandisi wa magari na elektroniki — inayohusisha udhibiti wa injini kwa kompyuta, mifumo ya elektroniki ya gari, na uchunguzi kwa magari yanayozidi kuwa ya kidijitali na mahiri barabarani Tanzania.'},
+ suitableFor:{en:'For Diploma graduates wanting to specialize in the electronic and computerized side of modern vehicles — a growing niche as cars become more technology-driven.',sw:'Kwa wahitimu wa Diploma wanaotaka kujikita upande wa elektroniki na kompyuta wa magari ya kisasa — fani inayokua huku magari yakizidi kutegemea teknolojia.'},
  semesters:[
   {label:{en:'NTA Level 7 — Semester I',sw:'Ngazi ya 7 — Muhula I'},subjects:[
    {code:'—',name:'Ethics and Enterprise Management'},{code:'—',name:'Technical Communication Skills'},{code:'—',name:'Advanced Calculus'},{code:'AEU 07111',name:'Internal Combustion Engines'},{code:'AEU 07112',name:'Automotive Brake Systems'},{code:'AEU 07113',name:'Material Engineering and Technology'},{code:'ETU 07111',name:'Analogue Electronics'}]},
@@ -1332,8 +1420,8 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'AEU 08211',name:'Engineering Ethics and Professional Conduct Fundamentals'},{code:'AEU 08212',name:'Automotive Networking and Protocols'},{code:'AEU 08213',name:'Alternative Energy and Technology Fuel'},{code:'AEU 08214',name:'Environmental and Safety Engineering'},{code:'AEU 08215',name:'Project Management and Procurement Fundamentals'},{code:'AEU 08217',name:'Project Work'}]}],
  careers:{employed:[
-  {emoji:'🚗',role:{en:'Automotive Electronics Engineer',sw:'Mhandisi wa Elektroniki za Magari'},desc:{en:'Work with car manufacturers and service centers on advanced electronics',sw:'Fanya kazi na wazalishaji wa magari kwenye elektroniki za hali ya juu'},salary:'TZS 2M–5M/month'},
-  {emoji:'⚡',role:{en:'Electric Vehicle (EV) Engineer',sw:'Mhandisi wa Magari ya Umeme'},desc:{en:'Specialize in hybrid and electric vehicle systems',sw:'Buni mifumo ya magari ya umeme na hybrid'},salary:'TZS 2.5M–6M/month'}],
+  {emoji:'🚗',role:{en:'Automotive Electronics Engineer',sw:'Mhandisi wa Elektroniki za Magari'},desc:{en:'Work with car manufacturers and service centers on advanced electronics',sw:'Fanya kazi na wazalishaji wa magari kwenye elektroniki za hali ya juu'}},
+  {emoji:'⚡',role:{en:'Electric Vehicle (EV) Engineer',sw:'Mhandisi wa Magari ya Umeme'},desc:{en:'Specialize in hybrid and electric vehicle systems',sw:'Buni mifumo ya magari ya umeme na hybrid'}}],
  self:[
   {emoji:'🔌',role:{en:'EV Charging Infrastructure Business',sw:'Biashara ya Miundombinu ya Kuchaji Magari ya Umeme'},desc:{en:'Install and manage EV charging stations in Tanzania',sw:'Weka na simamia vituo vya kuchaji magari ya umeme Tanzania'}}]}},
 
@@ -1341,6 +1429,8 @@ const COURSES=[
  name:{en:'Bachelor Degree in Laboratory Science & Industrial Technology (NTA Level 7–8)',sw:'Shahada ya Kwanza ya Sayansi ya Maabara na Teknolojia ya Viwanda (Ngazi ya 7–8)'},
  duration:{en:'2 Years (after Diploma)',sw:'Miaka 2 (baada ya Diploma)'},
  entry:{en:'Ordinary Diploma in Laboratory Science or related. Or A-Level with Biology, Chemistry, Physics.',sw:'Stashahada ya Sayansi ya Maabara au sawa nayo. Au Kidato cha 6 na Biolojia, Kemia, Fizikia.'},
+ description:{en:'An advanced extension of Laboratory Science covering industrial chemistry, biotechnology, and large-scale quality control systems — preparing graduates for senior roles in research institutions, hospitals, and industrial laboratories.',sw:'Toleo la kina la Sayansi ya Maabara linalojumuisha kemia ya viwandani, biotechnology, na mifumo mikubwa ya udhibiti wa ubora — kuandaa wahitimu kwa nafasi za juu katika taasisi za utafiti, hospitali, na maabara za viwandani.'},
+ suitableFor:{en:'For Diploma graduates wanting to move into senior scientific and quality assurance roles, or A-Level students strong in sciences wanting deeper laboratory expertise.',sw:'Kwa wahitimu wa Diploma wanaotaka kuhamia nafasi za juu za kisayansi na udhibiti wa ubora, au wanafunzi wa Kidato cha 6 wenye uwezo mzuri wa sayansi wanaotaka utaalamu wa kina wa maabara.'},
  semesters:[
   {label:{en:'NTA Level 7 — Semester I',sw:'Ngazi ya 7 — Muhula I'},subjects:[
    {code:'LIU 07101',name:'Biological Techniques'},{code:'LIU 07102',name:'Analytical Instrumentation'},{code:'LIU 07103',name:'Preparation of Chemical Solution and Bench Reagents'},{code:'LIU 07104',name:'Laboratory Safety'}]},
@@ -1349,11 +1439,12 @@ const COURSES=[
   {label:{en:'NTA Level 8 — Semester II',sw:'Ngazi ya 8 — Muhula II'},subjects:[
    {code:'LIU 08201',name:'Quality Control and Standards'},{code:'LIU 08202',name:'Water and Soil Management'},{code:'LIU 08203',name:'Principles of Nuclear Science'},{code:'LIU 08204',name:'Project Design'},{code:'LIU 08205',name:'Professional Ethics'}]}],
  careers:{employed:[
-  {emoji:'🔬',role:{en:'Senior Laboratory Scientist',sw:'Mwanasayansi Mkuu wa Maabara'},desc:{en:'Lead laboratory operations in hospitals, industries and research',sw:'Ongoza shughuli za maabara hospitalini, viwandani na utafiti'},salary:'TZS 1.5M–4M/month'},
-  {emoji:'🏭',role:{en:'Industrial Quality Manager',sw:'Meneja wa Ubora wa Viwanda'},desc:{en:'Oversee quality control in food, pharma and chemical industries',sw:'Simamia udhibiti wa ubora katika viwanda vya chakula, dawa na kemikali'},salary:'TZS 1.5M–4M/month'}],
+  {emoji:'🔬',role:{en:'Senior Laboratory Scientist',sw:'Mwanasayansi Mkuu wa Maabara'},desc:{en:'Lead laboratory operations in hospitals, industries and research',sw:'Ongoza shughuli za maabara hospitalini, viwandani na utafiti'}},
+  {emoji:'🏭',role:{en:'Industrial Quality Manager',sw:'Meneja wa Ubora wa Viwanda'},desc:{en:'Oversee quality control in food, pharma and chemical industries',sw:'Simamia udhibiti wa ubora katika viwanda vya chakula, dawa na kemikali'}}],
  self:[
   {emoji:'🧪',role:{en:'Private Testing Laboratory',sw:'Maabara Binafsi ya Kupimia'},desc:{en:'Run your own lab testing food, water, soil and products',sw:'Endesha maabara yako ya kupima chakula, maji, udongo na bidhaa'}}]}}
 ];
+
 
 </script>
 <script>
@@ -1636,7 +1727,16 @@ function renderDetailScreen() {
     Mechanical:'background:#FCE4EC;color:#880E4F',ICT:'background:#E3F2FD;color:#0D47A1',
     Science:'background:#F3E5F5;color:#6A1B9A'
   };
-  const modulesHTML = c.comingSoon
+  const overviewHTML = (c.description && c.suitableFor) ? `
+    <div class="desc-box">
+      <div class="desc-label">${t.whatYoullLearn}</div>
+      <div class="desc-text">${c.description[lang]}</div>
+    </div>
+    <div class="desc-box suitable">
+      <div class="desc-label">${t.isThisForYou}</div>
+      <div class="desc-text">${c.suitableFor[lang]}</div>
+    </div>` : '';
+  const modulesHTML = overviewHTML + (c.comingSoon
     ? `<div class="coming-soon-box"><div style="font-size:24px">⏳</div><p>${t.comingSoon}<br><small>${t.comingSoonSub}</small></p></div>`
     : c.semesters.map(s=>`
         <div class="semester-block">
@@ -1648,7 +1748,7 @@ function renderDetailScreen() {
               <div class="subject-name">${sub.name}</div>
               ${sub.code&&sub.code!=='—'?`<div class="subject-code">${sub.code}</div>`:''}
             </div>`).join('')}
-        </div>`).join('');
+        </div>`).join(''));
   const careersHTML = `
     <div class="career-section">
       <div class="career-section-title">💼 ${t.employed}</div>
