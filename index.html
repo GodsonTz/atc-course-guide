@@ -3,33 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0F2A4A">
-<title>ATC Course Guide — Programs & Modules at Arusha Technical College</title>
-<meta name="description" content="Explore every Ordinary Diploma and Bachelor Degree program at Arusha Technical College. Modules, entry requirements, careers, and a career-match quiz — in one place.">
-<meta name="author" content="ATC Course Guide">
-<link rel="canonical" href="/">
+<meta name="theme-color" content="#1E3A8A">
+<title>ATC Course Guide, Programs & Modules at Arusha Technical College</title>
+<meta name="description" content="Browse all Ordinary Diploma and Bachelor Degree programs at Arusha Technical College (ATC), modules, entry requirements, and career paths in English & Kiswahili.">
+<meta name="keywords" content="ATC, Arusha Technical College, courses, programs, diploma, bachelor, engineering, Tanzania, enrollment, modules, NACTE">
+<meta name="author" content="HDG. Tech">
+<link rel="canonical" href="https://hdg-tech.github.io/atc-course-guide/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="ATC Course Guide">
-<meta property="og:title" content="ATC Course Guide — Arusha Technical College">
-<meta property="og:description" content="Find your right course at Arusha Technical College. Programs, modules, entry requirements, careers, and a 2-minute career-match quiz.">
-<meta property="og:url" content="/">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ATC Course Guide — Arusha Technical College">
-<meta name="twitter:description" content="Programs, modules, entry requirements, careers, and a career-match quiz for Arusha Technical College.">
+<meta property="og:title" content="ATC Course Guide, Programs at Arusha Technical College">
+<meta property="og:description" content="Explore all courses, modules, entry requirements and career opportunities at Arusha Technical College.">
+<meta property="og:url" content="https://hdg-tech.github.io/atc-course-guide/">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ATC Guide">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Arusha Technical College","alternateName":"ATC","url":"https://www.atc.ac.tz","address":{"@type":"PostalAddress","addressLocality":"Arusha","addressCountry":"TZ"}}</script>
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Arusha Technical College","alternateName":"ATC","url":"https://www.atc.ac.tz","address":{"@type":"PostalAddress","addressLocality":"Arusha","addressCountry":"TZ"},"sameAs":["https://hdg-tech.github.io/atc-course-guide/"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter+Tight:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* Consistent emoji rendering across platforms */
-.career-emoji,.who-card-icon,.int-card-icon,.dept-card-icon,.na-icon,.star-btn,.quiz-badge{
-  font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla",sans-serif,var(--font-ui);
-  font-variant-emoji:emoji;
-}
-
 :root{
   /* Surface, warm paper, not blue-white */
   --bg:#F6F4EF;
@@ -134,6 +126,50 @@ body{
   padding:6px 10px;border-radius:999px;color:var(--ink-3);cursor:pointer;transition:all .2s;
 }
 .lang-opt.active{background:var(--navy);color:#fff}
+
+.menu-btn{
+  width:38px;height:38px;flex-shrink:0;border-radius:10px;
+  background:#fff;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink);cursor:pointer;box-shadow:var(--shadow-1);
+}
+.menu-btn:active{transform:scale(.94);background:var(--bg2)}
+
+/* About Us drawer */
+.drawer-overlay{
+  position:fixed;inset:0;background:rgba(20,18,14,.42);
+  opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:100;
+}
+.drawer-overlay.open{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(360px,86vw);
+  background:var(--bg);z-index:101;
+  transform:translateX(100%);transition:transform .32s cubic-bezier(.2,.7,.2,1);
+  display:flex;flex-direction:column;box-shadow:-8px 0 32px rgba(0,0,0,.18);
+}
+.drawer.open{transform:translateX(0)}
+.drawer-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 20px;border-bottom:1px solid var(--line);flex-shrink:0;
+}
+.drawer-title{font:700 15px/1 var(--font-ui);color:var(--ink);letter-spacing:.01em}
+.drawer-close{
+  width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:#fff;
+  display:flex;align-items:center;justify-content:center;color:var(--ink-3);cursor:pointer;
+}
+.drawer-close:active{transform:scale(.94)}
+.drawer-body{flex:1;overflow-y:auto;padding:22px 20px 32px}
+.drawer-body h3{
+  font:700 13px/1.3 var(--font-ui);color:var(--brass);letter-spacing:.06em;text-transform:uppercase;
+  margin:0 0 10px;
+}
+.drawer-body p{font:400 14.5px/1.6 var(--font-ui);color:var(--ink-2);margin:0 0 18px}
+.drawer-credits{
+  margin-top:6px;padding-top:18px;border-top:1px solid var(--line);
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3);line-height:1.7;
+}
+.drawer-contact{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-2);line-height:1.9}
+.drawer-contact a{color:var(--navy);text-decoration:none;border-bottom:1px solid color-mix(in oklab,var(--navy) 30%,transparent)}
 
 /* Breadcrumbs */
 .breadcrumb{
@@ -459,20 +495,6 @@ body{
   color:var(--c-tran);background:color-mix(in oklab,var(--c-tran) 8%, #fff);
   border:1px solid color-mix(in oklab,var(--c-tran) 20%, var(--line));
   padding:3px 8px;border-radius:999px;
-}
-
-/* ── BOTTOM BAR ── */
-.bottom-bar{
-  position:absolute;left:0;right:0;bottom:0;z-index:10;
-  padding:10px 16px max(env(safe-area-inset-bottom),10px);
-  background:rgba(255,255,255,.85);
-  backdrop-filter:saturate(140%) blur(14px);
-  -webkit-backdrop-filter:saturate(140%) blur(14px);
-  border-top:1px solid var(--line);
-  text-align:center;
-}
-.bottom-credits{
-  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;color:var(--ink-3);
 }
 
 /* ── DESKTOP REFINEMENTS ── */
@@ -876,6 +898,9 @@ body{
         <button class="lang-opt active" id="btnEN" onclick="setLang('en')">EN</button>
         <button class="lang-opt" id="btnSW" onclick="setLang('sw')">SW</button>
       </div>
+      <button class="menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
     </div>
     <div class="breadcrumb" id="breadcrumb">
       <span class="bc-item active" id="bc0"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg> Departments</span>
@@ -893,12 +918,10 @@ body{
     ═══════════════════════════════════════ -->
     <div class="quiz-screen active" id="quiz-s0">
       <div class="quiz-inner"><div class="quiz-hero-wrap">
-        <div class="quiz-badge" id="qb-badge">🎓 Arusha Technical College · Free Guide</div>
         <h1 class="quiz-hero-title" id="qh-title">Find Your <em>Right Course.</em><br>Own Your Future.</h1>
         <p class="quiz-hero-sub" id="qh-sub">Don't choose a course because your friends did. Let's find one that matches your passion, your strengths, and the career you deserve.</p>
 
         <button class="quiz-start-btn" id="qh-btn" onclick="quizGo('quiz-s1')">Start Exploring →</button>
-        <p class="quiz-hero-note" id="qh-note">Takes 2 minutes · No registration needed</p>
         <p class="quiz-browse-link"><span id="qh-browse-pre">Already know what you want? </span><a onclick="enterBrowseMode()" id="qh-browse-a">Browse all courses</a></p>
       </div></div>
     </div>
@@ -912,7 +935,7 @@ body{
         <div style="display:flex;justify-content:space-between;align-items:center">
           <div class="quiz-section-label" style="margin-bottom:0" id="qs1-label">Step 1 of 3</div>
         </div>
-        <div class="quiz-progress-track" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33"><div class="quiz-progress-fill" style="width:33%"></div></div>
+        <div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:33%"></div></div>
         <div class="quiz-steps">
           <span class="quiz-step qs-active" id="qstep1-a">Who are you?</span>
           <span class="quiz-step" id="qstep1-b">Interests</span>
@@ -935,7 +958,7 @@ body{
     ═══════════════════════════════════════ -->
     <div class="quiz-screen" id="quiz-s2">
       <div class="quiz-inner"><div class="quiz-progress" style="margin:-18px -16px 20px;padding:10px 16px 10px">
-        <div class="quiz-progress-track" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="66"><div class="quiz-progress-fill" style="width:66%"></div></div>
+        <div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:66%"></div></div>
         <div class="quiz-steps">
           <span class="quiz-step qs-done" id="qstep2-a">Who are you?</span>
           <span class="quiz-step qs-active" id="qstep2-b">Interests</span>
@@ -963,7 +986,7 @@ body{
     ═══════════════════════════════════════ -->
     <div class="quiz-screen" id="quiz-s3">
       <div class="quiz-inner"><div class="quiz-progress" style="margin:-18px -16px 20px;padding:10px 16px 10px">
-        <div class="quiz-progress-track" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90"><div class="quiz-progress-fill" style="width:90%"></div></div>
+        <div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:90%"></div></div>
         <div class="quiz-steps">
           <span class="quiz-step qs-done" id="qstep3-a">Who are you?</span>
           <span class="quiz-step qs-done" id="qstep3-b">Interests</span>
@@ -1028,9 +1051,30 @@ body{
 
   </div>
 
-  <!-- BOTTOM BAR -->
-  <div class="bottom-bar" id="bottomBar">
-    <div class="bottom-credits">Created by Godson, Hamis &amp; Anuari, Electrical Engineering Students</div>
+  <!-- ABOUT US DRAWER -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeMenu()"></div>
+  <div class="drawer" id="aboutDrawer" role="dialog" aria-label="About Us">
+    <div class="drawer-head">
+      <div class="drawer-title" id="drawerTitle">About This Guide</div>
+      <button class="drawer-close" onclick="closeMenu()" aria-label="Close">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="drawerBody">
+      <h3 id="au-h1">Why We Built This</h3>
+      <p id="au-p1">We're three Electrical Engineering students at Arusha Technical College. Every year we watched new students pick a course the same way we once did, by guessing, by following a friend, or by taking whatever seat was open. Most never saw a full list of programmes, what they actually involve, or where they lead.</p>
+      <p id="au-p2">So we built the guide we wished we'd had: every ATC programme in one place, in plain English and Kiswahili, with a short quiz to help you match your interests to a real course instead of a rumour.</p>
+      <h3 id="au-h2">Get In Touch With ATC</h3>
+      <div class="drawer-contact" id="au-contact">
+        Arusha Technical College<br>
+        Junction of Moshi-Arusha and Nairobi Roads<br>
+        P.O. Box 296, Arusha, Tanzania<br>
+        Tel: +255 734 602 000 / +255 734 800 500<br>
+        Email: <a href="mailto:rector@atc.ac.tz">rector@atc.ac.tz</a><br>
+        Web: <a href="https://www.atc.ac.tz" target="_blank" rel="noopener">www.atc.ac.tz</a>
+      </div>
+      <div class="drawer-credits" id="au-credits">Guide created by Godson, Hamis &amp; Anuari, Electrical Engineering students at ATC.</div>
+    </div>
   </div>
 </div>
 
@@ -1044,6 +1088,7 @@ let selectedLevel = null;
 let selectedCourse = null;
 let activeDetailTab = 'overview';
 let isAnimating = false;
+let menuOpen = false;
 
 // ── QUIZ STATE ──
 const QS = {
@@ -1140,12 +1185,10 @@ function getDynamicRatingQs(lang) {
 // ── QUIZ i18n ──
 const QT = {
   en:{
-    badge:'🎓 Arusha Technical College · Free Guide',
     heroTitle:'Find Your <em>Right Course.</em><br>Own Your Future.',
     heroSub:"Don't choose a course because your friends did. Let's find one that matches your passion, your strengths, and the career you deserve.",
     statCourses:'Courses', statDepts:'Depts', statCareers:'Careers', statFree:'Always',
     startBtn:'Start Exploring →',
-    heroNote:'Takes 2 minutes · No registration needed',
     browsePre:'Already know what you want? ',
     browseA:'Browse all courses',
     step1of3:'Step 1 of 3', step2of3:'Step 2 of 3', step3of3:'Step 3 of 3, Almost done!',
@@ -1176,14 +1219,18 @@ const QT = {
     naOtherTitle:'OTHER COLLEGES IN ARUSHA',
     naRestart:'← Change My Interests',
     naBrowse:'Or browse ATC courses anyway',
+    drawerTitle:'About This Guide',
+    auH1:'Why We Built This',
+    auP1:"We're three Electrical Engineering students at Arusha Technical College. Every year we watched new students pick a course the same way we once did, by guessing, by following a friend, or by taking whatever seat was open. Most never saw a full list of programmes, what they actually involve, or where they lead.",
+    auP2:"So we built the guide we wished we'd had: every ATC programme in one place, in plain English and Kiswahili, with a short quiz to help you match your interests to a real course instead of a rumour.",
+    auH2:'Get In Touch With ATC',
+    auCredits:'Guide created by Godson, Hamis &amp; Anuari, Electrical Engineering students at ATC.',
   },
   sw:{
-    badge:'🎓 Chuo Kikuu Cha Ufundi Arusha · Bure',
     heroTitle:'Pata Kozi <em>Inayokufaa.</em><br>Miliki Mustakabali Wako.',
     heroSub:'Usichague kozi kwa sababu marafiki wako walichagua. Tunapate moja inayolingana na shauku yako, nguvu zako, na kazi unayostahili.',
     statCourses:'Kozi', statDepts:'Idara', statCareers:'Kazi', statFree:'Bure',
     startBtn:'Anza Kuchunguza →',
-    heroNote:'Inachukua dakika 2 · Hakuna usajili unaohitajika',
     browsePre:'Tayari unajua unataka nini? ',
     browseA:'Angalia kozi zote',
     step1of3:'Hatua 1 ya 3', step2of3:'Hatua 2 ya 3', step3of3:'Hatua 3 ya 3, Karibu kumalizika!',
@@ -1215,6 +1262,12 @@ const QT = {
     naOtherTitle:'VYUO VINGINE ARUSHA',
     naRestart:'← Badilisha Maslahi Yangu',
     naBrowse:'Au angalia kozi za ATC tu',
+    drawerTitle:'Kuhusu Mwongozo Huu',
+    auH1:'Kwa Nini Tuliunda Hii',
+    auP1:'Sisi ni wanafunzi watatu wa Uhandisi wa Umeme katika Chuo cha Ufundi Arusha (ATC). Kila mwaka tumeona wanafunzi wapya wakichagua kozi kwa kubahatisha, kwa kufuata rafiki, au kwa kuchukua tu nafasi iliyokuwepo. Wengi hawakuwahi kuona orodha kamili ya program, zinahusu nini, au zinaelekeza wapi.',
+    auP2:'Kwa hiyo tulijenga mwongozo tuliokuwa tukitamani tungeupata sisi wenyewe: kila program ya ATC mahali pamoja, kwa Kiingereza na Kiswahili, ikiwa na jaribio fupi la kukusaidia kulinganisha maslahi yako na kozi halisi badala ya uvumi.',
+    auH2:'Wasiliana na ATC',
+    auCredits:'Mwongozo huu umetengenezwa na Godson, Hamis &amp; Anuari, wanafunzi wa Uhandisi wa Umeme katika ATC.',
   }
 };
 
@@ -2436,8 +2489,11 @@ function showScreen(toId, dir) {
   });
   void document.body.offsetWidth; // reflow
 
-  if (!from || dir === 'instant') {
-    // Just show target instantly
+  if (!from || from === to || dir === 'instant') {
+    // Just show target instantly (also covers the case where 'to' was
+    // already the active screen, e.g. re-showing quiz-s0 after closing
+    // the About Us drawer — animating a screen against itself would
+    // otherwise cancel its own 'active' class at the end)
     to.classList.remove('no-anim');
     to.classList.add('active');
     to.scrollTop = 0;
@@ -2584,7 +2640,7 @@ function renderRatingCards() {
     <div class="rating-card">
       <div class="rating-q">${q.q}</div>
       <div class="stars-row" id="stars-${q.key}">
-        ${[1,2,3,4,5].map(n=>`<button class="star-btn" type="button" aria-label="Rate ${n} of 5" onclick="rateStar('${q.key}',${n})">⭐</button>`).join('')}
+        ${[1,2,3,4,5].map(n=>`<button class="star-btn" onclick="rateStar('${q.key}',${n})">⭐</button>`).join('')}
       </div>
     </div>
   `).join('');
@@ -2838,7 +2894,6 @@ function jumpToExistingCourse(id) {
     courseId: selectedCourse.id, tab: activeDetailTab
   }, '');
   QUIZ_ALL.forEach(id => { const el = document.getElementById(id); if (el) el.classList.remove('active','peek-left'); });
-  document.getElementById('bottomBar').style.display = 'none';
   renderDetailScreen();
   showScreen('screen4', 'forward');
   updateHeaderForMode();
@@ -2861,9 +2916,6 @@ function updateHeaderForMode() {
 
   // Subtitle: only on quiz hero
   document.getElementById('headerSubtitle').style.display = (activeId === 'quiz-s0') ? 'block' : 'none';
-
-  // Bottom bar (credits): only on the real home page (quiz hero)
-  document.getElementById('bottomBar').style.display = (activeId === 'quiz-s0') ? 'flex' : 'none';
 
   // Breadcrumb: only meaningful in browse mode (it's a "Departments > Level > Course" trail)
   document.getElementById('breadcrumb').style.display = inQuiz ? 'none' : 'flex';
@@ -2910,8 +2962,13 @@ function applyQuizLang() {
   const t = QT[lang];
   const set = (id, val) => { const el=document.getElementById(id); if(el) el.innerHTML=val; };
   set('qh-btn', t.startBtn);
-  set('qh-note', t.heroNote);
   set('qh-browse-pre', t.browsePre);
+  set('drawerTitle', t.drawerTitle);
+  set('au-h1', t.auH1);
+  set('au-p1', t.auP1);
+  set('au-p2', t.auP2);
+  set('au-h2', t.auH2);
+  set('au-credits', t.auCredits);
   set('qh-browse-a', t.browseA);
   set('qs-courses', t.statCourses);
   set('qs-depts', t.statDepts);
@@ -2950,11 +3007,21 @@ window.addEventListener('popstate', function(e) {
   const state = e.state || {};
   const nav = state.nav || '';
 
+  // If the About Us drawer is open and the user used the browser/hardware
+  // back button (not our own closeMenu(), which already pops its own
+  // history entry), just close the drawer visually without touching
+  // the quiz/browse screen underneath it.
+  if (menuOpen && !state.menu) {
+    menuOpen = false;
+    document.getElementById('aboutDrawer').classList.remove('open');
+    document.getElementById('drawerOverlay').classList.remove('open');
+  }
+  if (state.menu) return;
+
   if (state.mode === 'quiz' || QUIZ_ALL.includes(nav)) {
     if (QS.quizStack.length > 1) QS.quizStack.pop();
     const prev = QS.quizStack[QS.quizStack.length - 1] || 'quiz-s0';
     BROWSE_ALL.forEach(id => { const el = document.getElementById(id); if (el) el.classList.remove('active'); });
-    document.getElementById('bottomBar').style.display = 'none';
     showScreen(prev, 'back');
     updateHeaderForMode();
     return;
@@ -2989,13 +3056,34 @@ window.goHome = function() {
   if (isAnimating) return;
   BROWSE_ALL.forEach(id => { const el = document.getElementById(id); if (el) el.classList.remove('active','peek-left'); });
   QUIZ_ALL.forEach(id => { const el = document.getElementById(id); if (el) el.classList.remove('active','peek-left'); });
-  document.getElementById('bottomBar').style.display = 'none';
   QS.quizStack = ['quiz-s0'];
   navStack = ['s1'];
   history.pushState({nav:'quiz-s0', mode:'quiz'}, '');
   showScreen('quiz-s0', 'back');
   updateHeaderForMode();
 };
+
+// ── ABOUT US DRAWER (hamburger menu) ──
+window.toggleMenu = function() {
+  if (menuOpen) { closeMenu(); } else { openMenu(); }
+};
+window.openMenu = function() {
+  if (menuOpen) return;
+  menuOpen = true;
+  document.getElementById('aboutDrawer').classList.add('open');
+  document.getElementById('drawerOverlay').classList.add('open');
+  history.pushState({ menu: true }, '');
+};
+window.closeMenu = function() {
+  if (!menuOpen) return;
+  menuOpen = false;
+  document.getElementById('aboutDrawer').classList.remove('open');
+  document.getElementById('drawerOverlay').classList.remove('open');
+  // If the drawer was opened via history.pushState, step back out of that
+  // history entry so the browser/Android back button doesn't get "stuck".
+  if (history.state && history.state.menu) history.back();
+};
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && menuOpen) closeMenu(); });
 
 QS.quizStack = ['quiz-s0'];
 history.replaceState({nav:'quiz-s0', mode:'quiz'}, '');
@@ -3019,58 +3107,5 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(()=>{});
 }
 </script>
-
-<script>
-/* ==== Pro-polish add-on: quiz persistence + share match ==== */
-(function(){
-  var KEY='atc_quiz_state_v1';
-  function save(){
-    try{
-      var state={
-        interests:[].slice.call(document.querySelectorAll('.int-card.selected')).map(function(el){return el.getAttribute('data-key')||el.getAttribute('data-id')||el.textContent.trim();}),
-        stars:{},
-        ts:Date.now()
-      };
-      document.querySelectorAll('.rating-card').forEach(function(card){
-        var q=card.getAttribute('data-key')||card.querySelector('.rating-q')?.textContent.trim();
-        var lit=card.querySelectorAll('.star-btn.lit').length;
-        if(q&&lit) state.stars[q]=lit;
-      });
-      localStorage.setItem(KEY,JSON.stringify(state));
-    }catch(e){}
-  }
-  document.addEventListener('click',function(e){
-    if(e.target.closest('.int-card,.star-btn,.who-card')){ setTimeout(save,50); }
-    /* Share button */
-    if(e.target.closest('#shareMatchBtn')){
-      e.preventDefault();
-      var top=document.querySelector('.result-card.rc-top .rc-name')||document.querySelector('.result-card .rc-name');
-      var name=top?top.textContent.trim():'my ATC course match';
-      var text='My top ATC course match: '+name+' — try the ATC Course Guide.';
-      var url=location.href;
-      if(navigator.share){ navigator.share({title:'ATC Course Guide',text:text,url:url}).catch(function(){}); }
-      else{
-        navigator.clipboard.writeText(text+' '+url).then(function(){
-          var b=document.getElementById('shareMatchBtn'); if(b){var t=b.textContent;b.textContent='Link copied ✓';setTimeout(function(){b.textContent=t;},1800);}
-        });
-      }
-    }
-  },true);
-  /* Inject share button when results screen becomes active */
-  var mo=new MutationObserver(function(){
-    document.querySelectorAll('.quiz-screen.active .results-header').forEach(function(h){
-      if(h.querySelector('#shareMatchBtn')) return;
-      var btn=document.createElement('button');
-      btn.id='shareMatchBtn'; btn.type='button';
-      btn.textContent='Share my match';
-      btn.style.cssText='margin-top:14px;background:var(--brass);color:#fff;border:none;cursor:pointer;padding:10px 18px;border-radius:999px;font:600 12.5px/1 var(--font-ui);letter-spacing:.04em;';
-      btn.setAttribute('aria-label','Share my top course match');
-      h.appendChild(btn);
-    });
-  });
-  mo.observe(document.body,{subtree:true,attributes:true,attributeFilter:['class'],childList:true});
-})();
-</script>
-
 </body>
 </html>
